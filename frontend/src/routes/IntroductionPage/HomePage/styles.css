@@ -1,0 +1,43 @@
+#section-home-page {
+  padding: 0 20px;
+}
+
+.home-page-introduction {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.home-page-introduction img {
+  max-height: 431px;
+  max-width: 431px;
+  border-radius: 50%;
+}
+
+.home-page-introduction-invite h2 {
+  font-size: 34px;
+  max-width: 250px;
+  text-transform: uppercase;
+  & span {
+    color: var(--fb-color-primary);
+  }
+}
+
+.home-page-introduction-invite a {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  gap: 5px;
+  max-width: 190px;
+  border: 2px solid var(--fb-color-primary);
+  color: var(--fb-color-primary);
+  padding: 4px;
+  border-radius: 40px;
+  & img {
+    height: 38px;
+    width: 38px;
+  }
+}

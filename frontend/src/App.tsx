@@ -1,15 +1,16 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import IntroductionPage from './routes/HomePage/IntroductionPage'
-import HomePage from './routes/HomePage'
+import IntroductionPage from './routes/IntroductionPage'
+import HomePage from './routes/IntroductionPage/HomePage'
+
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} >
-          <Route index element={<IntroductionPage />} />
+        <Route path="/" element={<IntroductionPage />} >
+          <Route index element={<HomePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
