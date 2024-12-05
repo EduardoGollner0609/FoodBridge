@@ -9,7 +9,7 @@
   justify-content: space-around;
 }
 
-.home-page-introduction img {
+.home-page-introduction-invite-img img {
   max-height: 431px;
   max-width: 431px;
   border-radius: 50%;
@@ -19,6 +19,7 @@
   font-size: 34px;
   max-width: 250px;
   text-transform: uppercase;
+  color: var(--fb-color-tertiary);
   & span {
     color: var(--fb-color-primary);
   }
@@ -40,4 +41,61 @@
     height: 38px;
     width: 38px;
   }
+}
+
+#section-home-page-how-help {
+  padding: 0 20px;
+}
+
+.home-page-how-help-content h2 {
+  text-align: center;
+  color: #2a2a2a;
+  font-size: 30px;
+}
+
+.home-page-how-help-cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card-how-help-item {
+  padding: 20px 28px 30px 28px;
+  height: 395px;
+  width: 350px;
+  border: 2px solid var(--fb-color-border-gray);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-how-help-item-img img {
+  height: 70px;
+  width: 90px;
+}
+.card-how-help-item-description {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.card-how-help-item-description h3 {
+  color: var(--fb-color-tertiary);
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.card-how-help-item-description p {
+  color: var(--fb-color-secondary);
+  font-size: 16px;
+}
+
+.card-how-help-tem-read-more-invite a {
+  padding: 5px;
+  border: 2px solid var(--fb-color-primary);
+  color: var(--fb-color-primary);
+  border-radius: 10px;
+  font-size: 18px;
 }
