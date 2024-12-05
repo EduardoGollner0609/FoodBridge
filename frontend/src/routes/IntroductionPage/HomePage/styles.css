@@ -44,6 +44,7 @@
 }
 
 #section-home-page-how-help {
+  margin: 20px 0;
   padding: 0 20px;
 }
 
@@ -98,4 +99,86 @@
   color: var(--fb-color-primary);
   border-radius: 10px;
   font-size: 18px;
+}
+
+#section-home-page-more-details {
+  padding: 0 20px;
+  background-color: var(--fb-color-bg-primary);
+}
+
+.home-page-more-details-content {
+  padding: 30px 15px;
+  display: flex;
+  gap: 30px;
+}
+
+.home-page-more-details-descriptions h2 {
+  font-size: 32px;
+  color: var(--fb-color-tertiary);
+  margin-bottom: 20px;
+  & span {
+    color: var(--fb-color-primary);
+  }
+}
+
+.home-page-more-details-descriptions p {
+  color: var(--fb-color-secondary);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.home-page-more-details-imgs img {
+  border-radius: 10px;
+}
+
+.home-page-more-details-imgs-bottom {
+  display: flex;
+  gap: 20px;
+}
+
+.home-page-more-details-imgs-bottom img:nth-child(1) {
+  height: 320px;
+  max-width: 208px;
+  object-fit: cover;
+  object-position: 70%;
+}
+
+.home-page-more-details-imgs-bottom img:nth-child(2) {
+  height: 320px;
+  max-width: 280px;
+  object-fit: cover;
+  object-position: 30%;
+}
+
+.home-page-more-details-description-phrases {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-page-more-details-description-phrases h3 {
+  font-size: 22px;
+  max-width: 260px;
+}
+
+.home-page-more-details-column {
+  background-color: var(--fb-color-primary);
+  padding: 30px 1.5px;
+  border-radius: 5px;
+}
+
+.home-page-more-details-descriptions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 190px;
+  padding: 6px;
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  border-radius: 10px;
+  & img {
+    height: 38px;
+    width: 38px;
+  }
 }
