@@ -33,3 +33,8 @@ a:hover {
 ul {
   list-style: none;
 }
+
+.active {
+  border-bottom: 2px solid var(--fb-color-primary);
+  font-weight: 600;
+}

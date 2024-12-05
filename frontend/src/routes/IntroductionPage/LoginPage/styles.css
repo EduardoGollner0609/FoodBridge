@@ -1,0 +1,70 @@
+#section-login-page {
+  padding: 0 20px;
+}
+
+.login-page-content {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page-content h2 {
+  text-align: center;
+  color: var(--fb-color-tertiary);
+  text-transform: uppercase;
+  font-size: 34px;
+}
+
+.card-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 40px;
+  border: 2px solid var(--fb-color-primary);
+  border-radius: 20px;
+}
+
+.card-login form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-item-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-login input {
+  outline: none;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid var(--fb-color-primary);
+  width: 320px;
+}
+
+.card-login label {
+  font-size: 18px;
+  color: var(--fb-color-secondary);
+}
+
+.card-login form button {
+  background-color: var(--fb-color-primary);
+  border: none;
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 20px;
+  color: var(--fb-color-quartiary);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.card-login-invite-register {
+  text-align: center;
+}
+.card-login-invite-register a {
+  color: var(--fb-color-primary);
+}

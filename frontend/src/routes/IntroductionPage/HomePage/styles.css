@@ -1,9 +1,11 @@
 #section-home-page {
-  padding: 0 20px;
+  padding: 20px;
 }
 
 .home-page-introduction {
   height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -52,6 +54,7 @@
   text-align: center;
   color: #2a2a2a;
   font-size: 30px;
+  margin-bottom: 15px;
 }
 
 .home-page-how-help-cards-list {

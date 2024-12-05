@@ -1,0 +1,28 @@
+#section-about-page {
+  margin: 10px 0;
+  padding: 0 20px;
+}
+
+.about-us-content {
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid var(--fb-color-primary);
+  max-height: 500px;
+  overflow-y: auto;
+}
+.about-us-content h3 {
+  text-align: center;
+  font-size: 26px;
+  color: var(--fb-color-tertiary);
+  margin-bottom: 10px;
+  & span {
+    color: var(--fb-color-primary);
+  }
+}
+
+.about-us-content p {
+  font-size: 18px;
+  color: var(--fb-color-secondary);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
