@@ -4,15 +4,27 @@ header {
 }
 
 nav {
-  padding: 0 20px;
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: var(---fb-color-primary);
-  border-radius: 40px;
+  justify-content: space-between;
 }
 
 .fb-header-home-page-title h1 {
   font-size: 26px;
+  color: var(--fb-color-primary);
+}
+
+.fb-header-home-page-navegation-options ul {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
   color: var(--fb-color-secondary);
+}
+
+.fb-header-home-page-login a {
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  border-radius: 15px;
+  padding: 8px 10px;
 }

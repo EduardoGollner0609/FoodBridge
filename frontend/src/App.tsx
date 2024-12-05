@@ -1,10 +1,18 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Header from './components/HeaderHomePage'
+import IntroductionPage from './routes/HomePage/IntroductionPage'
+import HomePage from './routes/HomePage'
 
 function App() {
 
   return (
-    <Header />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} >
+          <Route index element={<IntroductionPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

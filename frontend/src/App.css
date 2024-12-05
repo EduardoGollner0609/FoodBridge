@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 :root {
-  ---fb-color-primary: #e9e1b0;
-  --fb-color-secondary: #e62828;
+  --fb-color-primary: #3a40d8;
+  --fb-color-secondary: #5A5A5A;
+  --fb-color-tertiary: #bb2020;
+  --fb-color-quartiary: #fff
 }
 
 * {
@@ -24,7 +26,7 @@ a:hover {
   color: unset;
 }
 
-html,
-body {
-  background-color: #ebe7ce;
+
+ul {
+  list-style: none;
 }
