@@ -4,6 +4,7 @@ import IntroductionPage from './routes/IntroductionPage'
 import HomePage from './routes/IntroductionPage/HomePage'
 import AboutPage from './routes/IntroductionPage/AboutPage'
 import LoginPage from './routes/IntroductionPage/LoginPage'
+import RegisterPage from './routes/IntroductionPage/RegisterPage'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

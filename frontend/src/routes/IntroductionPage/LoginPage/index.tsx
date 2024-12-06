@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 export default function LoginPage() {
@@ -8,7 +9,8 @@ export default function LoginPage() {
                     <div className="card-login">
                         <h2>Login</h2>
                         <form>
-                            <div className="form-item-input">                           <label>Email</label>
+                            <div className="form-item-input">
+                                <label>Email</label>
                                 <input type="text" /></div>
                             <div className="form-item-input">
                                 <label>Senha</label>
@@ -17,7 +19,9 @@ export default function LoginPage() {
                             <button>Login</button>
                         </form>
                         <div className="card-login-invite-register">
-                            <a href=""> Clique aqui para se cadastrar</a>
+                            <Link to="/register">
+                                Clique aqui para se cadastrar
+                            </Link>
                         </div>
 
 
