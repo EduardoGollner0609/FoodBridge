@@ -17,6 +17,10 @@ export default function RegisterPage() {
                                 <input type="date" />
                             </div>
                             <div className="form-item-input">
+                                <label>Número de telefone</label>
+                                <input type="text" />
+                            </div>
+                            <div className="form-item-input">
                                 <label>Email</label>
                                 <input type="text" />
                             </div>
