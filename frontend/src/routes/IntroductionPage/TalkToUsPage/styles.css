@@ -61,7 +61,7 @@
   border-radius: 5px;
   border: 2px solid var(--fb-color-primary);
   font-size: 18px;
-  width: 280px;
+  min-width: 280px;
 }
 
 .card-talk-to-us-send-question-inputs {
@@ -75,6 +75,10 @@
   gap: 5px;
 }
 
+.card-talk-to-us-send-question-message {
+  width: 100%;
+}
+
 .card-talk-to-us-send-question-message textarea {
   border: 2px solid var(--fb-color-primary);
   padding: 5px 10px;
@@ -83,7 +87,7 @@
   outline: none;
   resize: none;
   height: 100%;
-  width: 370px;
+  width: 100%;
 }
 
 .card-talk-to-us-send-question-button-submit {
