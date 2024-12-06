@@ -17,8 +17,9 @@ export default function HeaderHomePage() {
                         <NavLink to="/about">
                             <li>Sobre</li>
                         </NavLink>
-
-                        <li>Fale Conosco</li>
+                        <NavLink to="/contact">
+                            <li>Fale Conosco</li>
+                        </NavLink>
                     </ul>
                 </div>
                 <div className="fb-header-introduction-page-login">

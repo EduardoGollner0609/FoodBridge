@@ -5,6 +5,7 @@ import HomePage from './routes/IntroductionPage/HomePage'
 import LoginPage from './routes/IntroductionPage/LoginPage'
 import RegisterPage from './routes/IntroductionPage/RegisterPage'
 import AboutPage from './routes/IntroductionPage/AboutPage'
+import TalkToUsPage from './routes/IntroductionPage/TalkToUsPage'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/contact" element={<TalkToUsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -6,7 +6,7 @@ export default function AboutPage() {
         <main>
             <section id="section-about-page">
                 <div className="about-us-content container">
-                    <h3>O que é a <span>FoodBridge</span>?</h3>
+                    <h2>O que é a <span>FoodBridge</span>?</h2>
                     <p>Antes de mais nada, todos nós sabemos que a fome é uma realidade cruel que afeta milhões de pessoas ao redor do mundo. Pessoas lutam para sobreviver em um ciclo imenso de desigualdade.</p>
                     <p>No Brasil, um em cada cinco brasileiros vive em situação de insegurança alimentar. São números alarmantes que, muitas vezes, não tocam nosso coração de imediato. Mas eles têm rostos, histórias, vidas que estão à mercê da solidariedade de cada um de nós.</p>
                     <p>O FoodBridge entra nesse cenário, foi criado para ser uma ponte, unindo pessoas que estão disposta a ajudar com doações com pessoas que queiram ajudar distribuindo os alimentos, alcançando aqueles que necessitam. Através da nossa plataforma, você pode doar alimentos que têm em casa ou ajudar a distribuir as doações para quem realmente precisa. Cada gesto de bondade, por menor que pareça, se transforma em um passo em direção a um futuro mais justo, onde a fome não é mais uma sentença.</p>
