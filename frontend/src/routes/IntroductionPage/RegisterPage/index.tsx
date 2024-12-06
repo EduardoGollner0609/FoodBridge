@@ -28,6 +28,7 @@ export default function RegisterPage() {
                                 <label>Senha</label>
                                 <input type="password" />
                             </div>
+                            <button>Cadastrar</button>
                         </form>
                     </div>
                 </div>

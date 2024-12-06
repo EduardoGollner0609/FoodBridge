@@ -52,3 +52,15 @@
   font-size: 18px;
 }
 
+.card-register form button {
+  background-color: var(--fb-color-quartiary);
+  border: none;
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: var(--fb-color-primary);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 10px 0;
+}

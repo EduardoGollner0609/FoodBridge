@@ -60,6 +60,7 @@
   text-transform: uppercase;
   cursor: pointer;
   margin: 10px 0;
+  font-weight: 600;
 }
 
 .card-login-invite-register {
