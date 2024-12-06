@@ -7,7 +7,6 @@
   padding: 20px;
   border-radius: 20px;
   border: 2px solid var(--fb-color-primary);
-  max-height: 500px;
   overflow-y: auto;
 }
 .about-us-content h3 {
@@ -25,4 +24,10 @@
   color: var(--fb-color-secondary);
   margin-bottom: 15px;
   font-weight: 600;
+}
+
+.help-more-details-description h4 {
+  font-size: 24px;
+  text-align: center;
+  color: var(--fb-color-primary);
 }

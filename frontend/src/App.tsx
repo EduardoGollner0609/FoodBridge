@@ -2,9 +2,9 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import IntroductionPage from './routes/IntroductionPage'
 import HomePage from './routes/IntroductionPage/HomePage'
-import AboutPage from './routes/IntroductionPage/AboutPage'
 import LoginPage from './routes/IntroductionPage/LoginPage'
 import RegisterPage from './routes/IntroductionPage/RegisterPage'
+import AboutPage from './routes/IntroductionPage/AboutPage'
 
 
 function App() {

@@ -8,8 +8,14 @@ import shareHelp from '../../../assets/share-help.svg';
 import moreDetails1 from '../../../assets/more-details-img1.png';
 import moreDetails2 from '../../../assets/more-details-img2.jpeg';
 import moreDetails3 from '../../../assets/more-details-img3.jpg';
+import CardHelp from '../../../components/CardHelp';
 
 export default function HomePage() {
+
+    const descriptionDonation: string = "Segundo a ONU, em 2024, mais de 700 milhões de pessoas passam fome no Mundo, você pode ajudar a fazer com que esse número abaixe ajudando com aquilo que estiver em seu alcance, doe já!";
+    const descriptionDelivery: string = "Você pode colaborar não apenas doando, mas também se voluntariando a distribuir os alimentos. Confiamos em você para entregar as pessoas que realmente necessitam";
+    const descriptionShare: string = "Você tem o poder de compartilhar com amigos, familiares ou conhecidos, e assim ajudar a levar nosso projeto mais longe, alcançando assim mais pessoas, agora é com você ;)";
+
     return (
         <main>
             <section id="section-home-page">
@@ -29,44 +35,9 @@ export default function HomePage() {
                 <div className="home-page-how-help-content container">
                     <h2>Como posso ajudar?</h2>
                     <div className="home-page-how-help-cards-list">
-                        <div className="card-how-help-item">
-                            <div className="card-how-help-item-img">
-                                <img src={donationFood} alt="" />
-                            </div>
-                            <div className="card-how-help-item-description">
-                                <h3>Doando</h3>
-                                <p>Segundo a ONU, em 2024, mais de 700 milhões de pessoas passam fome no Mundo, você pode ajudar a fazer com que esse número abaixe ajudando com aquilo que estiver em seu alcance, doe já!  </p>
-                            </div>
-                            <div className="card-how-help-tem-read-more-invite">
-                                <a href="">Saiba Mais</a>
-                            </div>
-                        </div>
-
-                        <div className="card-how-help-item">
-                            <div className="card-how-help-item-img">
-                                <img src={handsHelp} alt="" />
-                            </div>
-                            <div className="card-how-help-item-description">
-                                <h3>Entregando</h3>
-                                <p>Você pode colaborar não apenas doando, mas também se voluntariando a distribuir os alimentos. Confiamos em você para entregar as pessoas que realmente necessitam</p>
-                            </div>
-                            <div className="card-how-help-tem-read-more-invite">
-                                <a href="">Saiba Mais</a>
-                            </div>
-                        </div>
-
-                        <div className="card-how-help-item">
-                            <div className="card-how-help-item-img">
-                                <img src={shareHelp} alt="" />
-                            </div>
-                            <div className="card-how-help-item-description">
-                                <h3>Compartilhando</h3>
-                                <p>Você tem o poder de compartilhar com amigos, familiares ou conhecidos, e assim ajudar a levar nosso projeto mais longe, alcançando assim mais pessoas, agora é com você ;)</p>
-                            </div>
-                            <div className="card-how-help-tem-read-more-invite">
-                                <a href="">Saiba Mais</a>
-                            </div>
-                        </div>
+                        <CardHelp imgUrl={donationFood} title="Doando" description={descriptionDonation} />
+                        <CardHelp imgUrl={handsHelp} title="Entregando" description={descriptionDelivery} />
+                        <CardHelp imgUrl={shareHelp} title="Compartilhando" description={descriptionShare} />
                     </div>
                 </div>
             </section>
