@@ -28,6 +28,12 @@ export default function HomeCommunityPage() {
                             <CardDonation />
                             <CardDonation />
                             <CardDonation />
+                            <CardDonation />
+                            <CardDonation />
+                            <CardDonation />
+                            <CardDonation />
+                            <CardDonation />
+                            <CardDonation />
                         </div>
 
 
