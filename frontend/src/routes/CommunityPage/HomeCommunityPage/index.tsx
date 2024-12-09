@@ -1,3 +1,4 @@
+import CardDonation from '../../../components/CardDonation';
 import './styles.css';
 
 export default function HomeCommunityPage() {
@@ -19,6 +20,10 @@ export default function HomeCommunityPage() {
                             </select>
                         </div>
                         <div className="home-community-donations-list">
+                            <CardDonation />
+                            <CardDonation />
+                            <CardDonation />
+                       
 
                         </div>
                     </div>

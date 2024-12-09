@@ -1,0 +1,25 @@
+.card-donation {
+  border: 2px solid var(--fb-color-primary);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  height: 90px;
+  cursor: pointer;
+}
+
+.card-donation-data h3 {
+  color: var(--fb-color-primary);
+}
+
+.card-donation p {
+  color: var(--fb-color-secondary);
+}
+
+.card-donation:hover {
+  background-color: var(--fb-color-primary);
+  & h3,
+  p {
+    color: var(--fb-color-quartiary);
+  }
+}
