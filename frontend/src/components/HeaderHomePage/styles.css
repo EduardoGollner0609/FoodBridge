@@ -3,7 +3,7 @@ header {
   padding: 10px 20px;
 }
 
-nav {
+header nav {
   height: 100%;
   display: flex;
   align-items: center;

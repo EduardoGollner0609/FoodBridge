@@ -14,7 +14,7 @@ export default function AboutPage() {
                     <p>A fome não é um problema distante. Ela está perto, ao nosso lado, e é preciso agir agora. Cada ação sua pode transformar a vida de alguém. E juntos, podemos construir um futuro onde a comida não seja apenas uma necessidade básica, mas um direito acessível a todos.</p>
                     <p>A cada doação, a cada entrega, a cada gesto de compaixão, estamos mais perto de uma solução. O FoodBridge é a sua oportunidade de fazer parte dessa transformação. Não é apenas sobre alimentar, é sobre mudar vidas.</p>
                     <div className="help-more-details-description">
-                        <h3>Como <span>Ajudar</span>?</h3>
+                        <h2>Como <span>Ajudar</span>?</h2>
                         <h4>Doando</h4>
                         <p>Você pode fazer uma doação registrando sobre o que quer doar, e assim que salvar, os usuários do FoodBridge, inclusive você poderão pegar o alimento e distribuir para pessoas que necessitam (Tanto ONG como pessoas fisicas podem pegar o alimento para distribui-lo).</p>
                         <h4>Entregando</h4>

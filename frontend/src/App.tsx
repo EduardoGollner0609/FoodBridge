@@ -6,6 +6,8 @@ import LoginPage from './routes/IntroductionPage/LoginPage'
 import RegisterPage from './routes/IntroductionPage/RegisterPage'
 import AboutPage from './routes/IntroductionPage/AboutPage'
 import TalkToUsPage from './routes/IntroductionPage/TalkToUsPage'
+import CommunityPage from './routes/PrincipalPage/CommunityPage'
+import HomeCommunityPage from './routes/PrincipalPage/CommunityPage'
 
 
 function App() {
@@ -14,12 +16,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<IntroductionPage />} >
-          <Route index element={<Navigate to="/home" />} />
+          <Route index element={<Navigate to="/introduction" />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/contact" element={<TalkToUsPage />} />
+        </Route>
+
+        <Route path="/community" element={<CommunityPage />} >
+          <Route path="/home" element={<HomeCommunityPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
