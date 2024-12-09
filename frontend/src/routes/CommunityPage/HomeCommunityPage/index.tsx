@@ -1,7 +1,19 @@
+import { useState } from 'react';
 import CardDonation from '../../../components/CardDonation';
 import './styles.css';
+import CardDonationDetails from '../../../components/CardDonationDetails';
 
 export default function HomeCommunityPage() {
+
+    const [donationDetailsVisible, setDonationDetailsVisible] = useState(false);
+
+    function openDonationDetails() {
+        setDonationDetailsVisible(true);
+    }
+
+    function closeDonationDetails() {
+        setDonationDetailsVisible(false);
+    }
     return (
         <>
             <main>
@@ -25,7 +37,7 @@ export default function HomeCommunityPage() {
                             </div>
                         </div>
                         <div className="home-community-donations-list">
-                            <CardDonation />
+                            <CardDonation openDetails={openDonationDetails} />
                             <CardDonation />
                             <CardDonation />
                             <CardDonation />
@@ -40,6 +52,9 @@ export default function HomeCommunityPage() {
                     </div>
                 </section>
             </main >
+            {
+                donationDetailsVisible && <CardDonationDetails closeDetails={closeDonationDetails} />
+            }
         </>
 
     );
