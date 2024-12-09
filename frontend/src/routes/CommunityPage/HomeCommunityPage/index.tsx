@@ -9,7 +9,7 @@ export default function HomeCommunityPage() {
                     <div className="home-community-welcome">
                         <h2>Seja muito bem vindo, Eduardo</h2>
                     </div>
-                    <div className="home-community-donations">
+                    <div className="home-community-donations-header">
                         <div className="home-community-search-location">
                             <h3>Veja as doações que estão em </h3>
                             <select name="" id="">
@@ -19,18 +19,19 @@ export default function HomeCommunityPage() {
                                 <option value="opcao4">São Paulo</option>
                             </select>
                         </div>
-                        <div className="home-community-donations-list">
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
-                       
-
+                        <div className="home-community-invite-donation">
+                            <a href="">Doar agora</a>
                         </div>
+                    </div>
+                    <div className="home-community-donations-list">
+                        <CardDonation />
+                        <CardDonation />
+                        <CardDonation />
                     </div>
 
 
                 </div>
             </section>
-        </main>
+        </main >
     );
 }

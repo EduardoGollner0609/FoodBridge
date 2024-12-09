@@ -1,4 +1,5 @@
 .card-donation {
+  margin-top: 10px;
   border: 2px solid var(--fb-color-primary);
   border-radius: 10px;
   display: flex;

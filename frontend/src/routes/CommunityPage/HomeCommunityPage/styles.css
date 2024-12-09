@@ -22,3 +22,19 @@
 .home-community-search-location h3 {
   color: var(--fb-color-secondary);
 }
+
+.home-community-donations-list {
+}
+
+.home-community-donations-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-community-invite-donation a {
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  padding: 4px;
+  border-radius: 10px;
+  font-size: 18px;
+}
