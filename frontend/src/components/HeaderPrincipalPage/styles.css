@@ -1,0 +1,20 @@
+.fb-header-community-page-title h1 {
+  font-size: 26px;
+  color: var(--fb-color-primary);
+}
+
+.fb-user-informations-community-page a img {
+  height: 28px;
+  width: 25px;
+}
+
+.fb-user-informations-community-page a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 2px solid var(--fb-color-primary);
+  border-radius: 10px;
+  color: var(--fb-color-primary);
+  font-size: 18px;
+}

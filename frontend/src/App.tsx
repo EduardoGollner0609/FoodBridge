@@ -6,8 +6,9 @@ import LoginPage from './routes/IntroductionPage/LoginPage'
 import RegisterPage from './routes/IntroductionPage/RegisterPage'
 import AboutPage from './routes/IntroductionPage/AboutPage'
 import TalkToUsPage from './routes/IntroductionPage/TalkToUsPage'
-import CommunityPage from './routes/PrincipalPage/CommunityPage'
-import HomeCommunityPage from './routes/PrincipalPage/CommunityPage'
+import HomeCommunityPage from './routes/CommunityPage/HomeCommunityPage'
+import CommunityPage from './routes/CommunityPage'
+
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
         </Route>
 
         <Route path="/community" element={<CommunityPage />} >
-          <Route path="/home" element={<HomeCommunityPage />} />
+          <Route index element={<Navigate to="/community/home" />} />
+          <Route path="/community/home" element={<HomeCommunityPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
