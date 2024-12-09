@@ -1,0 +1,24 @@
+#section-home-community {
+  padding: 0 20px;
+  height: 100vh;
+}
+
+.home-community-content {
+  height: 80vh;
+}
+
+.home-community-welcome h2 {
+  font-size: 24px;
+  color: var(--fb-color-primary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.home-community-search-location {
+  display: flex;
+  gap: 5px;
+}
+
+.home-community-search-location h3 {
+  color: var(--fb-color-secondary);
+}
