@@ -30,6 +30,7 @@ function App() {
           <Route index element={<Navigate to="/community/home" />} />
           <Route path="/community/home" element={<HomeCommunityPage />} />
           <Route path="/community/donation-register" element={<DonationRegisterPage />} />
+          <Route path="/community/user-details" element={<DonationRegisterPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
