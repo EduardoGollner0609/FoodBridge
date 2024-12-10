@@ -10,17 +10,19 @@ export default function DonationRegisterPage() {
                         <form >
                             <div className="card-donation-register-item">
                                 <label>Nome</label>
-                                <input type="text" />
+                                <input type="text" placeholder='Digite seu nome'/>
                             </div>
                             <div className="card-donation-register-item">
-                                <label>Nome</label>
-                                <input type="text" />
+                                <label>Endereço</label>
+                                <input type="text" placeholder='Digite seu endereço' />
                             </div>
                             <div className="card-donation-register-item">
-                                <label>Nome</label>
-                                <textarea></textarea>
+                                <label>Sobre a doação</label>
+                                <textarea placeholder='Nos conte um pouco mais sobre a doação'></textarea>
                             </div>
-
+                            <div className="card-donation-register-btn-submit">
+                                <input type="submit" />
+                            </div>
                         </form>
                     </div>
                 </div>

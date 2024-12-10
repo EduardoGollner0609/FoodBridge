@@ -16,6 +16,12 @@
   border-radius: 10px;
 }
 
+.card-donation-register form label,
+input {
+  color: var(--fb-color-secondary);
+  font-size: 18px;
+}
+
 .card-donation-register h2 {
   text-align: center;
   text-transform: uppercase;
@@ -39,7 +45,6 @@ textarea {
 
 .card-donation-register-item input {
   padding: 5px 10px;
-  font-size: 18px;
 }
 
 .card-donation-register-item textarea {
@@ -48,4 +53,21 @@ textarea {
 
   height: 280px;
   font-size: 18px;
+}
+
+.card-donation-register-btn-submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card-donation-register-btn-submit input {
+  padding: 5px;
+  font-size: 16px;
+  width: 200px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  cursor: pointer;
 }
