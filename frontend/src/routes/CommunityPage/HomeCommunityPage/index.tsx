@@ -38,14 +38,17 @@ export default function HomeCommunityPage() {
                         </div>
                         <div className="home-community-donations-list">
                             <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
-                            <CardDonation />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+                            <CardDonation openDetails={openDonationDetails} />
+
                         </div>
 
 

@@ -8,6 +8,7 @@ import AboutPage from './routes/IntroductionPage/AboutPage'
 import TalkToUsPage from './routes/IntroductionPage/TalkToUsPage'
 import HomeCommunityPage from './routes/CommunityPage/HomeCommunityPage'
 import CommunityPage from './routes/CommunityPage'
+import DonationRegisterPage from './routes/CommunityPage/DonationRegisterPage'
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/community" element={<CommunityPage />} >
           <Route index element={<Navigate to="/community/home" />} />
           <Route path="/community/home" element={<HomeCommunityPage />} />
+          <Route path="/community/donation-register" element={<DonationRegisterPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
