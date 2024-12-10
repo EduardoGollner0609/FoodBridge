@@ -1,0 +1,51 @@
+#section-donation-register {
+  padding: 0 20px;
+}
+
+.donation-register-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  min-height: 600px;
+}
+
+.card-donation-register {
+  border: 2px solid var(--fb-color-primary);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-donation-register h2 {
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--fb-color-primary);
+  margin-bottom: 10px;
+}
+
+.card-donation-register-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.card-donation-register-item input,
+textarea {
+  border-radius: 10px;
+  border: 2px solid var(--fb-color-primary);
+  outline: none;
+  width: 450px;
+}
+
+.card-donation-register-item input {
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.card-donation-register-item textarea {
+  resize: none;
+  padding: 5px 10px;
+
+  height: 280px;
+  font-size: 18px;
+}
