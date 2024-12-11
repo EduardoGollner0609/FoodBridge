@@ -101,5 +101,6 @@ aside ul li:nth-child(4) {
 }
 
 .navlink-active-community {
+  font-weight: 600;
   background-color: var(--fb-color-secondary);
 }

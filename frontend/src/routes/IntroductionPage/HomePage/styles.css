@@ -184,4 +184,13 @@
       width: 30px;
     }
   }
+
+  .home-page-introduction {
+    height: 60vh;
+    min-height: 300px;
+    max-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
