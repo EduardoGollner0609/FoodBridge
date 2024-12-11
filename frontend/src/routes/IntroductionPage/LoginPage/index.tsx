@@ -18,13 +18,16 @@ export default function LoginPage() {
                             </div>
                             <button>Login</button>
                         </form>
-                        <div className="card-login-invite-register">
-                            <Link to="/register">
-                                Clique aqui para se cadastrar
+                        <div className="card-login-reset-password">
+                            <Link to="/recovery/password">
+                                Esqueceu a senha? Clique Aqui
                             </Link>
                         </div>
-
-
+                    </div>
+                    <div className="card-login-invite-register-space">
+                        <Link to="/register">
+                            Clique aqui para se cadastrar
+                        </Link>
                     </div>
                 </div>
             </section>
