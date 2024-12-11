@@ -44,7 +44,7 @@ export default function HomePage() {
             <section id="section-home-page-more-details">
                 <div className="home-page-more-details-content container">
                     <div className="home-page-more-details-imgs">
-                        <div className="home-page-more-details-imgs-top">
+                        <div className="home-page-more-details-img-top">
                             <img src={moreDetails1} alt="" />
                         </div>
                         <div className="home-page-more-details-imgs-bottom">
@@ -56,9 +56,12 @@ export default function HomePage() {
 
                     <div className="home-page-more-details-descriptions">
                         <h2>Cada <span>Doação</span> é um passo mais perto de um mundo sem <span>Fome</span>.</h2>
-                        <p>A fome é um problema global que afeta milhões de pessoas ao redor do mundo, de acordo com a ONU, o mundo tinha cerca de 733 milhões de pessoas passando fome em 2023, ou 1 em cada 11 pessoas.</p>
-                        <p>É fato que não podemos zerar esses números sozinhos, precisamos de corações solidarios, que se importam com a dor do outro e acima de tudo um entendimento de que temos que nos unir em prol disso, são pessoas, são crianças, são vidas... </p>
-                        <p>A FoodBridge é um site aonde conectamos pessoas que estão dispostas a ajudar em doações a pessoas que estão disposta a ajudar distribuindo os alimentos.</p>
+                        <div className="home-page-more-details-descriptions-text">
+
+                            <p>A fome é um problema global que afeta milhões de pessoas ao redor do mundo, de acordo com a ONU, o mundo tinha cerca de 733 milhões de pessoas passando fome em 2023, ou 1 em cada 11 pessoas.</p>
+                            <p>É fato que não podemos zerar esses números sozinhos, precisamos de corações solidarios, que se importam com a dor do outro e acima de tudo um entendimento de que temos que nos unir em prol disso, são pessoas, são crianças, são vidas... </p>
+                            <p>A FoodBridge é um site aonde conectamos pessoas que estão dispostas a ajudar em doações a pessoas que estão disposta a ajudar distribuindo os alimentos.</p>
+                        </div>
                         <div className="home-page-more-details-description-phrases">
                             <h3>Unidos por pessoas</h3>
                             <div className="home-page-more-details-column">

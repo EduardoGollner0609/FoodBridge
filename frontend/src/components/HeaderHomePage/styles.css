@@ -86,13 +86,9 @@ header nav {
     color: var(--fb-color-quartiary);
     font-size: 20px;
     text-transform: uppercase;
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.10rem;
     display: block;
     padding: 10px;
-  }
-
-  .options-navegation-mobile ul li p {
-    height: 100%;
   }
 
   .close-mobile-menu-icon:hover {

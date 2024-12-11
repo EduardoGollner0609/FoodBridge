@@ -69,6 +69,13 @@ export default function HeaderHomePage() {
                                         </p>
                                     </NavLink>
                                 </li>
+                                <li>
+                                    <Link to="/login" >
+                                        <p>
+                                            Entrar
+                                        </p>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                         <div className="overlay-menu" onClick={() => setMobileMenuVisible(false)}>
