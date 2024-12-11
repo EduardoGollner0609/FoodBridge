@@ -271,3 +271,32 @@
     align-items: center;
   }
 }
+
+@media (max-width: 460px) {
+  .home-page-more-details-imgs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .home-page-more-details-img-top,
+  .home-page-more-details-imgs-bottom {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .home-page-more-details-img-top img {
+    max-width: 95%;
+  }
+
+  .home-page-more-details-imgs-bottom img:nth-child(1) {
+    max-width: 40%;
+    max-height: 250px
+  }
+
+  .home-page-more-details-imgs-bottom img:nth-child(2) {
+    max-width: 50%;
+    max-height: 250px
+  }
+}
