@@ -59,6 +59,38 @@ header nav {
     padding: 10px 0;
   }
 
+  .close-mobile-menu-icon {
+    margin-left: 10px;
+    text-align: left;
+    font-size: 35px;
+    color: var(--fb-color-quartiary);
+    cursor: pointer;
+    max-width: 50px;
+    text-align: center;
+  }
+
+  .options-navegation-mobile ul li {
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .options-navegation-mobile ul li a {
+    color: var(--fb-color-quartiary);
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    display: block;
+  }
+
+  .options-navegation-mobile ul li:hover {
+    transition: 0.6s;
+    background-color: var(--fb-color-quartiary);
+    & a {
+      color: var(--fb-color-primary);
+    }
+  }
+  
   .overlay-menu {
     background-color: #00000073;
     width: 100%;
