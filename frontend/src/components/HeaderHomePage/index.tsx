@@ -37,7 +37,7 @@ export default function HeaderHomePage() {
                     mobileMenuVisible &&
                     <>
                         <div className="options-navegation-mobile">
-                            <div className="close-mobile-menu-icon">
+                            <div className="close-mobile-menu-icon" onClick={() => setMobileMenuVisible(false)}>
                                 X
                             </div>
                             <ul>
@@ -71,7 +71,7 @@ export default function HeaderHomePage() {
                                 </li>
                             </ul>
                         </div>
-                        <div className="overlay-menu">
+                        <div className="overlay-menu" onClick={() => setMobileMenuVisible(false)}>
 
                         </div>
                     </>
