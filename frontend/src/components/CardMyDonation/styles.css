@@ -15,3 +15,20 @@
 .card-my-donation p {
   color: var(--fb-color-secondary);
 }
+
+.card-my-donation-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-my-donation-icon-item img {
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin: 0 auto;
+}
+
+.card-my-donation-icon-item {
+  cursor: pointer;
+}

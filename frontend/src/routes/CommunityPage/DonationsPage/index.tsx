@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './styles.css'
-import CardDonation from '../../../components/CardDonation';
 import CardMyDonation from '../../../components/CardMyDonation';
 
 export default function DonationsPage() {
