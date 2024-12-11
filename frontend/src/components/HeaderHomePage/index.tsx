@@ -30,7 +30,7 @@ export default function HeaderHomePage() {
                         Entrar
                     </Link>
                 </div>
-                <div className="header-introduction-page-mobile-menu">
+                <div className="header-introduction-page-mobile-menu" onClick={() => setMobileMenuVisible(true)}>
                     ☰
                 </div>
                 {
