@@ -11,10 +11,10 @@ export default function LoginPage() {
                         <form>
                             <div className="form-item-input">
                                 <label>Email</label>
-                                <input type="text" /></div>
+                                <input type="text" placeholder='Digite seu email' /></div>
                             <div className="form-item-input">
                                 <label>Senha</label>
-                                <input type="password" />
+                                <input type="password" placeholder='Digite sua senha' />
                             </div>
                             <button>Login</button>
                         </form>
