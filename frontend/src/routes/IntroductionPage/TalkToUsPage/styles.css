@@ -106,3 +106,67 @@
   width: 200px;
   cursor: pointer;
 }
+
+@media (max-width: 750px) {
+  .card-talk-to-us-send-question-inputs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-talk-to-us-send-question form input,
+  .card-talk-to-us-send-question-message textarea {
+    width: 350px;
+  }
+
+  .card-talk-to-us-send-question-message {
+    display: flex;
+    justify-content: center;
+  }
+
+  .card-talk-to-us-send-question-message textarea {
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .card-talk-to-us-send-question-button-submit {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card-talk-to-us-send-question form button {
+    margin-top: 10px;
+    width: 350px;
+  }
+
+  .card-talk-to-us-send-question {
+    padding: 15px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 470px) {
+  .card-talk-to-us-send-question form input,
+  .card-talk-to-us-send-question-message textarea,
+  .card-talk-to-us-send-question form button {
+    width: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card-talk-to-us-send-question form input,
+  .card-talk-to-us-send-question-message textarea,
+  .card-talk-to-us-send-question form button {
+    min-width: 0px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 350px) {
+  .card-talk-to-us-send-question form input,
+  .card-talk-to-us-send-question-message textarea,
+  .card-talk-to-us-send-question form button {
+    min-width: 0px;
+    width: 220px;
+    font-size: 16px;
+  }
+}

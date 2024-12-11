@@ -258,12 +258,8 @@
   }
 
   .home-page-introduction {
-    height: 60vh;
     min-height: 300px;
     max-height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
   }
 
   .home-page-more-details-content {
@@ -292,11 +288,11 @@
 
   .home-page-more-details-imgs-bottom img:nth-child(1) {
     max-width: 40%;
-    max-height: 250px
+    max-height: 250px;
   }
 
   .home-page-more-details-imgs-bottom img:nth-child(2) {
     max-width: 50%;
-    max-height: 250px
+    max-height: 250px;
   }
 }
