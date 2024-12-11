@@ -70,7 +70,6 @@ header nav {
   }
 
   .options-navegation-mobile ul li {
-    padding: 10px 0;
     text-align: center;
     margin-top: 20px;
   }
@@ -81,6 +80,18 @@ header nav {
     text-transform: uppercase;
     letter-spacing: 0.15rem;
     display: block;
+    padding: 10px;
+  }
+
+  .options-navegation-mobile ul li p {
+    height: 100%;
+  }
+
+  .close-mobile-menu-icon:hover {
+    transition: 0.4s;
+    background-color: var(--fb-color-quartiary);
+    color: var(--fb-color-primary);
+    border-radius: 50%;
   }
 
   .options-navegation-mobile ul li:hover {
@@ -90,7 +101,7 @@ header nav {
       color: var(--fb-color-primary);
     }
   }
-  
+
   .overlay-menu {
     background-color: #00000073;
     width: 100%;
@@ -99,5 +110,14 @@ header nav {
     top: 0;
     left: 0;
     z-index: 88888;
+  }
+
+  .option-navegation-mobile-menu-active {
+    background-color: var(--fb-color-quartiary);
+    color: var(--fb-color-primary);
+    font-weight: 600;
+    & p {
+      color: var(--fb-color-primary);
+    }
   }
 }

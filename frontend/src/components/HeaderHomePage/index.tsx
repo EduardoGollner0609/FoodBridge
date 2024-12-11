@@ -42,18 +42,31 @@ export default function HeaderHomePage() {
                             </div>
                             <ul>
                                 <li>
-                                    <NavLink to="/">
-                                        Inicio
+                                    <NavLink to="/home" className={({ isActive }) =>
+                                        isActive ? "option-navegation-mobile-menu-active" : ""
+                                    }>
+                                        <p>
+                                            Inicio
+                                        </p>
+
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/">
-                                        Sobre
+                                    <NavLink to="/about" className={({ isActive }) =>
+                                        isActive ? "option-navegation-mobile-menu-active" : ""
+                                    }>
+                                        <p>
+                                            Sobre
+                                        </p>
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/">
-                                        Fale Conosco
+                                    <NavLink to="/contact" className={({ isActive }) =>
+                                        isActive ? "option-navegation-mobile-menu-active" : ""
+                                    }>
+                                        <p>
+                                            Fale Conosco
+                                        </p>
                                     </NavLink>
                                 </li>
                             </ul>
@@ -65,6 +78,6 @@ export default function HeaderHomePage() {
 
                 }
             </nav>
-        </header>
+        </header >
     );
 }
