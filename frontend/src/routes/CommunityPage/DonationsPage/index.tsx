@@ -22,7 +22,6 @@ export default function DonationsPage() {
                             <CardMyDonation />
                             <CardMyDonation />
                             <CardMyDonation />
-
                         </div>
                     </div>
                 </div>

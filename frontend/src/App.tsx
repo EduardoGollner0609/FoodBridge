@@ -10,6 +10,7 @@ import HomeCommunityPage from './routes/CommunityPage/HomeCommunityPage'
 import CommunityPage from './routes/CommunityPage'
 import UserDetailsPage from './routes/CommunityPage/UserDetailsPage'
 import DonationsPage from './routes/CommunityPage/DonationsPage'
+import DonationRegisterPage from './routes/CommunityPage/DonationRegisterPage'
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route index element={<Navigate to="/community/home" />} />
           <Route path="/community/home" element={<HomeCommunityPage />} />
           <Route path="/community/donations" element={<DonationsPage />} />
+          <Route path="/community/donation-register" element={<DonationRegisterPage />} />
           <Route path="/community/user-details" element={<UserDetailsPage />} />
         </Route>
       </Routes>

@@ -11,6 +11,9 @@ export default function CardMyDonation() {
                 <h3>Eduardo Sousa Gollner</h3>
                 <p>Cesta básica mais uma banana</p>
             </div>
+            <div className="card-my-donation-icon-status">
+                AGUARDANDO
+            </div>
             <div className="card-my-donation-icons">
                 <div className="card-my-donation-icon-item">
                     <img src={updateIcon} alt="" />

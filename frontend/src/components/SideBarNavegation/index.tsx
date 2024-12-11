@@ -21,7 +21,7 @@ export default function SideBarNavegation() {
                             <img src={homeIcon} alt="" />
                         </span>
                         <span className="side-bar-option-item-text">
-                            Home
+                           Inicio
                         </span>
                     </NavLink>
 
