@@ -3,15 +3,16 @@
 }
 
 .register-page-content {
+  height: 80vh;
+  min-height: 650px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .card-register {
-  margin-top: 20px;
+  margin: 20px auto;
   padding: 40px;
-  background-color: var(--fb-color-primary);
+  border: 2px solid var(--fb-color-primary);
   color: var(--fb-color-quartiary);
   display: flex;
   flex-direction: column;
@@ -19,6 +20,7 @@
   padding: 20px 35px 30px 35px;
   border-radius: 20px;
   width: 80%;
+  max-width: 600px;
   max-height: 600px;
   overflow: auto;
 }
@@ -27,6 +29,7 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 32px;
+  color: var(--fb-color-tertiary);
 }
 
 .card-register form {
@@ -40,14 +43,16 @@
   flex-direction: column;
 }
 
+.card-register form {
+  color: var(--fb-color-secondary);
+}
+
 .card-register input {
+  border: 2px solid var(--fb-color-primary);
   outline: none;
-  border: 2px solid var(--fb-color-quartiary);
   padding: 5px 10px;
   font-size: 18px;
   border-radius: 10px;
-  background-color: transparent;
-  color: var(--fb-color-quartiary);
 }
 
 .card-register label {
@@ -55,13 +60,13 @@
 }
 
 .card-register form button {
-  background-color: var(--fb-color-quartiary);
+  background-color: var(--fb-color-primary);
   border: none;
   padding: 5px;
   font-size: 18px;
   border-radius: 20px;
   font-weight: 600;
-  color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
   text-transform: uppercase;
   cursor: pointer;
   margin: 10px 0;
