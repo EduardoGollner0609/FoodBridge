@@ -14,13 +14,19 @@ export default function HeaderHomePage() {
                 </div>
                 <div className="header-introduction-page-navegation-options">
                     <ul>
-                        <NavLink to="/home">
+                        <NavLink to="/home" className={({ isActive }) =>
+                            isActive ? "option-navegation-header-active" : ""
+                        }>
                             <li>Inicio</li>
                         </NavLink>
-                        <NavLink to="/about">
+                        <NavLink to="/about" className={({ isActive }) =>
+                            isActive ? "option-navegation-header-active" : ""
+                        }>
                             <li>Sobre</li>
                         </NavLink>
-                        <NavLink to="/contact">
+                        <NavLink to="/contact" className={({ isActive }) =>
+                            isActive ? "option-navegation-header-active" : ""
+                        }>
                             <li>Fale Conosco</li>
                         </NavLink>
                     </ul>

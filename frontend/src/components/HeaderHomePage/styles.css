@@ -41,6 +41,11 @@ header nav {
   padding: 8px 10px;
 }
 
+.option-navegation-header-active {
+  border-bottom: 2px solid var(--fb-color-primary);
+  font-weight: 600;
+}
+
 @media (max-width: 750px) {
   .header-introduction-page-navegation-options,
   .header-introduction-page-login {
