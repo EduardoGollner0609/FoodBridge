@@ -86,7 +86,7 @@ header nav {
     color: var(--fb-color-quartiary);
     font-size: 20px;
     text-transform: uppercase;
-    letter-spacing: 0.10rem;
+    letter-spacing: 0.1rem;
     display: block;
     padding: 10px;
   }
@@ -124,5 +124,12 @@ header nav {
     & p {
       color: var(--fb-color-primary);
     }
+  }
+}
+
+@media (max-width: 460px) {
+  .options-navegation-mobile ul li a {
+    font-size: 18px;
+    letter-spacing: 0.01rem;
   }
 }
