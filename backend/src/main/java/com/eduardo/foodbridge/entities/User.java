@@ -1,9 +1,13 @@
 package com.eduardo.foodbridge.entities;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +20,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class User implements UserDetails {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +31,7 @@ public class User {
 	private LocalDate birthDate;
 	private String phone;
 	private String email;
-	private String passowrd;
+	private String password;
 
 	@ManyToMany
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -34,13 +40,13 @@ public class User {
 	public User() {
 	}
 
-	public User(Long id, String name, LocalDate birthDate, String phone, String email, String passowrd) {
+	public User(Long id, String name, LocalDate birthDate, String phone, String email, String password) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
 		this.phone = phone;
 		this.email = email;
-		this.passowrd = passowrd;
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -83,12 +89,8 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassowrd() {
-		return passowrd;
-	}
-
 	public void setPassowrd(String passowrd) {
-		this.passowrd = passowrd;
+		this.password = passowrd;
 	}
 
 	public void addRole(Role role) {
@@ -106,6 +108,21 @@ public class User {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
 	}
 
 	@Override
