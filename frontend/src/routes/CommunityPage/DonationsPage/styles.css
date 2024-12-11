@@ -1,0 +1,40 @@
+#section-donations {
+  padding: 0 20px;
+}
+
+.donations-content h2 {
+  font-size: 28px;
+  text-align: center;
+  color: var(--fb-color-tertiary);
+  text-transform: uppercase;
+  & span {
+    color: var(--fb-color-primary);
+  }
+}
+
+.my-donations-space {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.donations-plus-btn {
+  display: flex;
+  justify-content: end;
+}
+
+.donations-plus-btn a {
+  padding: 5px 15px;
+  font-size: 18px;
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  border-radius: 20px;
+}
+
+.card-my-donations-list {
+  border-radius: 10px;
+  border: 2px solid var(--fb-color-primary);
+  padding: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+}
