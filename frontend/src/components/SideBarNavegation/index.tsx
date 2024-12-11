@@ -41,7 +41,7 @@ export default function SideBarNavegation() {
 
                 </li>
                 <li className="side-bar-option-item">
-                    <NavLink to="/community/donation-register" className={({ isActive }) =>
+                    <NavLink to="/community/donations" className={({ isActive }) =>
                         isActive ? "navlink-active-community" : ""
                     }>
                         <span className="side-bar-option-item-icon">
