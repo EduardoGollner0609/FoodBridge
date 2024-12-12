@@ -2,9 +2,12 @@ package com.eduardo.foodbridge.dtos;
 
 import com.eduardo.foodbridge.entities.Donation;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class DonationDTO {
 
 	private Long id;
+	@NotBlank(message="Campo requerido")
 	private String description;
 	private Long userId;
 

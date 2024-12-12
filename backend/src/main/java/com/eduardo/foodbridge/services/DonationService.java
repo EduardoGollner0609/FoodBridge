@@ -1,6 +1,8 @@
 package com.eduardo.foodbridge.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.eduardo.foodbridge.dtos.DonationDTO;
@@ -18,6 +20,11 @@ public class DonationService {
 		Donation donation = new Donation();
 		copyDtoToEntity(donation, donationDTO);
 		return new DonationDTO(repository.save(donation));
+	}
+
+	public Page<DonationDTO> findAllPaged(Pageable pageable) {
+		Page<Donation> donations = repository.findAll(pageable);
+		return donations.map(donation -> new DonationDTO(donation));
 	}
 
 	private void copyDtoToEntity(Donation donation, DonationDTO donationDTO) {
