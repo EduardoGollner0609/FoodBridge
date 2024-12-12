@@ -1,6 +1,7 @@
 import './styles.css';
 
 export default function RegisterPage() {
+
     return (
         <main>
             <section id="section-register-page">
