@@ -8,12 +8,15 @@ import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class UserDTO {
 
 	private Long id;
 	@NotBlank(message = "Campo requerido")
+	@Size(min = 5, max = 80, message = "Nome deve ter entre 5 a 80 caracteres")
 	private String name;
+	@Size(min = 5, max = 80, message = "O endereço deve ter entre 5 a 80 caracteres")
 	@NotBlank(message = "Campo requerido")
 	private String address;
 	private String phone;

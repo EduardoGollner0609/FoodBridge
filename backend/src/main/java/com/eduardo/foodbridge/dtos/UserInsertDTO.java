@@ -17,7 +17,7 @@ public class UserInsertDTO extends UserDTO {
 	@Email(message = "Email inválido")
 	private String email;
 	@NotBlank(message = "Campo requerido")
-	@Size(min = 6, message = "Minimo de 6 caracteres")
+	@Size(min = 6, max = 30, message = "Senha deve entre 6 a 30 caracteres")
 	private String password;
 
 	public UserInsertDTO() {

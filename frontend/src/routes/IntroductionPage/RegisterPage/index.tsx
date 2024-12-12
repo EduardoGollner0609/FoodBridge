@@ -1,82 +1,169 @@
 import { useState } from 'react';
-import { UserInsertDTO } from '../../../models/User';
+
 import './styles.css';
+import FormInput from '../../../components/FormInput';
+import * as forms from '../../../utils/forms';
+import * as userService from '../../../services/user-service';
 
 export default function RegisterPage() {
 
-    const [userInsert, setUserInsert] = useState<UserInsertDTO>({
-        id: 0,
-        name: '',
-        address: '',
-        phone: '',
-        birthDate: '',
-        email: '',
-        password: '',
+    const [formData, setFormData] = useState<any>({
+        name: {
+            value: "",
+            id: "name",
+            name: "name",
+            type: "text",
+            placeholder: "Nome",
+            validation: function (value: string) {
+                return /^.{5,80}$/.test(value);
+            },
+            message: "Favor informar um nome de 5 a 80 caracteres",
+        },
+        phone: {
+            value: "",
+            id: "phone",
+            name: "phone",
+            type: "text",
+            placeholder: "Número",
+            validation: function (value: string) {
+                return /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/.test(value);
+            },
+            message: "Número inválido",
+        },
+        address: {
+            value: "",
+            id: "address",
+            name: "address",
+            type: "text",
+            placeholder: "Endereço",
+            validation: function (value: string) {
+                return /^.{5,80}$/.test(value);
+            },
+            message: "Endereço deve ter entre 3 a 80 caracteres",
+        },
+        birthDate: {
+            value: "",
+            id: "birthDate",
+            name: "birthDate",
+            type: "date",
+            validation: function (value: string) {
+                return new Date(value).getTime() <= Date.now();
+            },
+            message: "Data inválida",
+        },
+        email: {
+            value: "",
+            id: "email",
+            name: "email",
+            type: "text",
+            placeholder: "Descrição",
+            validation: function (value: string) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            },
+            message: "Email inválido",
+        },
+        password: {
+            value: "",
+            id: "password",
+            name: "password",
+            type: "password",
+            placeholder: "Senha",
+            validation: function (value: string) {
+                return /^.{6,30}$/.test(value);
+            },
+            message: "A senha deve ter entre 6 a 30 caracteres",
+        },
     });
 
-    function submit(event: any) {
-        event.preventDefault();
-        console.log(userInsert);
+    function handleInputChange(event: any) {
+        const name = event.target.name;
+        const value = event.target.value;
+        setFormData(forms.updateAndValidate(formData, name, value))
     }
-    
+
+
+    function handleTurnDirty(name: string) {
+        setFormData(forms.dirtyAndValidate(formData, name));
+    }
+
+    function handleSubmit(event: any) {
+        event.preventDefault();
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+        if (forms.hasAnyInvalid(formDataValidated)) {
+            setFormData(formDataValidated);
+            return;
+        }
+
+        userService.insert(formData);
+
+    }
+
     return (
         <main>
             <section id="section-register-page">
                 <div className="register-page-content container">
                     <div className="card-register">
                         <h2>Cadastro</h2>
-                        <form >
+                        <form onSubmit={handleSubmit}>
                             <div className="form-item-input">
                                 <label>Nome</label>
-                                <input
-                                    name="name"
-                                    type="text"
-                                    value={userInsert.name}
-                                    placeholder='Digite seu nome'
-                                    onChange={(event) => { setUserInsert({ ...userInsert, name: event.target.value }) }} />
+                                <FormInput
+                                    {...formData.name}
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
+                                <div className="form-error">{formData.name.message}</div>
                             </div>
+
                             <div className="form-item-input">
                                 <label>Data de Nascimento</label>
-                                <input name="birthDate"
-                                    type="date"
-                                    value={userInsert.birthDate}
-                                    onChange={(event) => { setUserInsert({ ...userInsert, birthDate: event.target.value }) }} />
+                                <FormInput   {...formData.birthDate}
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
+                                <div className="form-error">{formData.birthDate.message}</div>
                             </div>
+
                             <div className="form-item-input">
                                 <label>Número</label>
-                                <input name="phone"
-                                    type="text"
-                                    value={userInsert.phone}
-                                    placeholder='Digite seu número'
-                                    onChange={(event) => { setUserInsert({ ...userInsert, phone: event.target.value }) }} />
+                                <FormInput {...formData.phone}
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
+                                <div className="form-error">{formData.phone.message}</div>
                             </div>
+
                             <div className="form-item-input">
                                 <label>Endereço</label>
-                                <input
-                                    name="address"
-                                    type="text"
-                                    value={userInsert.address}
-                                    placeholder='Digite seu endereço'
-                                    onChange={(event) => { setUserInsert({ ...userInsert, address: event.target.value }) }} />
+                                <FormInput
+                                    {...formData.address}
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
+                                <div className="form-error">{formData.address.message}</div>
                             </div>
+
                             <div className="form-item-input">
                                 <label>Email</label>
-                                <input name="email"
-                                    type="text"
-                                    value={userInsert.email}
-                                    placeholder='Digite seu email'
-                                    onChange={(event) => { setUserInsert({ ...userInsert, email: event.target.value }) }} />
+                                <FormInput
+                                    {...formData.email}
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
+                                <div className="form-error">{formData.email.message}</div>
                             </div>
+
                             <div className="form-item-input">
                                 <label>Senha</label>
-                                <input name="password"
-                                    type="password"
-                                    value={userInsert.password}
-                                    placeholder='Digite sua senha'
-                                    onChange={(event) => { setUserInsert({ ...userInsert, password: event.target.value }) }} />
+                                <FormInput {...formData.password}
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
                                 <p>* Minimo de 6 caracteres.</p>
+                                <div className="form-error">{formData.password.message}</div>
                             </div>
-                            <button onClick={submit}>Cadastrar</button>
+
+                            <button onClick={handleSubmit}>Cadastrar</button>
                         </form>
                     </div>
                 </div>

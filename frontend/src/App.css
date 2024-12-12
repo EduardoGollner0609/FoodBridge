@@ -9,6 +9,7 @@
   --fb-color-bg-primary: #eeeafc;
 
   --fb-color-border-gray: #d0d0d0;
+  --fb-error-form: #b11717;
 }
 
 * {
@@ -32,4 +33,19 @@ a:hover {
 
 ul {
   list-style: none;
+}
+
+.form-error {
+  color: var(--fb-error-form);
+  font-size: 14px;
+  padding-left: 4px;
+  display: none;
+}
+
+.form-item-input [data-dirty="true"][data-invalid="true"] {
+  border: 2px solid var(--fb-error-form);
+}
+
+.form-item-input [data-dirty="true"][data-invalid="true"] ~ div {
+  display: unset;
 }
