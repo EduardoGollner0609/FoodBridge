@@ -7,9 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 public class DonationDTO {
 
 	private Long id;
-	@NotBlank(message="Campo requerido")
+	@NotBlank(message = "Campo requerido")
 	private String description;
-	private Long userId;
+	private UserDTO user;
 
 	public DonationDTO() {
 	}
@@ -17,7 +17,7 @@ public class DonationDTO {
 	public DonationDTO(Donation donation) {
 		id = donation.getId();
 		description = donation.getDescription();
-		userId = donation.getUser().getId();
+		user = new UserDTO(donation.getUser());
 	}
 
 	public Long getId() {
@@ -36,12 +36,12 @@ public class DonationDTO {
 		this.description = description;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public UserDTO getUser() {
+		return user;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 
 }

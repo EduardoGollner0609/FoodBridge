@@ -9,12 +9,16 @@ import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.DonationRepository;
+import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class DonationService {
 
 	@Autowired
 	private DonationRepository repository;
+
+	@Autowired
+	private AuthService authService;
 
 	public DonationDTO insert(DonationDTO donationDTO) {
 		Donation donation = new Donation();
@@ -27,12 +31,16 @@ public class DonationService {
 		return donations.map(donation -> new DonationDTO(donation));
 	}
 
+	public DonationDTO findById(Long id) {
+		Donation donation = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Doação não encontrada"));
+		return new DonationDTO(donation);
+	}
+
 	private void copyDtoToEntity(Donation donation, DonationDTO donationDTO) {
 		donation.setDescription(donationDTO.getDescription());
 
-		User user = new User();
-
-		user.setId(donation.getUser().getId());
+		User user = authService.authenticated();
 		donation.setUser(user);
 	}
 }
