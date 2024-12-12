@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.eduardo.foodbridge.dtos.UserDTO;
+import com.eduardo.foodbridge.dtos.UserInsertDTO;
 import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.UserRepository;
@@ -19,13 +19,13 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository repository;
 
-	public UserDTO insert(UserDTO userDTO) {
+	public UserInsertDTO insert(UserInsertDTO userDTO) {
 		User user = new User();
 		copyDtoToEntity(user, userDTO);
-		return new UserDTO(repository.save(user));
+		return new UserInsertDTO(repository.save(user));
 	}
 
-	private void copyDtoToEntity(User user, UserDTO userDTO) {
+	private void copyDtoToEntity(User user, UserInsertDTO userDTO) {
 		user.setEmail(userDTO.getEmail());
 		user.setName(userDTO.getName());
 		user.setPassowrd(userDTO.getPassword());

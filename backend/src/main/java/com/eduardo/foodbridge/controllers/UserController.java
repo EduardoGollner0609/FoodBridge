@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.eduardo.foodbridge.dtos.UserDTO;
+import com.eduardo.foodbridge.dtos.UserInsertDTO;
 import com.eduardo.foodbridge.services.UserService;
 
 import jakarta.validation.Valid;
@@ -23,10 +23,10 @@ public class UserController {
 	private UserService service;
 
 	@PostMapping
-	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserDTO userDTO) {
-		userDTO = service.insert(userDTO);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId())
+	public ResponseEntity<UserInsertDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
+		userInsertDTO = service.insert(userInsertDTO);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userInsertDTO.getId())
 				.toUri();
-		return ResponseEntity.created(uri).body(userDTO);
+		return ResponseEntity.created(uri).body(userInsertDTO);
 	}
 }
