@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.eduardo.foodbridge.dtos.DonationDTO;
+import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.services.DonationService;
 
 import jakarta.validation.Valid;
@@ -37,8 +38,8 @@ public class DonationController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<DonationDTO>> findAllPaged(Pageable pageable) {
-		Page<DonationDTO> donations = service.findAllPaged(pageable);
+	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(Pageable pageable) {
+		Page<DonationMinDTO> donations = service.findAllPaged(pageable);
 		return ResponseEntity.ok(donations);
 	}
 

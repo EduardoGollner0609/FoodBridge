@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.eduardo.foodbridge.dtos.DonationDTO;
+import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.DonationRepository;
@@ -30,9 +31,9 @@ public class DonationService {
 		return new DonationDTO(repository.save(donation));
 	}
 
-	public Page<DonationDTO> findAllPaged(Pageable pageable) {
+	public Page<DonationMinDTO> findAllPaged(Pageable pageable) {
 		Page<Donation> donations = repository.findAll(pageable);
-		return donations.map(donation -> new DonationDTO(donation));
+		return donations.map(donation -> new DonationMinDTO(donation));
 	}
 
 	public DonationDTO findById(Long id) {
