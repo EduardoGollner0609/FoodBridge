@@ -14,7 +14,6 @@ public class UserInsertDTO extends UserDTO {
 
 	@PastOrPresent(message = "Data inválida")
 	private Instant birthDate;
-
 	@Email(message = "Email inválido")
 	private String email;
 	@NotBlank(message = "Campo requerido")
