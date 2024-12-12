@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
 		user.setPassowrd(userDTO.getPassword());
 		user.setBirthDate(userDTO.getBirthDate());
 		user.setPhone(userDTO.getPhone());
-
+		user.setAddress(userDTO.getAddress());
 		user.addRole(new Role(1L, "ROLE_USER"));
 	}
 
