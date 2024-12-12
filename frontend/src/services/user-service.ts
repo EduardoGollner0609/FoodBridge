@@ -1,7 +1,13 @@
-import axios from "axios";
 import { UserInsertDTO } from "../models/User";
-import { BASE_URL } from "../utils/system";
+import { requestBackend } from "../utils/request";
+import { AxiosRequestConfig } from "axios";
 
 export function insert(userInsert: UserInsertDTO) {
-  return axios.post(BASE_URL + "/users", userInsert);
+  const config: AxiosRequestConfig = {
+    method: "POST",
+    url: "/users",
+    data: userInsert,
+  };
+
+  return requestBackend(config);
 }

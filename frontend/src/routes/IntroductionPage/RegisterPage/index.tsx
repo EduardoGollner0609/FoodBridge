@@ -59,7 +59,7 @@ export default function RegisterPage() {
             id: "email",
             name: "email",
             type: "text",
-            placeholder: "Descrição",
+            placeholder: "Email",
             validation: function (value: string) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
             },
@@ -79,9 +79,7 @@ export default function RegisterPage() {
     });
 
     function handleInputChange(event: any) {
-        const name = event.target.name;
-        const value = event.target.value;
-        setFormData(forms.updateAndValidate(formData, name, value))
+        setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
 
 
