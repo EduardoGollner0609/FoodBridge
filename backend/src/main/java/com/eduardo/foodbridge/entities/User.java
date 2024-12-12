@@ -1,5 +1,6 @@
 package com.eduardo.foodbridge.entities;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +32,7 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private LocalDate birthDate;
+	private Instant birthDate;
 	private String phone;
 	private String email;
 	private String password;
@@ -40,15 +41,14 @@ public class User implements UserDetails {
 	@ManyToMany
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
-	
-	@OneToMany(mappedBy ="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<Donation> donations = new ArrayList<>();
 
 	public User() {
 	}
 
-	public User(Long id, String name, LocalDate birthDate, String phone, String email, String password,
-			String address) {
+	public User(Long id, String name, Instant birthDate, String phone, String email, String password, String address) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
@@ -74,11 +74,11 @@ public class User implements UserDetails {
 		this.name = name;
 	}
 
-	public LocalDate getBirthDate() {
+	public Instant getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
 	}
 

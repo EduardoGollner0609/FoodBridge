@@ -1,6 +1,6 @@
 package com.eduardo.foodbridge.dtos;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class UserDTO {
 	@NotBlank(message = "Campo requerido")
 	private String name;
 	@PastOrPresent(message = "Data inválida")
-	private LocalDate birthDate;
+	private Instant birthDate;
 	private String phone;
 	@Email(message = "Email inválido")
 	private String email;
@@ -61,11 +61,11 @@ public class UserDTO {
 		this.name = name;
 	}
 
-	public LocalDate getBirthDate() {
+	public Instant getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
 	}
 
