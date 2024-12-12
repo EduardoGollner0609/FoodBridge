@@ -11,6 +11,8 @@ import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.DonationRepository;
 import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class DonationService {
 
@@ -35,6 +37,16 @@ public class DonationService {
 		Donation donation = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Doação não encontrada"));
 		return new DonationDTO(donation);
+	}
+
+	public DonationDTO update(Long id, DonationDTO donationDTO) {
+		try {
+			Donation donation = repository.getReferenceById(id);
+			copyDtoToEntity(donation, donationDTO);
+			return new DonationDTO(repository.save(donation));
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Doação não encontrada");
+		}
 	}
 
 	private void copyDtoToEntity(Donation donation, DonationDTO donationDTO) {
