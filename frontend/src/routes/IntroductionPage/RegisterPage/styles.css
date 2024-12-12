@@ -12,17 +12,16 @@
 
 .card-register {
   margin: 20px auto;
-  padding: 40px;
+  padding: 10px 20px;
   border: 2px solid var(--fb-color-primary);
   color: var(--fb-color-quartiary);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px 35px 30px 35px;
   border-radius: 20px;
   width: 80%;
   max-width: 600px;
-  max-height: 620px;
+  max-height: 680px;
   overflow: auto;
 }
 

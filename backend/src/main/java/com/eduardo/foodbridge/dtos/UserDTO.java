@@ -24,6 +24,8 @@ public class UserDTO {
 	private String email;
 	@Size(min = 6, message = "Minimo de 6 caracteres")
 	private String password;
+	@NotBlank(message = "Campo requerido")
+	private String address;
 
 	private List<String> roles = new ArrayList<>();
 
@@ -37,6 +39,7 @@ public class UserDTO {
 		phone = user.getPhone();
 		email = user.getEmail();
 		password = user.getPassword();
+		address = user.getAddress();
 		for (Role role : user.getRoles()) {
 			roles.add(role.getAuthority());
 		}
@@ -96,6 +99,14 @@ public class UserDTO {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

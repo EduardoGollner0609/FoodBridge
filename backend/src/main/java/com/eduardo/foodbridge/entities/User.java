@@ -32,6 +32,7 @@ public class User implements UserDetails {
 	private String phone;
 	private String email;
 	private String password;
+	private String address;
 
 	@ManyToMany
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -40,13 +41,15 @@ public class User implements UserDetails {
 	public User() {
 	}
 
-	public User(Long id, String name, LocalDate birthDate, String phone, String email, String password) {
+	public User(Long id, String name, LocalDate birthDate, String phone, String email, String password,
+			String address) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -108,6 +111,14 @@ public class User implements UserDetails {
 			}
 		}
 		return false;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	@Override

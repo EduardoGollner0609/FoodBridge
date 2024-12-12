@@ -22,6 +22,10 @@ export default function RegisterPage() {
                                 <input type="text" placeholder='Digite seu número' />
                             </div>
                             <div className="form-item-input">
+                                <label>Endereço</label>
+                                <input type="text" placeholder='Digite seu endereço' />
+                            </div>
+                            <div className="form-item-input">
                                 <label>Email</label>
                                 <input type="text" placeholder='Digite seu email' />
                             </div>
