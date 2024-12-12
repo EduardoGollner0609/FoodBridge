@@ -1,5 +1,6 @@
 package com.eduardo.foodbridge.services.validations;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,12 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 
 		if (user != null) {
 			list.add(new FieldMessage("name", "Nome já existe"));
+		}
+
+		LocalDate date = LocalDate.parse(dto.getBirthDate());
+
+		if (!date.isBefore(LocalDate.now())) {
+			list.add(new FieldMessage("birthdate", "Data inválida"));
 		}
 
 		for (FieldMessage e : list) {

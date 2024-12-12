@@ -1,6 +1,5 @@
 package com.eduardo.foodbridge.entities;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -33,7 +32,7 @@ public class User implements UserDetails {
 	private Long id;
 	@Column(unique = true)
 	private String name;
-	private Instant birthDate;
+	private String birthDate;
 	private String phone;
 	@Column(unique = true)
 	private String email;
@@ -50,7 +49,7 @@ public class User implements UserDetails {
 	public User() {
 	}
 
-	public User(Long id, String name, Instant birthDate, String phone, String email, String password, String address) {
+	public User(Long id, String name, String birthDate, String phone, String email, String password, String address) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
@@ -76,11 +75,11 @@ public class User implements UserDetails {
 		this.name = name;
 	}
 
-	public Instant getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Instant birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

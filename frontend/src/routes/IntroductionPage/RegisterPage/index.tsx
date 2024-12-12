@@ -4,8 +4,11 @@ import './styles.css';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as userService from '../../../services/user-service';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState<any>({
         name: {
@@ -89,12 +92,20 @@ export default function RegisterPage() {
     function handleSubmit(event: any) {
         event.preventDefault();
         const formDataValidated = forms.dirtyAndValidateAll(formData);
+
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
         }
 
-        userService.insert(formData);
+        const requestBody = forms.toValues(formData);
+
+        userService.insert(requestBody).then(response => {
+            navigate("/community/home")
+        }).catch(error => {
+            const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
+            setFormData(newInputs);
+        });
 
     }
 

@@ -1,19 +1,15 @@
 package com.eduardo.foodbridge.dtos;
 
-import java.time.Instant;
-
 import com.eduardo.foodbridge.services.validations.UserInsertValid;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 @UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
-	@PastOrPresent(message = "Data inválida")
-	private Instant birthDate;
+	private String birthDate;
 	@Email(message = "Email inválido")
 	private String email;
 	@NotBlank(message = "Campo requerido")
@@ -24,11 +20,11 @@ public class UserInsertDTO extends UserDTO {
 		super();
 	}
 
-	public Instant getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Instant birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
