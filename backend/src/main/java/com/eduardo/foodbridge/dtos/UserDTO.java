@@ -6,10 +6,14 @@ import java.util.List;
 import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class UserDTO {
 
 	private Long id;
+	@NotBlank(message = "Campo requerido")
 	private String name;
+	@NotBlank(message = "Campo requerido")
 	private String address;
 	private String phone;
 	private List<String> roles = new ArrayList<>();

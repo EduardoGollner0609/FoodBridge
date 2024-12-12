@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
 import com.eduardo.foodbridge.services.UserService;
 
@@ -23,8 +24,8 @@ public class UserController {
 	private UserService service;
 
 	@PostMapping
-	public ResponseEntity<UserInsertDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
-		userInsertDTO = service.insert(userInsertDTO);
+	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
+		UserDTO userDTO = service.insert(userInsertDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userInsertDTO.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(userInsertDTO);
