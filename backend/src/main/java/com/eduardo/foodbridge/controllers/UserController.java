@@ -13,6 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -21,7 +23,7 @@ public class UserController {
 	private UserService service;
 
 	@PostMapping
-	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO userDTO) {
+	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserDTO userDTO) {
 		userDTO = service.insert(userDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId())
 				.toUri();

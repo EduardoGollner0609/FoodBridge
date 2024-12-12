@@ -7,13 +7,22 @@ import java.util.List;
 import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+
 public class UserDTO {
 
 	private Long id;
+	@NotBlank(message = "Campo requerido")
 	private String name;
+	@PastOrPresent(message = "Data inválida")
 	private LocalDate birthDate;
 	private String phone;
+	@Email(message = "Email inválido")
 	private String email;
+	@Size(min = 6, message = "Minimo de 6 caracteres")
 	private String password;
 
 	private List<String> roles = new ArrayList<>();
