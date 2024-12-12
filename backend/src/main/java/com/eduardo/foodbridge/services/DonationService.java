@@ -1,6 +1,7 @@
 package com.eduardo.foodbridge.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.DonationRepository;
+import com.eduardo.foodbridge.services.exceptions.DatabaseException;
 import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -46,6 +48,17 @@ public class DonationService {
 			return new DonationDTO(repository.save(donation));
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Doação não encontrada");
+		}
+	}
+
+	public void delete(Long id) {
+		if (!repository.existsById(id)) {
+			throw new ResourceNotFoundException("Doação não encontrada");
+		}
+		try {
+			repository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Erro de integridade referencial");
 		}
 	}
 
