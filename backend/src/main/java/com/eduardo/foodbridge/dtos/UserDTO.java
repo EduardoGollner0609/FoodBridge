@@ -3,6 +3,7 @@ package com.eduardo.foodbridge.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 
@@ -16,6 +17,7 @@ public class UserDTO {
 	@NotBlank(message = "Campo requerido")
 	private String address;
 	private String phone;
+	private List<DonationMinDTO> donations = new ArrayList<>();
 	private List<String> roles = new ArrayList<>();
 
 	public UserDTO() {
@@ -26,6 +28,9 @@ public class UserDTO {
 		name = user.getName();
 		address = user.getAddress();
 		phone = user.getPhone();
+		for (Donation donation : user.getDonations()) {
+			donations.add(new DonationMinDTO(donation));
+		}
 		for (Role role : user.getRoles()) {
 			roles.add(role.getAuthority());
 		}

@@ -121,6 +121,10 @@ public class User implements UserDetails {
 		return false;
 	}
 
+	public List<Donation> getDonations() {
+		return donations;
+	}
+
 	public String getAddress() {
 		return address;
 	}

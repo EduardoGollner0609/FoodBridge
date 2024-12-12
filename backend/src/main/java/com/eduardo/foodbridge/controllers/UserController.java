@@ -26,8 +26,8 @@ public class UserController {
 	@PostMapping
 	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
 		UserDTO userDTO = service.insert(userInsertDTO);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userInsertDTO.getId())
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId())
 				.toUri();
-		return ResponseEntity.created(uri).body(userInsertDTO);
+		return ResponseEntity.created(uri).body(userDTO);
 	}
 }
