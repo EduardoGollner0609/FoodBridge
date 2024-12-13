@@ -4,6 +4,7 @@ import './styles.css';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as userService from '../../../services/user-service';
+import * as addressService from '../../../services/address-service';
 import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
@@ -38,11 +39,11 @@ export default function RegisterPage() {
             id: "address",
             name: "address",
             type: "text",
-            placeholder: "Endereço",
+            placeholder: "Cep",
             validation: function (value: string) {
-                return /^.{5,80}$/.test(value);
+                return addressService.validateCep(value);
             },
-            message: "Endereço deve ter entre 3 a 80 caracteres",
+            message: "CEP inválido",
         },
         birthDate: {
             value: "",
@@ -104,6 +105,7 @@ export default function RegisterPage() {
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         });
+
     }
 
     return (
