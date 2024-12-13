@@ -99,7 +99,7 @@ public class User implements UserDetails {
 		this.email = email;
 	}
 
-	public void setPassowrd(String passowrd) {
+	public void setPassword(String passowrd) {
 		this.password = passowrd;
 	}
 

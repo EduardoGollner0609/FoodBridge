@@ -1,16 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
+import * as authService from '../../../services/auth-service';
 
 export default function LoginPage() {
 
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState<any>({
-        email: {
+        username: {
             value: "",
-            id: "email",
-            name: "email",
+            id: "username",
+            name: "username",
             type: "text",
             placeholder: "Email",
             validation: function (value: string) {
@@ -40,6 +43,30 @@ export default function LoginPage() {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
+    function handleSubmit(event: any) {
+        event.preventDefault();
+
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+
+        if (forms.hasAnyInvalid(formDataValidated)) {
+            setFormData(formDataValidated);
+            return;
+        }
+
+        const requestBody = forms.toValues(formData);
+        console.log(requestBody);
+        authService.loginRequest(requestBody).then(
+            (response) => {
+                authService.saveAccessToken(response.data.access_token);
+                navigate("/community/home");
+            });
+    }
+
+    useEffect(() => {
+        if (authService.isAuthenticated()) {
+            navigate("/community")
+        }
+    }, []);
 
     return (
         <main>
@@ -47,13 +74,13 @@ export default function LoginPage() {
                 <div className="login-page-content container">
                     <div className="card-login">
                         <h2>Login</h2>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-item-input">
                                 <label>Email</label>
-                                <FormInput {...formData.email}
+                                <FormInput {...formData.username}
                                     onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange} />
-                                <div className="form-error">{formData.email.message}</div>
+                                <div className="form-error">{formData.username.message}</div>
                             </div>
                             <div className="form-item-input">
                                 <label>Senha</label>
@@ -62,7 +89,7 @@ export default function LoginPage() {
                                     onChange={handleInputChange} />
                                 <div className="form-error">{formData.password.message}</div>
                             </div>
-                            <button>Login</button>
+                            <button onClick={handleSubmit}>Login</button>
                         </form>
                         <div className="card-login-reset-password">
                             <Link to="/recovery/password">

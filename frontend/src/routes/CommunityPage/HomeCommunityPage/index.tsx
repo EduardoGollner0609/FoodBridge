@@ -1,9 +1,15 @@
-import { useState } from 'react';
-import CardDonation from '../../../components/CardDonation';
 import './styles.css';
+import { useEffect, useState } from 'react';
+import CardDonation from '../../../components/CardDonation';
 import CardDonationDetails from '../../../components/CardDonationDetails';
+import { UserDTO } from '../../../models/User';
+import * as userService from '../../../services/user-service';
+
 
 export default function HomeCommunityPage() {
+
+
+    const [user, setUser] = useState<UserDTO>();
 
     const [donationDetailsVisible, setDonationDetailsVisible] = useState(false);
 
@@ -14,13 +20,20 @@ export default function HomeCommunityPage() {
     function closeDonationDetails() {
         setDonationDetailsVisible(false);
     }
+
+    useEffect(() => {
+        userService.findMe().then((response) => {
+            setUser(response.data)
+        });
+    }, []);
+
     return (
         <>
             <main>
                 <section id="section-home-community">
                     <div className="home-community-content container">
                         <div className="home-community-welcome">
-                            <h2>Seja muito bem vindo, Eduardo</h2>
+                            <h2>Seja muito bem vindo {user?.name}</h2>
                         </div>
                         <div className="home-community-donations-header">
                             <div className="home-community-search-location">

@@ -11,3 +11,12 @@ export function insert(userInsert: UserInsertDTO) {
 
   return requestBackend(config);
 }
+
+export function findMe() {
+  const config: AxiosRequestConfig = {
+    url: "/users/me",
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
+}

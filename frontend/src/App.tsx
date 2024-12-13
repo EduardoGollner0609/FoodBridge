@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import './App.css'
 import IntroductionPage from './routes/IntroductionPage'
 import HomePage from './routes/IntroductionPage/HomePage'
@@ -11,32 +11,52 @@ import CommunityPage from './routes/CommunityPage'
 import UserDetailsPage from './routes/CommunityPage/UserDetailsPage'
 import DonationsPage from './routes/CommunityPage/DonationsPage'
 import DonationRegisterPage from './routes/CommunityPage/DonationRegisterPage'
-
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { history } from "./utils/history";
+import { PrivateRoute } from './components/PrivateRoute'
+import { AccessTokenPayloadDTO } from './models/auth'
+import { useEffect, useState } from 'react'
+import { ContextToken } from './utils/context-token'
+import * as authService from './services/auth-service';
 
 
 function App() {
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<IntroductionPage />} >
-          <Route index element={<Navigate to="/home" />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/contact" element={<TalkToUsPage />} />
-        </Route>
+  const [contextTokenPayload, setContextTokenPayload] = useState<AccessTokenPayloadDTO>();
 
-        <Route path="/community" element={<CommunityPage />} >
-          <Route index element={<Navigate to="/community/home" />} />
-          <Route path="/community/home" element={<HomeCommunityPage />} />
-          <Route path="/community/donations" element={<DonationsPage />} />
-          <Route path="/community/donation-register" element={<DonationRegisterPage />} />
-          <Route path="/community/user-details" element={<UserDetailsPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+  useEffect(() => {
+
+    if (authService.isAuthenticated()) {
+      const payload = authService.getAccessTokenPayload();
+      setContextTokenPayload(payload);
+    }
+  }, []);
+
+  return (
+    <ContextToken.Provider
+      value={{ contextTokenPayload, setContextTokenPayload }}
+    >
+      <HistoryRouter history={history}>
+        <Routes>
+          <Route path="/" element={<IntroductionPage />} >
+            <Route index element={<Navigate to="/home" />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/contact" element={<TalkToUsPage />} />
+          </Route>
+
+          <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
+            <Route index element={<Navigate to="/community/home" />} />
+            <Route path="/community/home" element={<HomeCommunityPage />} />
+            <Route path="/community/donations" element={<DonationsPage />} />
+            <Route path="/community/donation-register" element={<DonationRegisterPage />} />
+            <Route path="/community/user-details" element={<UserDetailsPage />} />
+          </Route>
+        </Routes>
+      </HistoryRouter>
+    </ContextToken.Provider>
   )
 }
 

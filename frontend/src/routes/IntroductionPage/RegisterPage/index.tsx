@@ -99,12 +99,11 @@ export default function RegisterPage() {
         const requestBody = forms.toValues(formData);
 
         userService.insert(requestBody).then(response => {
-            navigate("/community/home")
+            navigate("/login");
         }).catch(error => {
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         });
-
     }
 
     return (
