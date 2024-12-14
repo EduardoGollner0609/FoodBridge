@@ -5,6 +5,7 @@ import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as userService from '../../../services/user-service';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function RegisterPage() {
@@ -89,7 +90,6 @@ export default function RegisterPage() {
     }
 
     function handleSubmit(event: any) {
-
 
         event.preventDefault();
 

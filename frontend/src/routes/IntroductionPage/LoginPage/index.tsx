@@ -54,7 +54,6 @@ export default function LoginPage() {
         }
 
         const requestBody = forms.toValues(formData);
-        console.log(requestBody);
         authService.loginRequest(requestBody).then(
             (response) => {
                 authService.saveAccessToken(response.data.access_token);
