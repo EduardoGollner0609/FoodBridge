@@ -1,26 +1,20 @@
-.card-donation {
-  margin-top: 10px;
+.card-donation-details {
   border: 2px solid var(--fb-color-primary);
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-  height: 90px;
-  cursor: pointer;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.card-donation-data h3 {
+.card-donation-details h3 {
+  font-size: 24px;
   color: var(--fb-color-primary);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.card-donation p {
+.card-donation-details p {
   color: var(--fb-color-secondary);
-}
-
-.card-donation:hover {
-  background-color: var(--fb-color-primary);
-  & h3,
-  p {
-    color: var(--fb-color-quartiary);
-  }
+  font-size: 18px;
 }
