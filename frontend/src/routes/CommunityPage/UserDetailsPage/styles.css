@@ -3,9 +3,20 @@
   padding: 0 20px;
 }
 
-.user-details-content {
+#user-details-page h2,
+#section-donations h2 {
+  font-size: 28px;
+  text-align: center;
+  color: var(--fb-color-tertiary);
+  text-transform: uppercase;
+  & span {
+    color: var(--fb-color-primary);
+  }
+}
+
+.card-user-details-links {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .card-user-details {
@@ -14,6 +25,7 @@
   border-radius: 20px;
   width: 80%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 .card-user-details-header {
@@ -24,7 +36,7 @@
   text-align: center;
   text-transform: uppercase;
   color: var(--fb-color-primary);
-  font-size: 28px;
+  font-size: 26px;
   margin-bottom: 10px;
 }
 
@@ -62,20 +74,9 @@
   padding: 0 20px;
 }
 
-.donations-content h2 {
-  font-size: 28px;
-  text-align: center;
-  color: var(--fb-color-tertiary);
-  text-transform: uppercase;
-  & span {
-    color: var(--fb-color-primary);
-  }
-}
-
 .donations-plus-btn {
   display: flex;
   justify-content: end;
-  margin: 10px;
 }
 
 .donations-plus-btn a {
@@ -87,6 +88,6 @@
 }
 
 .card-my-donations-list {
+  margin: 0 auto;
   border-radius: 10px;
-  padding: 20px;
 }

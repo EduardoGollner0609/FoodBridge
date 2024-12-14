@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import IntroductionPage from './routes/IntroductionPage'
 import HomePage from './routes/IntroductionPage/HomePage'
@@ -9,7 +9,6 @@ import TalkToUsPage from './routes/IntroductionPage/TalkToUsPage'
 import HomeCommunityPage from './routes/CommunityPage/HomeCommunityPage'
 import CommunityPage from './routes/CommunityPage'
 import UserDetailsPage from './routes/CommunityPage/UserDetailsPage'
-import DonationsPage from './routes/CommunityPage/DonationsPage'
 import DonationRegisterPage from './routes/CommunityPage/DonationRegisterPage'
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { history } from "./utils/history";
@@ -50,7 +49,6 @@ function App() {
           <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/community/home" />} />
             <Route path="/community/home" element={<HomeCommunityPage />} />
-            <Route path="/community/donations" element={<DonationsPage />} />
             <Route path="/community/donation-register" element={<DonationRegisterPage />} />
             <Route path="/community/user-details" element={<UserDetailsPage />} />
           </Route>

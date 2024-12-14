@@ -2,19 +2,25 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import CardMyDonation from '../../../components/CardMyDonation';
 
+
 export default function UserDetailsPage() {
     return (
         <main>
             <section id="user-details-page">
                 <div className="user-details-content container">
-
+                    <h2>Seu <span>Perfil</span></h2>
                     <div className="card-user-details">
-                        <Link to="/community">
-                            Voltar
-                        </Link>
-                        <h3>Perfil</h3>
+                        <div className="card-user-details-links">
+                            <Link to="/community">
+                                Voltar
+                            </Link>
+                            <Link to="/">
+                                Editar
+                            </Link>
+                        </div>
+
                         <div className="card-user-details-header">
-                            <p>Nome: Eduardo Sousa Gollner</p>
+                            <h3>Eduardo Sousa Gollner</h3>
                             <p>Email: dudugollner@gmail.com</p>
                             <p>Data de nascimento: 06/09/2005 - 19 anos</p>
                             <p>Número: 27 992657127</p>
