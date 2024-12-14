@@ -45,6 +45,7 @@ public class DonationService {
 		return donations.map(donation -> new DonationMinDTO(donation));
 	}
 
+	@Transactional(readOnly = true)
 	public DonationDTO findById(Long id) {
 		Donation donation = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Doação não encontrada"));

@@ -22,3 +22,13 @@ export function findAllPaged() {
 
   return requestBackend(config);
 }
+
+export function findById(id: number) {
+  const config: AxiosRequestConfig = {
+    method: "GET",
+    url: `/donations/${id}`,
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
+}

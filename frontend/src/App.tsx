@@ -17,6 +17,7 @@ import { AccessTokenPayloadDTO } from './models/auth'
 import { useEffect, useState } from 'react'
 import { ContextToken } from './utils/context-token'
 import * as authService from './services/auth-service';
+import DonationDetailsPage from './routes/CommunityPage/DonationDetailsPage'
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/community/home" />} />
             <Route path="/community/home" element={<HomeCommunityPage />} />
+            <Route path="/community/donation/:donationId" element={<DonationDetailsPage />} />
             <Route path="/community/donation-register" element={<DonationRegisterPage />} />
             <Route path="/community/user-details" element={<UserDetailsPage />} />
           </Route>

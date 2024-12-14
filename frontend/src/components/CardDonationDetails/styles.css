@@ -1,88 +1,26 @@
-.card-donation-details-background {
-  position: fixed;
-  background-color: rgba(29, 28, 28, 0.329);
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-donation-details {
+.card-donation {
+  margin-top: 10px;
   border: 2px solid var(--fb-color-primary);
-  padding: 30px;
-  border-radius: 20px;
-  background-color: var(--fb-color-quartiary);
-}
-
-.card-donation-details-header p {
-  font-size: 18px;
-  color: var(--fb-color-secondary);
-  margin-bottom: 5px;
-}
-
-.card-donation-details-header {
-  margin-bottom: 10px;
-}
-
-.card-donation-details-description h4 {
-  font-size: 18px;
-  text-transform: uppercase;
-  color: var(--fb-color-primary);
-}
-
-.card-donation-details-description p {
-  font-size: 18px;
-  color: var(--fb-color-secondary);
-}
-
-.card-donation-details-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-}
-
-.card-donation-details-btn button {
-  border: none;
-  background-color: var(--fb-color-primary);
-  padding: 5px;
   border-radius: 10px;
-  width: 200px;
-  font-size: 18px;
-  color: var(--fb-color-quartiary);
-  cursor: pointer;
-}
-
-.card-donation-details-header p a {
-  border: 2px solid var(--fb-color-primary);
-  padding: 2px;
-  margin-left: 15px;
-  color: var(--fb-color-primary);
-}
-
-.card-donation-details-close {
-  width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.card-donation-details-close h2 {
-  color: var(--fb-color-primary);
-}
-
-.card-donation-details-close button {
-  border: none;
-  background-color: var(--fb-color-primary);
-  padding: 8px 10px;
-  font-size: 16px;
-  color: var(--fb-color-quartiary);
-  border-radius: 20px;
+  padding: 10px 15px;
+  height: 90px;
   cursor: pointer;
 }
 
-.card-donation-details-header,
-.card-donation-details-description {
-  margin-bottom: 30px;
+.card-donation-data h3 {
+  color: var(--fb-color-primary);
+}
+
+.card-donation p {
+  color: var(--fb-color-secondary);
+}
+
+.card-donation:hover {
+  background-color: var(--fb-color-primary);
+  & h3,
+  p {
+    color: var(--fb-color-quartiary);
+  }
 }

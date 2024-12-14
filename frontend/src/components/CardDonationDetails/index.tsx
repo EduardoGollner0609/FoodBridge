@@ -1,31 +1,19 @@
-import './styles.css'
+import './styles.css';
+import { DonationDTO } from '../../models/donation';
 
 type Props = {
-    closeDetails: () => void
+    donation: DonationDTO
 }
 
-export default function CardDonationDetails({ closeDetails }: Props) {
+export default function CardDonationDetails({ donation }: Props) {
+
     return (
-        <div className="card-donation-details-background">
-            <div className="card-donation-details">
-                <div className="card-donation-details-close">
-                   <h2>Doação</h2> <button onClick={closeDetails}>X fechar</button>
-                </div>
-                <div className="card-donation-details-header">
-
-                    <p>Nome: Eduardo Sousa Gollner</p>
-                    <p>Endereço: Vitória, Espirito Santo</p>
-                    <p>Número: 27 992657127 <a href=""> Conversar</a></p>
-                </div>
-                <div className="card-donation-details-description">
-                    <h4>Descrição:</h4>
-                    <p>Estou doando uma cesta básica lacrado mais algumas bananas.</p>
-                </div>
-                <div className="card-donation-details-btn">
-                    <button>Coletar</button>
-                </div>
-            </div>
+        <div className="card-donation-details">
+            <h3>Doação</h3>
+            <p>Nome: {donation.user.name}</p>
+            <p>Endereço: {donation.city}, {donation.state}</p>
+            <p>Número: {donation.user.phone}</p>
+            <p>Description: {donation.description}</p>
         </div>
-
     );
 }

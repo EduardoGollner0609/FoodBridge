@@ -1,23 +1,22 @@
+import { Link } from 'react-router-dom';
 import './styles.css';
+import { DonationMinDTO } from '../../models/donation';
 
 type Props = {
-    userName: string,
-    description: string,
-    city: string | undefined,
-    state: string | undefined,
-    openDetails: () => void,
+    donation: DonationMinDTO
 }
 
-export default function CardDonation({ userName, description, city, state, openDetails }: Props) {
-
+export default function CardDonation({ donation }: Props) {
 
     return (
-        <div className="card-donation" onClick={openDetails}>
-            <div className="card-donation-data">
-                <h3>{userName}</h3>
-                <p>{description}</p>
+        <Link to={`/community/donation/${donation.id}`}>
+            <div className="card-donation">
+                <div className="card-donation-data">
+                    <h3>{donation.userName}</h3>
+                    <p>{donation.description}</p>
+                </div>
+                <p>{donation.city}, {donation.state}</p>
             </div>
-            <p>{city}, {state}</p>
-        </div>
+        </Link>
     );
 }
