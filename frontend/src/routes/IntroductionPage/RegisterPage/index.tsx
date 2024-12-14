@@ -6,6 +6,7 @@ import * as forms from '../../../utils/forms';
 import * as userService from '../../../services/user-service';
 import * as addressService from '../../../services/address-service';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function RegisterPage() {
 
@@ -39,11 +40,11 @@ export default function RegisterPage() {
             id: "address",
             name: "address",
             type: "text",
-            placeholder: "Cep",
+            placeholder: "Endereço",
             validation: function (value: string) {
-                return addressService.validateCep(value);
+                return /^.{8,}$/.test(value);;
             },
-            message: "CEP inválido",
+            message: "Campo requerido",
         },
         birthDate: {
             value: "",
@@ -80,7 +81,7 @@ export default function RegisterPage() {
     });
 
     function handleInputChange(event: any) {
-        setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
+        setFormData(forms.update(formData, event.target.name, event.target.value));
     }
 
 
@@ -89,8 +90,16 @@ export default function RegisterPage() {
     }
 
     function handleSubmit(event: any) {
+
+
         event.preventDefault();
+
         const formDataValidated = forms.dirtyAndValidateAll(formData);
+
+        addressService.findByCep(formDataValidated.address.value).then().catch(() => {
+            const newInputs = addressService.setErrorCep(formDataValidated, "address");
+            setFormData(newInputs);
+        })
 
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
@@ -107,6 +116,7 @@ export default function RegisterPage() {
         });
 
     }
+
 
     return (
         <main>
