@@ -4,7 +4,9 @@ import CardDonation from '../../../components/CardDonation';
 import CardDonationDetails from '../../../components/CardDonationDetails';
 import { UserDTO } from '../../../models/User';
 import * as userService from '../../../services/user-service';
+import * as donationService from '../../../services/donation-service';
 import { Link } from 'react-router-dom';
+import { DonationDTO } from '../../../models/donation';
 
 
 export default function HomeCommunityPage() {
@@ -12,6 +14,8 @@ export default function HomeCommunityPage() {
     const [user, setUser] = useState<UserDTO>();
 
     const [donationDetailsVisible, setDonationDetailsVisible] = useState(false);
+
+    const [donations, setDonations] = useState<DonationDTO[]>([]);
 
     function openDonationDetails() {
         setDonationDetailsVisible(true);
@@ -25,6 +29,12 @@ export default function HomeCommunityPage() {
         userService.findMe().then((response) => {
             setUser(response.data)
         });
+    }, []);
+
+    useEffect(() => {
+        donationService.findAllPaged().then((response) => {
+            setDonations(response.data.content);
+        })
     }, []);
 
     return (
@@ -46,17 +56,13 @@ export default function HomeCommunityPage() {
                             </div>
                         </div>
                         <div className="home-community-donations-list">
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
-                            <CardDonation openDetails={openDonationDetails} />
+                            {
+                                donations.map((donation) =>
+                                (
+                                    <CardDonation userName={donation.userName} description={donation.description} city={donation.city} state={donation.state} openDetails={openDonationDetails} />
+                                )
+                                )
+                            }
 
                         </div>
 

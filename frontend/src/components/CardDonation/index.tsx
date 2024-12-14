@@ -1,19 +1,23 @@
 import './styles.css';
 
 type Props = {
-    openDetails: () => void
+    userName: string,
+    description: string,
+    city: string | undefined,
+    state: string | undefined,
+    openDetails: () => void,
 }
 
-export default function CardDonation({ openDetails }: Props) {
+export default function CardDonation({ userName, description, city, state, openDetails }: Props) {
 
 
     return (
         <div className="card-donation" onClick={openDetails}>
             <div className="card-donation-data">
-                <h3>Eduardo Sousa Gollner</h3>
-                <p>Cesta básica mais uma banana</p>
+                <h3>{userName}</h3>
+                <p>{description}</p>
             </div>
-            <p>Vitória, Espirito Santo</p>
+            <p>{city}, {state}</p>
         </div>
     );
 }

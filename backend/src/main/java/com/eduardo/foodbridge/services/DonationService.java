@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.eduardo.foodbridge.dtos.CepDTO;
@@ -30,14 +31,17 @@ public class DonationService {
 	@Autowired
 	private AuthService authService;
 
+	@Transactional
 	public DonationDTO insert(DonationDTO donationDTO) {
 		Donation donation = new Donation();
 		copyDtoToEntity(donation, donationDTO);
 		return new DonationDTO(repository.save(donation));
 	}
 
+	@Transactional(readOnly = true)
 	public Page<DonationMinDTO> findAllPaged(Pageable pageable) {
-		Page<Donation> donations = repository.findAll(pageable);
+		CepDTO response = findAddressByCep();
+		Page<Donation> donations = repository.findAllByState(response.getEstado(), pageable);
 		return donations.map(donation -> new DonationMinDTO(donation));
 	}
 
@@ -68,14 +72,20 @@ public class DonationService {
 		}
 	}
 
+	private CepDTO findAddressByCep() {
+		User user = authService.authenticated();
+		CepDTO response = restTemplate.getForObject("https://viacep.com.br/ws/" + user.getAddress() + "/json/",
+				CepDTO.class);
+		return response;
+	}
+
 	private void copyDtoToEntity(Donation donation, DonationDTO donationDTO) {
 		donation.setDescription(donationDTO.getDescription());
 
 		User user = authService.authenticated();
 		donation.setUser(user);
 
-		CepDTO response = restTemplate.getForObject("https://viacep.com.br/ws/" + user.getAddress() + "/json/",
-				CepDTO.class);
+		CepDTO response = findAddressByCep();
 		donation.setCity(response.getLocalidade());
 		donation.setState(response.getEstado());
 	}

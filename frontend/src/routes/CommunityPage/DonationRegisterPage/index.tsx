@@ -1,10 +1,15 @@
 import './styles.css';
 import * as forms from '../../../utils/forms';
+import * as donationService from "../../../services/donation-service";
 import { useState } from 'react';
 import TextAreaInput from '../../../components/TextAreaInput';
 import FormInput from '../../../components/FormInput';
+import { useNavigate } from 'react-router-dom';
 
 export default function DonationRegisterPage() {
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState<any>({
         description: {
             value: "",
@@ -54,6 +59,12 @@ export default function DonationRegisterPage() {
 
         const requestBody = forms.toValues(formData);
 
+        donationService.insertDonation(requestBody).then(() => {
+            navigate("/community/home");
+        }).catch((error) => {
+            const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
+            setFormData(newInputs);
+        })
 
     }
 
@@ -74,7 +85,7 @@ export default function DonationRegisterPage() {
                             </div>
                             <div className="card-donation-register-item-confirm-human">
                                 <FormInput {...formData.confirmHuman}
-                                    onClick={handleClickConfirmHuman}
+                                    onChange={handleClickConfirmHuman}
                                     onTurnDirty={handleTurnDirty} />
                                 <p>Clique aqui para confirmar que é humano</p>
                             </div>
