@@ -76,3 +76,9 @@ input {
 .card-donation-register-item [data-dirty="true"][data-invalid="true"] ~ div {
   display: unset;
 }
+
+.card-donation-register-item-confirm-human
+  [data-dirty="true"][data-invalid="true"]
+  ~ p {
+  color: var(--fb-error-form);
+}
