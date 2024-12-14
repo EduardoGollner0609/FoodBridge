@@ -12,10 +12,15 @@ export default function HeaderPrincipalPage() {
                     </Link>
                 </div>
                 <div className="fb-user-informations-community-page">
-                    <a href="">
-                        <img src={userIcon} alt="" />
-                        Ver Perfil
-                    </a>
+                    <ul>
+                        <li>
+                            <Link to="/community/user-details">
+                                <img src={userIcon} alt="" />
+                                Ver Perfil
+                            </Link>
+                        </li>
+                    </ul>
+
                 </div>
 
             </nav>

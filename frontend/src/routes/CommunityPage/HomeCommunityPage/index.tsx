@@ -4,6 +4,7 @@ import CardDonation from '../../../components/CardDonation';
 import CardDonationDetails from '../../../components/CardDonationDetails';
 import { UserDTO } from '../../../models/User';
 import * as userService from '../../../services/user-service';
+import { Link } from 'react-router-dom';
 
 
 export default function HomeCommunityPage() {
@@ -40,7 +41,9 @@ export default function HomeCommunityPage() {
                                 <h3>Veja as doações que estão proximas de você</h3>
                             </div>
                             <div className="home-community-invite-donation">
-                                <a href="">Doar agora</a>
+                                <Link to="/community/donation-register">
+                                    Doar agora
+                                </Link>
                             </div>
                         </div>
                         <div className="home-community-donations-list">
