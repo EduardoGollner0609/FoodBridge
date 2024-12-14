@@ -4,9 +4,8 @@ import './styles.css';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as userService from '../../../services/user-service';
-import * as addressService from '../../../services/address-service';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 
 export default function RegisterPage() {
 
@@ -96,11 +95,6 @@ export default function RegisterPage() {
 
         const formDataValidated = forms.dirtyAndValidateAll(formData);
 
-        addressService.findByCep(formDataValidated.address.value).then().catch(() => {
-            const newInputs = addressService.setErrorCep(formDataValidated, "address");
-            setFormData(newInputs);
-        })
-
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
@@ -108,7 +102,7 @@ export default function RegisterPage() {
 
         const requestBody = forms.toValues(formData);
 
-        userService.insert(requestBody).then(response => {
+        userService.insert(requestBody).then(() => {
             navigate("/login");
         }).catch(error => {
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
