@@ -10,30 +10,34 @@ export default function DonationRegisterPage() {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<any>({
-        description: {
-            value: "",
-            id: "description",
-            name: "description",
-            type: "text",
-            placeholder: "Nos conte um pouco mais sobre a doação",
-            validation: function (value: string) {
-                return /^.{9,200}$/.test(value);
+    const [formData, setFormData] = useState<any>(formEmpty);
+
+    function formEmpty() {
+        return {
+            description: {
+                value: "",
+                id: "description",
+                name: "description",
+                type: "text",
+                placeholder: "Nos conte um pouco mais sobre a doação",
+                validation: function (value: string) {
+                    return /^.{9,200}$/.test(value);
+                },
+                message: "A descrição deve ter de 9 a 200 caracteres",
             },
-            message: "A descrição deve ter de 9 a 200 caracteres",
-        },
-        confirmHuman: {
-            value: "",
-            id: "confirmHuman",
-            name: "confirmHuman",
-            type: "radio",
-            placeholder: "Confirme pra gente",
-            validation: function (value: string) {
-                return value.trim() === "confirmado";
+            confirmHuman: {
+                value: "",
+                id: "confirmHuman",
+                name: "confirmHuman",
+                type: "radio",
+                placeholder: "Confirme pra gente",
+                validation: function (value: string) {
+                    return value.trim() === "confirmado";
+                },
+                message: "Confirme pfvr",
             },
-            message: "Confirme pfvr",
-        },
-    });
+        }
+    }
 
     function handleClickConfirmHuman() {
         setFormData(forms.updateAndValidate(formData, formData.confirmHuman.name, "confirmado"));
@@ -65,6 +69,8 @@ export default function DonationRegisterPage() {
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         })
+
+        setFormData(formEmpty);
 
     }
 

@@ -12,74 +12,77 @@ export default function RegisterPage() {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<any>({
-        name: {
-            value: "",
-            id: "name",
-            name: "name",
-            type: "text",
-            placeholder: "Nome",
-            validation: function (value: string) {
-                return /^.{5,80}$/.test(value);
-            },
-            message: "Favor informar um nome de 5 a 80 caracteres",
-        },
-        phone: {
-            value: "",
-            id: "phone",
-            name: "phone",
-            type: "text",
-            placeholder: "Número",
-            validation: function (value: string) {
-                return /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/.test(value);
-            },
-            message: "Número inválido",
-        },
-        address: {
-            value: "",
-            id: "address",
-            name: "address",
-            type: "text",
-            placeholder: "Endereço",
-            validation: function (value: string) {
-                return /^.{8,}$/.test(value);;
-            },
-            message: "Campo requerido",
-        },
-        birthDate: {
-            value: "",
-            id: "birthDate",
-            name: "birthDate",
-            type: "date",
-            validation: function (value: string) {
-                return new Date(value).getTime() <= Date.now();
-            },
-            message: "Data inválida",
-        },
-        email: {
-            value: "",
-            id: "email",
-            name: "email",
-            type: "text",
-            placeholder: "Email",
-            validation: function (value: string) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-            },
-            message: "Email inválido",
-        },
-        password: {
-            value: "",
-            id: "password",
-            name: "password",
-            type: "password",
-            placeholder: "Senha",
-            validation: function (value: string) {
-                return /^.{6,30}$/.test(value);
-            },
-            message: "A senha deve ter entre 6 a 30 caracteres",
-        },
-    });
+    const [formData, setFormData] = useState<any>(formEmpty);
 
+    function formEmpty() {
+        return {
+            name: {
+                value: "",
+                id: "name",
+                name: "name",
+                type: "text",
+                placeholder: "Nome",
+                validation: function (value: string) {
+                    return /^.{5,80}$/.test(value);
+                },
+                message: "Favor informar um nome de 5 a 80 caracteres",
+            },
+            phone: {
+                value: "",
+                id: "phone",
+                name: "phone",
+                type: "text",
+                placeholder: "Número",
+                validation: function (value: string) {
+                    return /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/.test(value);
+                },
+                message: "Número inválido",
+            },
+            address: {
+                value: "",
+                id: "address",
+                name: "address",
+                type: "text",
+                placeholder: "Endereço",
+                validation: function (value: string) {
+                    return /^.{8,}$/.test(value);;
+                },
+                message: "Campo requerido",
+            },
+            birthDate: {
+                value: "",
+                id: "birthDate",
+                name: "birthDate",
+                type: "date",
+                validation: function (value: string) {
+                    return new Date(value).getTime() <= Date.now();
+                },
+                message: "Data inválida",
+            },
+            email: {
+                value: "",
+                id: "email",
+                name: "email",
+                type: "text",
+                placeholder: "Email",
+                validation: function (value: string) {
+                    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                },
+                message: "Email inválido",
+            },
+            password: {
+                value: "",
+                id: "password",
+                name: "password",
+                type: "password",
+                placeholder: "Senha",
+                validation: function (value: string) {
+                    return /^.{6,30}$/.test(value);
+                },
+                message: "A senha deve ter entre 6 a 30 caracteres",
+            },
+        };
+    }
     function handleInputChange(event: any) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
@@ -109,6 +112,7 @@ export default function RegisterPage() {
             setFormData(newInputs);
         });
 
+        setFormData(formEmpty);
     }
 
 
