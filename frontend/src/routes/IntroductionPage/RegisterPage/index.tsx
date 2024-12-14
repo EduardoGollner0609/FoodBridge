@@ -81,7 +81,7 @@ export default function RegisterPage() {
     });
 
     function handleInputChange(event: any) {
-        setFormData(forms.update(formData, event.target.name, event.target.value));
+        setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
 
 

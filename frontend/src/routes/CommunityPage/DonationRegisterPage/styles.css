@@ -35,24 +35,16 @@ input {
   margin-bottom: 10px;
 }
 
-.card-donation-register-item input,
-textarea {
+.card-donation-register-item textarea {
+  resize: none;
+  padding: 5px 10px;
   border-radius: 10px;
   border: 2px solid var(--fb-color-primary);
   outline: none;
   width: 450px;
-}
-
-.card-donation-register-item input {
-  padding: 5px 10px;
-}
-
-.card-donation-register-item textarea {
-  resize: none;
-  padding: 5px 10px;
-
   height: 280px;
   font-size: 18px;
+  color: var(--fb-color-secondary);
 }
 
 .card-donation-register-btn-submit {
@@ -70,4 +62,17 @@ textarea {
   background-color: var(--fb-color-primary);
   color: var(--fb-color-quartiary);
   cursor: pointer;
+}
+
+.card-donation-register-item-confirm-human {
+  display: flex;
+  gap: 5px;
+}
+
+.card-donation-register-item [data-dirty="true"][data-invalid="true"] {
+  border: 2px solid var(--fb-error-form);
+}
+
+.card-donation-register-item [data-dirty="true"][data-invalid="true"] ~ div {
+  display: unset;
 }
