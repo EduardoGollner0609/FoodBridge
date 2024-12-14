@@ -56,7 +56,7 @@ public class User implements UserDetails {
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
-		this.address = address;
+
 	}
 
 	public Long getId() {

@@ -16,7 +16,7 @@ public class UserDTO {
 	@NotBlank(message = "Campo requerido")
 	@Size(min = 5, max = 80, message = "Nome deve ter entre 5 a 80 caracteres")
 	private String name;
-	@Size(min = 5, max = 80, message = "O endereço deve ter entre 5 a 80 caracteres")
+	@Size(min = 8, message = "Campo requerido")
 	@NotBlank(message = "Campo requerido")
 	private String address;
 	private String phone;

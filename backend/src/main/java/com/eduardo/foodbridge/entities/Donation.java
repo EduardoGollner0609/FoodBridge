@@ -25,13 +25,18 @@ public class Donation {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	private String city;
+	private String state;
+
 	public Donation() {
 	}
 
-	public Donation(Long id, String description, User user) {
+	public Donation(Long id, String description, User user, String city, String state) {
 		this.id = id;
 		this.description = description;
 		this.user = user;
+		this.city = city;
+		this.state = state;
 	}
 
 	public Long getId() {
@@ -56,6 +61,22 @@ public class Donation {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	@Override

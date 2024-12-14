@@ -6,8 +6,9 @@ public class DonationMinDTO {
 
 	private Long id;
 	private String userName;
-	private String address;
 	private String description;
+	private String city;
+	private String state;
 
 	public DonationMinDTO() {
 	}
@@ -15,8 +16,9 @@ public class DonationMinDTO {
 	public DonationMinDTO(Donation donation) {
 		id = donation.getId();
 		userName = donation.getUser().getName();
-		address = donation.getUser().getAddress();
 		description = donation.getDescription();
+		city = donation.getCity();
+		state = donation.getState();
 	}
 
 	public Long getId() {
@@ -35,20 +37,28 @@ public class DonationMinDTO {
 		this.userName = userName;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }

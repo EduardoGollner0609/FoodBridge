@@ -13,6 +13,8 @@ export default function HomeCommunityPage() {
 
     const [donationDetailsVisible, setDonationDetailsVisible] = useState(false);
 
+    const [donations, setDonations] = useState<DonationDTO[]>([]); 
+    
     function openDonationDetails() {
         setDonationDetailsVisible(true);
     }

@@ -5,7 +5,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.eduardo.foodbridge.dtos.CepDTO;
 import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.entities.Donation;
@@ -21,6 +23,9 @@ public class DonationService {
 
 	@Autowired
 	private DonationRepository repository;
+
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@Autowired
 	private AuthService authService;
@@ -68,5 +73,10 @@ public class DonationService {
 
 		User user = authService.authenticated();
 		donation.setUser(user);
+
+		CepDTO response = restTemplate.getForObject("https://viacep.com.br/ws/" + user.getAddress() + "/json/",
+				CepDTO.class);
+		donation.setCity(response.getLocalidade());
+		donation.setState(response.getEstado());
 	}
 }
