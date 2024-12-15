@@ -20,7 +20,9 @@ public class UserDTO {
 	@NotBlank(message = "Campo requerido")
 	private String address;
 	private String phone;
+	private String birthDate;
 	private List<DonationMinDTO> donations = new ArrayList<>();
+	private List<DonationMinDTO> donationsCollected = new ArrayList<>();
 	private List<String> roles = new ArrayList<>();
 
 	public UserDTO() {
@@ -31,8 +33,12 @@ public class UserDTO {
 		name = user.getName();
 		address = user.getAddress();
 		phone = user.getPhone();
+		birthDate = user.getBirthDate();
 		for (Donation donation : user.getDonations()) {
 			donations.add(new DonationMinDTO(donation));
+		}
+		for (Donation donation : user.getDonationsCollected()) {
+			donationsCollected.add(new DonationMinDTO(donation));
 		}
 		for (Role role : user.getRoles()) {
 			roles.add(role.getAuthority());
@@ -77,6 +83,22 @@ public class UserDTO {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+
+	public List<DonationMinDTO> getDonations() {
+		return donations;
+	}
+
+	public List<DonationMinDTO> getDonationsCollected() {
+		return donationsCollected;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
 }

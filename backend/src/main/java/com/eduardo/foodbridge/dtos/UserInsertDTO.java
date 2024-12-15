@@ -9,7 +9,6 @@ import jakarta.validation.constraints.Size;
 @UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
-	private String birthDate;
 	@Email(message = "Email inválido")
 	private String email;
 	@NotBlank(message = "Campo requerido")
@@ -18,14 +17,6 @@ public class UserInsertDTO extends UserDTO {
 
 	public UserInsertDTO() {
 		super();
-	}
-
-	public String getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
 	}
 
 	public String getEmail() {

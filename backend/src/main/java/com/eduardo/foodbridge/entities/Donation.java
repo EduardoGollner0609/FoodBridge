@@ -25,6 +25,10 @@ public class Donation {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@ManyToOne
+	@JoinColumn(name = "collector_id")
+	private User collector;
+
 	private String city;
 	private String state;
 
@@ -77,6 +81,14 @@ public class Donation {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public User getCollector() {
+		return collector;
+	}
+
+	public void setCollector(User collector) {
+		this.collector = collector;
 	}
 
 	@Override

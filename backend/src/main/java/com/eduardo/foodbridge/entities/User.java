@@ -46,6 +46,9 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "user")
 	private List<Donation> donations = new ArrayList<>();
 
+	@OneToMany(mappedBy = "collector")
+	private List<Donation> donationsCollected = new ArrayList<>();
+
 	public User() {
 	}
 
@@ -130,6 +133,10 @@ public class User implements UserDetails {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public List<Donation> getDonationsCollected() {
+		return donationsCollected;
 	}
 
 	@Override

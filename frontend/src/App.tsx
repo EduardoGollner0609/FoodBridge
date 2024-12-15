@@ -18,6 +18,8 @@ import { useEffect, useState } from 'react'
 import { ContextToken } from './utils/context-token'
 import * as authService from './services/auth-service';
 import DonationDetailsPage from './routes/CommunityPage/DonationDetailsPage'
+import MyDonations from './routes/CommunityPage/UserDetailsPage/MyDonations'
+import DonationsCollecteds from './routes/CommunityPage/UserDetailsPage/DonationsCollecteds'
 
 
 function App() {
@@ -52,7 +54,10 @@ function App() {
             <Route path="/community/home" element={<HomeCommunityPage />} />
             <Route path="/community/donation/:donationId" element={<DonationDetailsPage />} />
             <Route path="/community/donation-register" element={<DonationRegisterPage />} />
-            <Route path="/community/user-details" element={<UserDetailsPage />} />
+            <Route path="/community/user-details" element={<UserDetailsPage />} >
+              <Route path="/community/user-details/my-donations" element={<MyDonations />} />
+              <Route path="/community/user-details/donations-collecteds" element={<DonationsCollecteds />} />
+            </Route>
           </Route>
         </Routes>
       </HistoryRouter>

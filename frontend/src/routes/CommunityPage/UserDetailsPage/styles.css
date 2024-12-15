@@ -87,7 +87,22 @@
   border-radius: 20px;
 }
 
-.card-my-donations-list {
-  margin: 0 auto;
-  border-radius: 10px;
+.donations-options-navegation {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.donations-options-navegation a {
+  border: 2px solid var(--fb-color-primary);
+  padding: 10px;
+  color: var(--fb-color-primary);
+  border-radius: 30px;
+}
+
+.donations-option-navegation-active {
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  & p {
+    color: var(--fb-color-quartiary);
+  }
 }

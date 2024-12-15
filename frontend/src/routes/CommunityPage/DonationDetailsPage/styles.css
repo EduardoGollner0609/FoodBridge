@@ -1,0 +1,10 @@
+#section-donation-details-page {
+  padding: 0 20px;
+}
+
+.donation-details-page-content {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    min-height: 500px;
+}

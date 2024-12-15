@@ -1,15 +1,20 @@
 import './styles.css';
 import deleteIcon from '../../assets/delete-icon.svg';
 import updateIcon from '../../assets/update-icon.svg';
+import { DonationMinDTO } from '../../models/donation';
 
-export default function CardMyDonation() {
+type Props = {
+    donation: DonationMinDTO
+}
+
+export default function CardMyDonation({ donation }: Props) {
 
 
     return (
         <div className="card-my-donation">
             <div className="card-my-donation-data">
-                <h3>Eduardo Sousa Gollner</h3>
-                <p>Cesta básica mais uma banana</p>
+                <h3>{donation.userName}</h3>
+                <p>{donation.description}</p>
             </div>
             <div className="card-my-donation-icon-status">
                 AGUARDANDO

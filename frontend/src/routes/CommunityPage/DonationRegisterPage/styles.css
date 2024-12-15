@@ -82,3 +82,10 @@ input {
   ~ p {
   color: var(--fb-error-form);
 }
+
+.card-donation-register a {
+  padding: 5px;
+  border: 2px solid var(--fb-color-primary);
+  border-radius: 20px;
+  color: var(--fb-color-primary);
+}

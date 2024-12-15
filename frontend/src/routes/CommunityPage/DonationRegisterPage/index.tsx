@@ -5,6 +5,7 @@ import { useState } from 'react';
 import TextAreaInput from '../../../components/TextAreaInput';
 import FormInput from '../../../components/FormInput';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function DonationRegisterPage() {
 
@@ -80,6 +81,7 @@ export default function DonationRegisterPage() {
             <section id="section-donation-register">
                 <div className="donation-register-content container">
                     <div className="card-donation-register">
+                        <Link to="/community">Voltar</Link>
                         <h2>Doação</h2>
                         <form onSubmit={handleSubmit}>
                             <div className="card-donation-register-item">

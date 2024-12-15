@@ -1,9 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import './styles.css';
-import CardMyDonation from '../../../components/CardMyDonation';
+import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { UserDTO } from '../../../models/User';
+import * as userService from '../../../services/user-service';
 
 
 export default function UserDetailsPage() {
+
+    const [user, SetUser] = useState<UserDTO>();
+
+    useEffect(() => {
+        userService.findMe().then((response) => {
+            SetUser(response.data);
+        })
+    }, []);
+
+    function formatDate(birthDate: string | undefined) {
+        if (birthDate === undefined) {
+            return;
+        }
+        const [year, month, day] = birthDate?.split('-');
+        return `${day}/${month}/${year}`;
+    }
+
     return (
         <main>
             <section id="user-details-page">
@@ -20,19 +40,18 @@ export default function UserDetailsPage() {
                         </div>
 
                         <div className="card-user-details-header">
-                            <h3>Eduardo Sousa Gollner</h3>
-                            <p>Email: dudugollner@gmail.com</p>
-                            <p>Data de nascimento: 06/09/2005 - 19 anos</p>
-                            <p>Número: 27 992657127</p>
-                            <p>Endereço: Vitória, Espirito Santo</p>
+                            <h3>{user?.name}</h3>
+                            <p>Data de nascimento: {formatDate(user?.birthDate)}</p>
+                            <p>Número: {user?.phone}</p>
+                            <p>Cep: {user?.address}</p>
                         </div>
                         <div className="card-user-details-colaboration">
                             <div className="card-user-details-donations">
-                                <h4>Doações: </h4>  <p>3</p>
+                                <h4>Doações: </h4>  <p>{user?.donations.length}</p>
 
                             </div>
                             <div className="card-user-details-delivery">
-                                <h4>Entregas: </h4> <p>2</p>
+                                <h4>Entregas: </h4> <p>{user?.donationsCollected.length}</p>
                             </div>
                         </div>
                     </div>
@@ -40,22 +59,17 @@ export default function UserDetailsPage() {
             </section>
             <section id="section-donations">
                 <div className="donations-content container">
-                    <h2>Suas <span>Doações</span></h2>
-                    <div className="donations-plus-btn">
-                        <Link to="/community/donation-register">
-                            Fazer Doação
-                        </Link>
+                    <div className="donations-options-navegation">
+                        <NavLink to="/community/user-details/my-donations" className={({ isActive }) =>
+                            isActive ? "donations-option-navegation-active" : ""}>
+                            <p>Minhas doações</p></NavLink>
+                        <NavLink to="/community/user-details/donations-collecteds" className={({ isActive }) =>
+                            isActive ? "donations-option-navegation-active" : ""}>
+                            <p>Doações Coletadas</p>   </NavLink>
                     </div>
-                    <div className="card-my-donations-list">
-                        <CardMyDonation />
-                        <CardMyDonation />
-                        <CardMyDonation />
-                        <CardMyDonation />
-                        <CardMyDonation />
-                        <CardMyDonation />
-                        <CardMyDonation />
-                    </div>
+                    <Outlet context={user} />
                 </div>
+
             </section>
         </main>
     );

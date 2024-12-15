@@ -1,8 +1,14 @@
+import { DonationMinDTO } from "./donation";
+
 export type UserDTO = {
   id: number;
   name: string;
+  email: string;
   birthDate: string;
   phone: string;
+  address: string;
+  donations: DonationMinDTO[];
+  donationsCollected: DonationMinDTO[];
 };
 
 export type UserMinDTO = {
