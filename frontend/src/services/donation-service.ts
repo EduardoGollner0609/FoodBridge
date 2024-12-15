@@ -32,3 +32,13 @@ export function findById(id: number) {
 
   return requestBackend(config);
 }
+
+export function deleteById(id: number) {
+  const config: AxiosRequestConfig = {
+    method: "DELETE",
+    url: `/donations/${id}`,
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
+}

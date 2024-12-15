@@ -1,7 +1,7 @@
 import './styles.css';
 import deleteIcon from '../../assets/delete-icon.svg';
-import updateIcon from '../../assets/update-icon.svg';
 import { DonationMinDTO } from '../../models/donation';
+import * as donationService from '../../services/donation-service';
 
 type Props = {
     donation: DonationMinDTO
@@ -9,6 +9,11 @@ type Props = {
 
 export default function CardMyDonation({ donation }: Props) {
 
+    function handleDeleteClick() {
+        donationService.deleteById(donation.id).then(() => {
+
+        });
+    }
 
     return (
         <div className="card-my-donation">
@@ -20,11 +25,7 @@ export default function CardMyDonation({ donation }: Props) {
                 AGUARDANDO
             </div>
             <div className="card-my-donation-icons">
-                <div className="card-my-donation-icon-item">
-                    <img src={updateIcon} alt="" />
-                    <p>Editar</p>
-                </div>
-                <div className="card-my-donation-icon-item">
+                <div className="card-my-donation-icon-item" onClick={handleDeleteClick}>
                     <img src={deleteIcon} alt="" />
                     <p>Deletar</p>
                 </div>

@@ -57,6 +57,7 @@ public class DonationController {
 		return ResponseEntity.noContent().build();
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);

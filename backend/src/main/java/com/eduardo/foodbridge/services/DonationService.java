@@ -62,6 +62,7 @@ public class DonationService {
 		}
 	}
 
+	@Transactional
 	public void delete(Long id) {
 		if (!repository.existsById(id)) {
 			throw new ResourceNotFoundException("Doação não encontrada");

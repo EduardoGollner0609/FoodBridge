@@ -1,15 +1,18 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CardMyDonation from "../../../../components/CardMyDonation";
-import { useEffect } from "react";
-import { UserDTO } from "../../../../models/User";
+import { useEffect, useState } from "react";
+import { DonationMinDTO } from "../../../../models/donation";
+import * as userService from '../../../../services/user-service';
 
 export default function MyDonations() {
 
-    const context = useOutletContext<UserDTO>();
+    const [myDonations, setMyDonations] = useState<DonationMinDTO[]>([]);
 
     useEffect(() => {
-
-    });
+        userService.findMe().then((response) => {
+            setMyDonations(response.data.donations);
+        })
+    }, []);
 
     return (
         <div className="my-donations-list">
@@ -20,8 +23,8 @@ export default function MyDonations() {
                 </Link>
             </div>
             {
-                context.donations.map(donation => (
-                    <CardMyDonation key={donation.id} donation={donation} />
+                myDonations.map(myDonation => (
+                    <CardMyDonation key={myDonation.id} donation={myDonation} />
                 ))
             }
 
