@@ -15,11 +15,18 @@ export default function CardMyDonation({ donation }: Props) {
         });
     }
 
+    function formatedDescription(description: string) {
+        if (description.length > 30) {
+            return description.slice(0, 30) + '...';
+        }
+        return description
+    }
+
     return (
         <div className="card-my-donation">
             <div className="card-my-donation-data">
                 <h3>{donation.userName}</h3>
-                <p>{donation.description}</p>
+                <p>{formatedDescription(donation.description)}</p>
             </div>
             <div className="card-my-donation-icon-status">
                 AGUARDANDO
