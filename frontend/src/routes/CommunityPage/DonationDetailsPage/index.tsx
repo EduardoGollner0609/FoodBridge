@@ -4,6 +4,7 @@ import * as donationService from '../../../services/donation-service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DonationDTO } from '../../../models/donation';
 import CardDonationDetails from '../../../components/CardDonationDetails';
+import CardMessage from '../../../components/CardMessage';
 
 
 export default function DonationDetailsPage() {
@@ -38,7 +39,7 @@ export default function DonationDetailsPage() {
                     }
 
                 </div>
-
+                <CardMessage message={"oi"} />
             </section></main>
     );
 }

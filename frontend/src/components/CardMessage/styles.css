@@ -1,0 +1,35 @@
+.background-card-message {
+  background-color: var(--fb-color-bg-semiblack);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-message {
+  background-color: var(--fb-color-quartiary);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: var(--fb-color-primary);
+  min-width: 400px;
+}
+
+.card-message p {
+  text-align: center;
+}
+
+.card-message button {
+  border: 2px solid var(--fb-color-primary);
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: var(--fb-color-quartiary);
+  color: var(--fb-color-primary);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
