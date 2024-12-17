@@ -51,10 +51,11 @@ public class DonationController {
 		return ResponseEntity.ok(donationDTO);
 	}
 
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<DonationDTO> update(@PathVariable Long id, @Valid @RequestBody DonationDTO donationDTO) {
-		donationDTO = service.update(id, donationDTO);
-		return ResponseEntity.noContent().build();
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PutMapping(value = "collect/{id}")
+	public ResponseEntity<DonationDTO> updateCollectDonation(@PathVariable Long id) {
+		DonationDTO donationDTO = service.updateCollectDonation(id);
+		return ResponseEntity.ok(donationDTO);
 	}
 
 	@PreAuthorize("hasRole('ROLE_USER')")

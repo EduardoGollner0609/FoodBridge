@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,6 +15,7 @@ import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.DonationRepository;
+import com.eduardo.foodbridge.services.exceptions.CollectException;
 import com.eduardo.foodbridge.services.exceptions.DatabaseException;
 import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
@@ -52,17 +54,18 @@ public class DonationService {
 		return new DonationDTO(donation);
 	}
 
-	public DonationDTO update(Long id, DonationDTO donationDTO) {
+	@Transactional
+	public DonationDTO updateCollectDonation(Long id) {
 		try {
 			Donation donation = repository.getReferenceById(id);
-			copyDtoToEntity(donation, donationDTO);
+			collectDonation(donation, authService.authenticated());
 			return new DonationDTO(repository.save(donation));
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Doação não encontrada");
 		}
 	}
 
-	@Transactional
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if (!repository.existsById(id)) {
 			throw new ResourceNotFoundException("Doação não encontrada");
@@ -74,11 +77,19 @@ public class DonationService {
 		}
 	}
 
+	@Transactional
 	private CepDTO findAddressByCep() {
 		User user = authService.authenticated();
 		CepDTO response = restTemplate.getForObject("https://viacep.com.br/ws/" + user.getAddress() + "/json/",
 				CepDTO.class);
 		return response;
+	}
+
+	private void collectDonation(Donation donation, User user) {
+		if (user.getId() == donation.getUser().getId()) {
+			throw new CollectException("Você não pode coletar sua doação.");
+		}
+		donation.setCollector(user);
 	}
 
 	private void copyDtoToEntity(Donation donation, DonationDTO donationDTO) {

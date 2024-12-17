@@ -28,9 +28,7 @@ export default function CardMyDonation({ donation }: Props) {
                 <h3>{donation.userName}</h3>
                 <p>{formatedDescription(donation.description)}</p>
             </div>
-            <div className="card-my-donation-icon-status">
-                AGUARDANDO
-            </div>
+
             <div className="card-my-donation-icons">
                 <div className="card-my-donation-icon-item" onClick={handleDeleteClick}>
                     <img src={deleteIcon} alt="" />

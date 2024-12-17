@@ -14,6 +14,7 @@ export type UserDTO = {
 export type UserMinDTO = {
   id: number;
   name: string;
+  phone: string
 };
 
 export type UserInsertDTO = {

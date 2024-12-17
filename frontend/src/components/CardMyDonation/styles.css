@@ -32,9 +32,3 @@
 .card-my-donation-icon-item {
   cursor: pointer;
 }
-
-.card-my-donation-icon-status {
-  display: flex;
-  align-items: center;
-  color: var(--fb-color-tertiary);
-}

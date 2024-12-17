@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.eduardo.foodbridge.services.exceptions.CollectException;
 import com.eduardo.foodbridge.services.exceptions.DatabaseException;
 import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
@@ -54,6 +55,18 @@ public class ControllerExceptionHandler {
 		for (FieldError f : e.getBindingResult().getFieldErrors()) {
 			err.addError(f.getField(), f.getDefaultMessage());
 		}
+		return ResponseEntity.status(status).body(err);
+	}
+
+	@ExceptionHandler(CollectException.class)
+	public ResponseEntity<StandardError> collect(CollectException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Erro ao coletar");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 

@@ -9,7 +9,7 @@ public class DonationDTO {
 	private Long id;
 	@NotBlank(message = "Campo requerido")
 	private String description;
-	private UserDTO user;
+	private UserMinDTO user;
 	private String city;
 	private String state;
 
@@ -19,7 +19,7 @@ public class DonationDTO {
 	public DonationDTO(Donation donation) {
 		id = donation.getId();
 		description = donation.getDescription();
-		user = new UserDTO(donation.getUser());
+		user = new UserMinDTO(donation.getUser());
 		city = donation.getCity();
 		state = donation.getState();
 	}
@@ -40,11 +40,11 @@ public class DonationDTO {
 		this.description = description;
 	}
 
-	public UserDTO getUser() {
+	public UserMinDTO getUser() {
 		return user;
 	}
 
-	public void setUser(UserDTO user) {
+	public void setUser(UserMinDTO user) {
 		this.user = user;
 	}
 

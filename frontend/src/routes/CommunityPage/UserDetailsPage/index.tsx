@@ -1,9 +1,9 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles.css';
-import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserDTO } from '../../../models/User';
 import * as userService from '../../../services/user-service';
+import CardMyDonation from '../../../components/CardMyDonation';
 
 
 export default function UserDetailsPage() {
@@ -20,7 +20,7 @@ export default function UserDetailsPage() {
         if (birthDate === undefined) {
             return;
         }
-        const [year, month, day] = birthDate?.split('-');
+        const [year, month, day] = birthDate.split('-');
         return `${day}/${month}/${year}`;
     }
 
@@ -59,15 +59,22 @@ export default function UserDetailsPage() {
             </section>
             <section id="section-donations">
                 <div className="donations-content container">
-                    <div className="donations-options-navegation">
-                        <NavLink to="/community/user-details/my-donations" className={({ isActive }) =>
-                            isActive ? "donations-option-navegation-active" : ""}>
-                            <p>Minhas doações</p></NavLink>
-                        <NavLink to="/community/user-details/donations-collecteds" className={({ isActive }) =>
-                            isActive ? "donations-option-navegation-active" : ""}>
-                            <p>Doações Coletadas</p>   </NavLink>
+                    <div className="my-donations">
                     </div>
-                    <Outlet context={user} />
+                    <>
+                        <div className="my-donations-title">
+                            <h3>Suas  <span>doações</span></h3>
+                        </div>
+
+                        <div className="donations-collecteds-list">
+
+                            {
+                                user?.donations.map(donationCollected => (
+                                    <CardMyDonation key={donationCollected.id} donation={donationCollected} />
+                                ))
+                            }
+                        </div>
+                    </>
                 </div>
 
             </section>

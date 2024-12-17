@@ -106,3 +106,13 @@
     color: var(--fb-color-quartiary);
   }
 }
+
+.my-donations-title h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: var(--fb-color-tertiary);
+  & span {
+    color: var(--fb-color-primary);
+  }
+}

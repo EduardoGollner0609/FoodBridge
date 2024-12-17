@@ -1,24 +1,14 @@
 import './styles.css';
 import { useEffect, useState } from 'react';
 import CardDonation from '../../../components/CardDonation';
-import * as userService from '../../../services/user-service';
 import * as donationService from '../../../services/donation-service';
 import { Link } from 'react-router-dom';
 import { DonationMinDTO } from '../../../models/donation';
-import { UserMinDTO } from '../../../models/User';
 
 
 export default function HomeCommunityPage() {
 
-    const [user, setUser] = useState<UserMinDTO>();
-
     const [donations, setDonations] = useState<DonationMinDTO[]>([]);
-
-    useEffect(() => {
-        userService.findMe().then((response) => {
-            setUser(response.data)
-        });
-    }, []);
 
     useEffect(() => {
         donationService.findAllPaged().then((response) => {
@@ -32,7 +22,7 @@ export default function HomeCommunityPage() {
             <section id="section-home-community">
                 <div className="home-community-content container">
                     <div className="home-community-welcome">
-                        <h2>Seja muito bem vindo {user?.name}</h2>
+                        <h2>Seja muito bem vindo</h2>
                     </div>
                     <div className="home-community-donations-header">
                         <div className="home-community-search-location">

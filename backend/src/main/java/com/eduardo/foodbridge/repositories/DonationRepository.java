@@ -9,5 +9,5 @@ import com.eduardo.foodbridge.entities.Donation;
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
 	Page<Donation> findAllByState(String state, Pageable pagebale);
-	
+
 }

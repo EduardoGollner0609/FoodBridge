@@ -1,4 +1,4 @@
-import { UserDTO } from "./User";
+import { UserMinDTO } from "./User";
 
 export type DonationMinDTO = {
   id: number;
@@ -8,7 +8,6 @@ export type DonationMinDTO = {
   state?: string;
 };
 
-
 export type DonationDTO = DonationMinDTO & {
-  user: UserDTO;
-}
+  user: UserMinDTO;
+};

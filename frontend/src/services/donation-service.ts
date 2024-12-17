@@ -13,6 +13,16 @@ export function insertDonation(donation: DonationDTO) {
   return requestBackend(config);
 }
 
+export function updateCollectDonation(id: number | undefined) {
+  const config: AxiosRequestConfig = {
+    method: "PUT",
+    url: `/donations/collect/${id}`,
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
+}
+
 export function findAllPaged() {
   const config: AxiosRequestConfig = {
     method: "GET",

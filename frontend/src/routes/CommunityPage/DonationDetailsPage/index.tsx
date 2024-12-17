@@ -14,6 +14,13 @@ export default function DonationDetailsPage() {
 
     const [donation, setDonation] = useState<DonationDTO>();
 
+    function collect() {
+        donationService.updateCollectDonation(donation?.id).then(() => {
+            console.log("Temos uma nova pessoa para coletar.");
+        });
+
+    }
+
     useEffect(() => {
         donationService.findById(Number(params.donationId)).then((response) => {
             setDonation(response.data);
@@ -27,7 +34,7 @@ export default function DonationDetailsPage() {
             <section id="section-donation-details-page">
                 <div className="donation-details-page-content container">
                     {
-                        donation && <CardDonationDetails donation={donation} />
+                        donation && <CardDonationDetails donation={donation} collectFunction={collect} />
                     }
 
                 </div>
