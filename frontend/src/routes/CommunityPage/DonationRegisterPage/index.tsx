@@ -6,12 +6,15 @@ import TextAreaInput from '../../../components/TextAreaInput';
 import FormInput from '../../../components/FormInput';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 
 export default function DonationRegisterPage() {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<any>(formEmpty);
+    const [formData, setFormData] = useState(formEmpty);
+
+    const [loadingFormSubmit, setLoadingFormSubmit] = useState(false);
 
     function formEmpty() {
         return {
@@ -43,7 +46,7 @@ export default function DonationRegisterPage() {
     function handleClickConfirmHuman() {
         setFormData(forms.updateAndValidate(formData, formData.confirmHuman.name, "confirmado"));
     }
-    function handleInputChange(event: any) {
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
 
@@ -52,7 +55,7 @@ export default function DonationRegisterPage() {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
-    function handleSubmit(event: any) {
+    function handleSubmit(event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
         const formDataValidated = forms.dirtyAndValidateAll(formData);
@@ -61,6 +64,8 @@ export default function DonationRegisterPage() {
             setFormData(formDataValidated);
             return;
         }
+
+        setLoadingFormSubmit(true);
 
         const requestBody = forms.toValues(formData);
 
@@ -80,31 +85,44 @@ export default function DonationRegisterPage() {
         <main>
             <section id="section-donation-register">
                 <div className="donation-register-content container">
-                    <div className="card-donation-register">
-                        <Link to="/community">Voltar</Link>
-                        <h2>Doação</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="card-donation-register-item">
-                                <TextAreaInput {...formData.description}
-                                    onChange={handleInputChange}
-                                    onTurnDirty={handleTurnDirty}
-                                />
-                                <div className="form-error">{formData.description.message}</div>
-                            </div>
-                            <div className="card-donation-register-item-confirm-human">
-                                <FormInput {...formData.confirmHuman}
-                                    onChange={handleClickConfirmHuman}
-                                    onTurnDirty={handleTurnDirty} />
-                                <p>Clique aqui para confirmar que é humano</p>
-                            </div>
 
-                            <div className="card-donation-register-btn-submit">
-                                <input type="submit" onClick={handleSubmit} />
+                    {
+                        loadingFormSubmit ?
+                            <div className="register-donation-loading">
+                                <div className="register-donation-loading-message">
+                                    <img src={loadingIcon} alt="" />
+                                    <p>Criando doação</p>
+                                </div>
+
                             </div>
-                        </form>
-                    </div>
+                            :
+                            <div className="card-donation-register">
+                                <Link to="/community">Voltar</Link>
+                                <h2>Doação</h2>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="card-donation-register-item">
+                                        <TextAreaInput {...formData.description}
+                                            onChange={handleInputChange}
+                                            onTurnDirty={handleTurnDirty}
+                                        />
+                                        <div className="form-error">{formData.description.message}</div>
+                                    </div>
+                                    <div className="card-donation-register-item-confirm-human">
+                                        <FormInput {...formData.confirmHuman}
+                                            onChange={handleClickConfirmHuman}
+                                            onTurnDirty={handleTurnDirty} />
+                                        <p>Clique aqui para confirmar que é humano</p>
+                                    </div>
+
+                                    <div className="card-donation-register-btn-submit">
+                                        <button type="submit" onClick={handleSubmit}>Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                    }
+
                 </div>
             </section>
-        </main>
+        </main >
     );
 }
