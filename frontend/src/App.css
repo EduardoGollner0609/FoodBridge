@@ -10,7 +10,7 @@
 
   --fb-color-border-gray: #d0d0d0;
   --fb-error-form: #b11717;
-  
+
   --fb-color-bg-semiblack: #18181893;
 }
 
@@ -51,3 +51,4 @@ ul {
 .form-item-input [data-dirty="true"][data-invalid="true"] ~ div {
   display: unset;
 }
+

@@ -74,40 +74,7 @@
   padding: 0 20px;
 }
 
-.donations-plus-btn {
-  display: flex;
-  justify-content: end;
-}
-
-.donations-plus-btn a {
-  padding: 5px 15px;
-  font-size: 18px;
-  background-color: var(--fb-color-primary);
-  color: var(--fb-color-quartiary);
-  border-radius: 20px;
-}
-
-.donations-options-navegation {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.donations-options-navegation a {
-  border: 2px solid var(--fb-color-primary);
-  padding: 10px;
-  color: var(--fb-color-primary);
-  border-radius: 30px;
-}
-
-.donations-option-navegation-active {
-  background-color: var(--fb-color-primary);
-  color: var(--fb-color-quartiary);
-  & p {
-    color: var(--fb-color-quartiary);
-  }
-}
-
-.my-donations-title h3 {
+.my-donations-title h3, .donations-collecteds-title h3 {
   text-align: center;
   text-transform: uppercase;
   font-size: 24px;

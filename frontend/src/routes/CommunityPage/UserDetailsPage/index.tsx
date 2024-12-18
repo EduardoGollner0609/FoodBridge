@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { UserDTO } from '../../../models/User';
 import * as userService from '../../../services/user-service';
 import CardMyDonation from '../../../components/CardMyDonation';
+import { SwiperProps, SwiperSlide } from 'swiper/react';
+import CardDonation from '../../../components/CardDonation';
+import Slider from '../../../components/Slider/slider';
 
 
 export default function UserDetailsPage() {
@@ -22,6 +25,15 @@ export default function UserDetailsPage() {
         }
         const [year, month, day] = birthDate.split('-');
         return `${day}/${month}/${year}`;
+    }
+
+    const settings: SwiperProps = {
+        spaceBetween: 50,
+        slidesPerView: 1,
+        navigation: true,
+        pagination: {
+            clickable: true
+        }
     }
 
     return (
@@ -61,23 +73,41 @@ export default function UserDetailsPage() {
                 <div className="donations-content container">
                     <div className="my-donations">
                     </div>
-                    <>
-                        <div className="my-donations-title">
-                            <h3>Suas  <span>doações</span></h3>
-                        </div>
 
-                        <div className="donations-collecteds-list">
 
-                            {
-                                user?.donations.map(donationCollected => (
-                                    <CardMyDonation key={donationCollected.id} donation={donationCollected} />
-                                ))
-                            }
-                        </div>
-                    </>
+
+
+                    <Slider settings={settings}>
+                        <SwiperSlide>
+                            <div className="donations-list">
+                                <div className="my-donations-title">
+                                    <h3>Suas  <span>doações</span></h3>
+                                </div>
+                                {
+                                    user?.donations.map(donation => (
+                                        <CardMyDonation key={donation.id} donation={donation} />
+                                    ))
+                                }
+                            </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                            <div className="donations-collecteds-list">
+                                <div className="donations-collecteds-title">
+                                    <h3>Doações  <span>coletadas</span></h3>
+                                </div>
+                                {
+                                    user?.donationsCollected.map(donationColleted => (
+                                        <CardDonation key={donationColleted.id} donation={donationColleted} />
+                                    ))
+                                }
+                            </div>
+                        </SwiperSlide>
+                    </Slider>
+
                 </div>
 
             </section>
-        </main>
+        </main >
     );
 }

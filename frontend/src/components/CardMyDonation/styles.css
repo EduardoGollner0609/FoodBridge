@@ -1,11 +1,12 @@
 .card-my-donation {
-  margin-top: 10px;
   border: 2px solid var(--fb-color-primary);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
   height: 90px;
+  width: 85%;
+  margin: 10px auto 0 auto;
 }
 
 .card-my-donation-data h3 {

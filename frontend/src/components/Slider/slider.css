@@ -1,0 +1,24 @@
+.swiper {
+padding: 20px  20px 50px 20px!important;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-pagination-bullet {
+  padding: 7px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--fb-color-primary) !important;
+}
+
+.swiper-button-prev {
+  color: var(--fb-color-primary) !important;
+}
+
+.swiper-button-next {
+  color: var(--fb-color-primary) !important;
+}
