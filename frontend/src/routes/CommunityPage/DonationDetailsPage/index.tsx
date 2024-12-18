@@ -15,11 +15,22 @@ export default function DonationDetailsPage() {
 
     const [donation, setDonation] = useState<DonationDTO>();
 
+
+    const [messageCard, setMessageCard] = useState("")
+
     function collect() {
         donationService.updateCollectDonation(donation?.id).then(() => {
-            console.log("Temos uma nova pessoa para coletar.");
+            setMessageCard("Agora essa doação é sua.");
+
+        }).catch(error => {
+            setMessageCard(error.response.data.message);
+
         });
 
+    }
+
+    function cardMessageClose() {
+        setMessageCard("");
     }
 
     useEffect(() => {
@@ -31,15 +42,23 @@ export default function DonationDetailsPage() {
     }, []);
 
     return (
-        <main>
-            <section id="section-donation-details-page">
-                <div className="donation-details-page-content container">
-                    {
-                        donation && <CardDonationDetails donation={donation} collectFunction={collect} />
-                    }
+        <>
+            <main>
+                <section id="section-donation-details-page">
+                    <div className="donation-details-page-content container">
+                        {
+                            donation && <CardDonationDetails donation={donation} collectFunction={collect} />
+                        }
 
-                </div>
-                <CardMessage message={"oi"} />
-            </section></main>
+                    </div>
+
+
+                </section>
+            </main>
+            {
+                messageCard && <CardMessage message={messageCard} messageCardFunction={cardMessageClose} />
+            }
+        </>
+
     );
 }

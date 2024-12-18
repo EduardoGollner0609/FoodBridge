@@ -82,7 +82,7 @@ export default function RegisterPage() {
             },
         };
     }
-    function handleInputChange(event: any) {
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
 
@@ -91,7 +91,7 @@ export default function RegisterPage() {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
-    function handleSubmit(event: any) {
+    function handleSubmit(event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) {
 
         event.preventDefault();
 

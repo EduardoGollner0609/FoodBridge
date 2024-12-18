@@ -39,8 +39,10 @@
   gap: 20px;
 }
 
-.card-donation-details-colect a,
+.card-donation-details-colect button,
 .card-donation-details-contact a {
+  cursor: pointer;
+  border: none;
   padding: 5px;
   font-size: 18px;
   background-color: var(--fb-color-primary);

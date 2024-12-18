@@ -22,9 +22,6 @@
   color: var(--fb-color-secondary);
 }
 
-.home-community-donations-list {
-
-}
 
 .home-community-donations-header {
   display: flex;
@@ -38,3 +35,4 @@
   border-radius: 10px;
   font-size: 18px;
 }
+

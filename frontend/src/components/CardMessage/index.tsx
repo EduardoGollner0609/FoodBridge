@@ -1,15 +1,16 @@
 import './styles.css'
 
 type Props = {
-    message: string
+    message: string,
+    messageCardFunction: () => void
 }
 
-export default function CardMessage({ message }: Props) {
+export default function CardMessage({ message, messageCardFunction }: Props) {
     return (
         <div className="background-card-message">
             <div className="card-message">
-                <button>Fechar</button>
-                <p>    {message}</p>
+                <button onClick={messageCardFunction}>Fechar</button>
+                <p>{message}</p>
             </div>
         </div>
 

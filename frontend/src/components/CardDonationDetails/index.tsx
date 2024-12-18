@@ -23,7 +23,7 @@ export default function CardDonationDetails({ donation, collectFunction }: Props
             <p>{donation.description}</p>
             <div className="card-donation-details-links-bottom">
                 <div className="card-donation-details-colect">
-                    <Link to="/community" onClick={collectFunction}>Coletar</Link>
+                    <button onClick={collectFunction}>Coletar</button>
                 </div>
                 <div className="card-donation-details-contact">
                     <a href={`https://api.whatsapp.com/send?phone=${donation.user.phone}&text=Olá,%20tudo%20bem?%20vim%20do%20FoodBridge%20e%20gostaria%20de%20perguntar%20sobre%20uma%20doação%20feita%20por%20você.`}>Conversar</a>

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eduardo.foodbridge.dtos.EmailDTO;
 import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
 import com.eduardo.foodbridge.entities.Role;
@@ -28,14 +29,21 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private EmailService emailService;
+
 	@Transactional
-	public UserDTO insert(UserInsertDTO userDTO) {
+	public UserDTO insert(UserInsertDTO userInsertDTO) {
 		User user = new User();
-		copyDtoToEntity(user, userDTO);
-		user.setEmail(userDTO.getEmail());
-		user.setBirthDate(userDTO.getBirthDate());
-		user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-		return new UserDTO(repository.save(user));
+		copyDtoToEntity(user, userInsertDTO);
+		user.setEmail(userInsertDTO.getEmail());
+		user.setBirthDate(userInsertDTO.getBirthDate());
+		user.setPassword(passwordEncoder.encode(userInsertDTO.getPassword()));
+		UserDTO userDTO = new UserDTO(repository.save(user));
+		EmailDTO emailDTO = new EmailDTO(userInsertDTO.getEmail(), "Seja bem vindo(a)",
+				"Seja muito bem vindo(a) ao FoodBridge, é um prazer enorme tê-lo conosco, fique a vontade para doar e ajudar as pessoas que realmente necessitam, estamos juntos nessa missão!");
+		emailService.sendEmail(emailDTO);
+		return userDTO;
 	}
 
 	private void copyDtoToEntity(User user, UserDTO userDTO) {

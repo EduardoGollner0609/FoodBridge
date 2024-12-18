@@ -9,7 +9,7 @@ export default function LoginPage() {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<any>({
+    const [formData, setFormData] = useState({
         username: {
             value: "",
             id: "username",
@@ -34,7 +34,7 @@ export default function LoginPage() {
         },
     });
 
-    function handleInputChange(event: any) {
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value))
     }
 
@@ -43,7 +43,7 @@ export default function LoginPage() {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
-    function handleSubmit(event: any) {
+    function handleSubmit(event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
         const formDataValidated = forms.dirtyAndValidateAll(formData);
