@@ -4,6 +4,7 @@ import CardDonation from '../../../components/CardDonation';
 import * as donationService from '../../../services/donation-service';
 import { Link } from 'react-router-dom';
 import { DonationMinDTO } from '../../../models/donation';
+import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 
 
 export default function HomeCommunityPage() {
@@ -36,11 +37,16 @@ export default function HomeCommunityPage() {
                     </div>
                     <div className="home-community-donations-list">
                         {
-                            donations.map((donation) =>
-                            (
-                                <CardDonation key={donation.id} donation={donation} />
-                            )
-                            )
+                            donations.length > 0 ?
+                                donations.map((donation) =>
+                                (
+                                    <CardDonation key={donation.id} donation={donation} />
+                                )
+                                )
+                                :
+                                <div className="home-community-donations-list-loading">
+                                    <img src={loadingIcon} alt="" />
+                                </div>
                         }
 
                     </div>

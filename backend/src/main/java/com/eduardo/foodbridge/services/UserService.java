@@ -23,6 +23,7 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository repository;
+
 	@Autowired
 	private AuthService authService;
 

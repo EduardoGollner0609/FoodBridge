@@ -91,3 +91,16 @@
   font-size: 20px;
   color: var(--fb-color-secondary);
 }
+
+.user-details-loading {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-details-loading img {
+  height: 80px;
+  width: 80px;
+}
