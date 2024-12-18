@@ -52,3 +52,11 @@ ul {
   display: unset;
 }
 
+.form-global-error {
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5px 10px;
+  color: var(--fb-error-form);
+}

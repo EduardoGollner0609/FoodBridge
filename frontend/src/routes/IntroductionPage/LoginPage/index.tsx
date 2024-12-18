@@ -9,6 +9,8 @@ export default function LoginPage() {
 
     const navigate = useNavigate();
 
+    const [submitResponseFail, setSubmitResponseFail] = useState(false);
+
     const [formData, setFormData] = useState({
         username: {
             value: "",
@@ -58,6 +60,8 @@ export default function LoginPage() {
             (response) => {
                 authService.saveAccessToken(response.data.access_token);
                 navigate("/community/home");
+            }).catch(() => {
+                setSubmitResponseFail(true);
             });
     }
 
@@ -90,12 +94,18 @@ export default function LoginPage() {
                             </div>
                             <button onClick={handleSubmit}>Login</button>
                         </form>
+                        {submitResponseFail && (
+                            <div className="form-global-error">
+                                Usuário ou senha inválidos
+                            </div>)
+                        }
                         <div className="card-login-reset-password">
                             <Link to="/recovery/password">
                                 Esqueceu a senha? Clique Aqui
                             </Link>
                         </div>
                     </div>
+
                     <div className="card-login-invite-register-space">
                         <Link to="/register">
                             Clique aqui para se cadastrar
