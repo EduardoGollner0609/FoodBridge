@@ -84,9 +84,12 @@ export default function UserDetailsPage() {
                                     <h3>Suas  <span>doações</span></h3>
                                 </div>
                                 {
-                                    user?.donations.map(donation => (
-                                        <CardMyDonation key={donation.id} donation={donation} />
-                                    ))
+                                    Number(user?.donations.length) > 0 ?
+                                        user?.donations.map(donation => (
+                                            <CardMyDonation key={donation.id} donation={donation} />
+                                        ))
+                                        :
+                                        <h4>Você não possui doações</h4>
                                 }
                             </div>
                         </SwiperSlide>
@@ -97,9 +100,12 @@ export default function UserDetailsPage() {
                                     <h3>Doações  <span>coletadas</span></h3>
                                 </div>
                                 {
-                                    user?.donationsCollected.map(donationColleted => (
-                                        <CardDonation key={donationColleted.id} donation={donationColleted} />
-                                    ))
+                                    Number(user?.donationsCollected.length) > 0 ?
+                                        user?.donationsCollected.map(donationColleted => (
+                                            <CardDonation key={donationColleted.id} donation={donationColleted} />
+                                        ))
+                                        :
+                                        <h4>Você não coletou nenhuma doação.</h4>
                                 }
                             </div>
                         </SwiperSlide>

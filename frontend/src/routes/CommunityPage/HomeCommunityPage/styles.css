@@ -22,7 +22,6 @@
   color: var(--fb-color-secondary);
 }
 
-
 .home-community-donations-header {
   display: flex;
   justify-content: space-between;
@@ -36,3 +35,11 @@
   font-size: 18px;
 }
 
+@media (max-width: 768px) {
+  .home-community-donations-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+}

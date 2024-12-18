@@ -21,7 +21,6 @@ export default function DonationDetailsPage() {
     function collect() {
         donationService.updateCollectDonation(donation?.id).then(() => {
             setMessageCard("Agora essa doação é sua.");
-
         }).catch(error => {
             setMessageCard(error.response.data.message);
 

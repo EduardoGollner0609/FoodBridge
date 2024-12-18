@@ -18,3 +18,9 @@
   color: var(--fb-color-primary);
   font-size: 18px;
 }
+
+.fb-user-informations-community-page ul {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

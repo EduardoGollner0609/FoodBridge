@@ -1,8 +1,13 @@
 import './styles.css';
-import userIcon from '../../assets/user-icon.svg';
 import { Link } from 'react-router-dom';
+import * as authService from '../../services/auth-service';
 
 export default function HeaderPrincipalPage() {
+
+    function logOut() {
+        authService.logout();
+    }
+
     return (
         <header>
             <nav className="container">
@@ -15,8 +20,15 @@ export default function HeaderPrincipalPage() {
                     <ul>
                         <li>
                             <Link to="/community/user-details">
-                                <img src={userIcon} alt="" />
+
                                 Ver Perfil
+                            </Link>
+                        </li>
+                        <p>Ou</p>
+                        <li>
+                            <Link to="/home" onClick={logOut}>
+
+                                Sair
                             </Link>
                         </li>
                     </ul>
