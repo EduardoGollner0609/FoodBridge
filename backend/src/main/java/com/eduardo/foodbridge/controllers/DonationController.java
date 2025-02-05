@@ -21,10 +21,14 @@ import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.services.DonationService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/donations")
+@Tag(name = "Donations", description = "Controller for Donations")
 public class DonationController {
 
 	@Autowired
@@ -39,18 +43,49 @@ public class DonationController {
 		return ResponseEntity.created(uri).body(donationDTO);
 	}
 
+	@Operation(
+		    description = "Get All Donations Paged",
+		    summary = "Find All Donations Paged",
+		    responses = {
+		         @ApiResponse(description = "Ok", responseCode = "200"),
+		         @ApiResponse(description = "Bad Request", responseCode = "400"),
+		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
+		    }
+		)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping
 	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(Pageable pageable) {
 		Page<DonationMinDTO> donations = service.findAllPaged(pageable);
 		return ResponseEntity.ok(donations);
 	}
 
+	@Operation(
+		    description = "Get Donation By Id",
+		    summary = "Find Donation By Id",
+		    responses = {
+		         @ApiResponse(description = "Ok", responseCode = "200"),
+		         @ApiResponse(description = "Bad Request", responseCode = "400"),
+		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
+		         @ApiResponse(description = "Not Found", responseCode = "404"),
+		    }
+		)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<DonationDTO> findById(@PathVariable Long id) {
 		DonationDTO donationDTO = service.findById(id);
 		return ResponseEntity.ok(donationDTO);
 	}
 
+	@Operation(
+		    description = "Update Donation Collect Status",
+		    summary = "Update Donation Collect Status",
+		    responses = {
+		         @ApiResponse(description = "Ok", responseCode = "200"),
+		         @ApiResponse(description = "Bad Request", responseCode = "400"),
+		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
+		         @ApiResponse(description = "Not Found", responseCode = "404"),
+		    }
+		)
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "collect/{id}")
 	public ResponseEntity<DonationDTO> updateCollectDonation(@PathVariable Long id) {
@@ -58,6 +93,16 @@ public class DonationController {
 		return ResponseEntity.ok(donationDTO);
 	}
 
+	@Operation(
+		    description = "Delete Donation",
+		    summary = "Delete Donation",
+		    responses = {
+		         @ApiResponse(description = "No Content", responseCode = "204"),
+		         @ApiResponse(description = "Bad Request", responseCode = "400"),
+		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
+		         @ApiResponse(description = "Not Found", responseCode = "404"),
+		    }
+		)
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {

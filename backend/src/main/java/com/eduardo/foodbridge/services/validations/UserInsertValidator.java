@@ -34,6 +34,10 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 
 		List<FieldMessage> list = new ArrayList<>();
 
+		if (dto.getEmail() == null || dto.getName() == null || dto.getBirthDate() == null) {
+			return false;
+		}
+
 		try {
 			CepDTO response = restTemplate.getForObject("https://viacep.com.br/ws/" + dto.getAddress() + "/json/",
 					CepDTO.class);
@@ -58,7 +62,6 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 		}
 
 		LocalDate date = LocalDate.parse(dto.getBirthDate());
-
 		if (!date.isBefore(LocalDate.now())) {
 			list.add(new FieldMessage("birthdate", "Data inválida"));
 		}

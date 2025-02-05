@@ -16,16 +16,29 @@ import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
 import com.eduardo.foodbridge.services.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/users")
+@Tag(name = "Users", description = "Controller for Users")
 public class UserController {
 
 	@Autowired
 	private UserService service;
 
-	@PostMapping
+	@Operation(
+			description = "Create a new user", 
+			summary = "Create a new user", 
+			responses = {
+			@ApiResponse(description = "Created", responseCode = "201"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") 
+			}
+		)
+	@PostMapping(produces = "application/json")
 	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
 		UserDTO userDTO = service.insert(userInsertDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId())
@@ -33,6 +46,14 @@ public class UserController {
 		return ResponseEntity.created(uri).body(userDTO);
 	}
 
+	@Operation(
+			description = "Return me", 
+			summary = "Return me", 
+			responses = {
+			@ApiResponse(description = "Ok", responseCode = "200"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401")
+			}
+		)
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/me")
 	public ResponseEntity<UserDTO> getMe() {

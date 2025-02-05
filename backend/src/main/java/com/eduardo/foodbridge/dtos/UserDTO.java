@@ -20,6 +20,7 @@ public class UserDTO {
 	@NotBlank(message = "Campo requerido")
 	private String address;
 	private String phone;
+	@NotBlank(message = "Campo requerido")
 	private String birthDate;
 	private List<DonationMinDTO> donations = new ArrayList<>();
 	private List<DonationMinDTO> donationsCollected = new ArrayList<>();

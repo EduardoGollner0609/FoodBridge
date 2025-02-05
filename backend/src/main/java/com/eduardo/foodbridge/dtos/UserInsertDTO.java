@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 @UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
+	@NotBlank(message = "Campo requerido")
 	@Email(message = "Email inválido")
 	private String email;
 	@NotBlank(message = "Campo requerido")
