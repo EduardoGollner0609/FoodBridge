@@ -23,6 +23,7 @@ import com.eduardo.foodbridge.services.DonationService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -44,6 +45,7 @@ public class DonationController {
 			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") 
 			}
 		)
+	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping(produces = "application/json")
 	public ResponseEntity<DonationDTO> insert(@Valid @RequestBody DonationDTO donationDTO) {
@@ -62,6 +64,7 @@ public class DonationController {
 		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
 		    }
 		)
+	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(Pageable pageable) {
@@ -79,6 +82,7 @@ public class DonationController {
 		         @ApiResponse(description = "Not Found", responseCode = "404"),
 		    }
 		)
+	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<DonationDTO> findById(@PathVariable Long id) {
@@ -96,6 +100,7 @@ public class DonationController {
 		         @ApiResponse(description = "Not Found", responseCode = "404"),
 		    }
 		)
+	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "collect/{id}", produces = "application/json")
 	public ResponseEntity<DonationDTO> updateCollectDonation(@PathVariable Long id) {
@@ -113,6 +118,7 @@ public class DonationController {
 		         @ApiResponse(description = "Not Found", responseCode = "404"),
 		    }
 		)
+	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {

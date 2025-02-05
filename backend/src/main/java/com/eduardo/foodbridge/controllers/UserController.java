@@ -18,6 +18,7 @@ import com.eduardo.foodbridge.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -54,6 +55,7 @@ public class UserController {
 			@ApiResponse(description = "Unauthorized", responseCode = "401")
 			}
 		)
+	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/me", produces = "application/json")
 	public ResponseEntity<UserDTO> getMe() {

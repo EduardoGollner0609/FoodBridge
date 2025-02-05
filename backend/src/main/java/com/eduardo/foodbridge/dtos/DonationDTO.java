@@ -2,13 +2,17 @@ package com.eduardo.foodbridge.dtos;
 
 import com.eduardo.foodbridge.entities.Donation;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
 public class DonationDTO {
 
+	@Schema(description = "Database generated Donation Id")
 	private Long id;
 	@NotBlank(message = "Campo requerido")
+	@Schema(description = "Donation description")
 	private String description;
+	@Schema(description = "User who owns the donation")
 	private UserMinDTO user;
 	private String city;
 	private String state;
