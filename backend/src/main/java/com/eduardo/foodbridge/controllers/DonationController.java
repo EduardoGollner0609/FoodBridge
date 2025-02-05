@@ -34,8 +34,18 @@ public class DonationController {
 	@Autowired
 	private DonationService service;
 
+	
+	@Operation(
+			description = "Create a new Donation", 
+			summary = "Create a new Donation", 
+			responses = {
+			@ApiResponse(description = "Created", responseCode = "201"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") 
+			}
+		)
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@PostMapping
+	@PostMapping(produces = "application/json")
 	public ResponseEntity<DonationDTO> insert(@Valid @RequestBody DonationDTO donationDTO) {
 		donationDTO = service.insert(donationDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(donationDTO.getId())
