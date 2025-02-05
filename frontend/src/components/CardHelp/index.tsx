@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 interface CardProps {
@@ -16,7 +17,7 @@ export default function CardHelp({ imgUrl, title, description }: CardProps) {
             <p>{description}</p>
         </div>
         <div className="card-how-help-item-read-more-invite">
-            <a href="">Saiba Mais</a>
+            <Link to="/about">Saiba Mais</Link>
         </div>
     </div>);
 }

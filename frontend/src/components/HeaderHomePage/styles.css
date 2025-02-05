@@ -10,16 +10,9 @@
   display: none;
 }
 
-header {
+.header-home-page {
   height: 70px;
   padding: 10px 20px;
-}
-
-header nav {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .header-introduction-page-title h1 {

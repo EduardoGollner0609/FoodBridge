@@ -1,3 +1,7 @@
+.header-principal-page {
+  padding: 10px 20px;
+}
+
 .fb-header-community-page-title h1 {
   font-size: 26px;
   color: var(--fb-color-primary);
@@ -23,4 +27,11 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+@media (max-width: 395px) {
+  nav {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 }

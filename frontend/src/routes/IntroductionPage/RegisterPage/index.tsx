@@ -11,7 +11,7 @@ export default function RegisterPage() {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<any>(formEmpty);
+    const [formData, setFormData] = useState(formEmpty);
 
     function formEmpty() {
         return {
@@ -42,7 +42,7 @@ export default function RegisterPage() {
                 id: "address",
                 name: "address",
                 type: "text",
-                placeholder: "Endereço",
+                placeholder: "CEP",
                 validation: function (value: string) {
                     return /^.{8,}$/.test(value);;
                 },
@@ -92,8 +92,8 @@ export default function RegisterPage() {
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) {
-
         event.preventDefault();
+
 
         const formDataValidated = forms.dirtyAndValidateAll(formData);
 
@@ -151,7 +151,7 @@ export default function RegisterPage() {
                             </div>
 
                             <div className="form-item-input">
-                                <label>Endereço</label>
+                                <label>CEP</label>
                                 <FormInput
                                     {...formData.address}
                                     onTurnDirty={handleTurnDirty}

@@ -9,6 +9,7 @@ import moreDetails1 from '../../../assets/more-details-img1.png';
 import moreDetails2 from '../../../assets/more-details-img2.jpeg';
 import moreDetails3 from '../../../assets/more-details-img3.jpg';
 import CardHelp from '../../../components/CardHelp';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
 
@@ -22,7 +23,7 @@ export default function HomePage() {
                 <div className="home-page-introduction container">
                     <div className="home-page-introduction-invite">
                         <h2>A <span>fome</span> não espera, e a <span>solidariedade</span> também não.</h2>
-                        <a href="">Doe agora <img src={arrowIconPurple} alt="" /></a>
+                        <Link to="/login">Doe agora <img src={arrowIconPurple} alt="" /></Link>
                     </div>
 
                     <div className="home-page-introduction-invite-img">
@@ -68,7 +69,7 @@ export default function HomePage() {
                             </div>
                             <h3>Unidos contra a fome</h3>
                         </div>
-                        <a href="">Doe agora <img src={arrowIconWhite} alt="" /></a>
+                        <Link to="/login">Doe agora <img src={arrowIconWhite} alt="" /></Link>
                     </div>
                 </div>
             </section>

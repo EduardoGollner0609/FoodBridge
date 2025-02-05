@@ -9,7 +9,7 @@ export default function HeaderPrincipalPage() {
     }
 
     return (
-        <header>
+        <header className="header-principal-page">
             <nav className="container">
                 <div className="fb-header-community-page-title">
                     <Link to="/community">
@@ -20,21 +20,17 @@ export default function HeaderPrincipalPage() {
                     <ul>
                         <li>
                             <Link to="/community/user-details">
-
                                 Ver Perfil
                             </Link>
                         </li>
                         <p>Ou</p>
                         <li>
                             <Link to="/home" onClick={logOut}>
-
                                 Sair
                             </Link>
                         </li>
                     </ul>
-
                 </div>
-
             </nav>
         </header>
     );

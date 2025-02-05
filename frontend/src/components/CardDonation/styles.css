@@ -3,19 +3,22 @@
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   padding: 10px 15px;
-  height: 90px;
   cursor: pointer;
-  width: 85%;
   margin: 10px auto 0 auto;
+}
+
+.card-donation p {
+  color: var(--fb-color-secondary);
 }
 
 .card-donation-data h3 {
   color: var(--fb-color-primary);
 }
 
-.card-donation p {
-  color: var(--fb-color-secondary);
+.card-donation-address p {
+  text-align: center;
 }
 
 .card-donation:hover {
@@ -23,5 +26,15 @@
   & h3,
   p {
     color: var(--fb-color-quartiary);
+  }
+}
+
+@media (max-width: 576px) {
+  .card-donation {
+    padding: 10px;
+  }
+  .card-donation p {
+    max-width: 180px;
+    word-wrap: break-word;
   }
 }

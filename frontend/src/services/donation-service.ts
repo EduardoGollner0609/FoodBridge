@@ -23,10 +23,11 @@ export function updateCollectDonation(id: number | undefined) {
   return requestBackend(config);
 }
 
-export function findAllPaged() {
+export function findAllPaged(page: number, size = 4) {
   const config: AxiosRequestConfig = {
     method: "GET",
     url: "/donations",
+    params: { page, size },
     withCredentials: true,
   };
 

@@ -46,15 +46,12 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/contact" element={<TalkToUsPage />} />
           </Route>
-
           <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/community/home" />} />
             <Route path="/community/home" element={<HomeCommunityPage />} />
             <Route path="/community/donation/:donationId" element={<DonationDetailsPage />} />
             <Route path="/community/donation-register" element={<DonationRegisterPage />} />
             <Route path="/community/user-details" element={<UserDetailsPage />} >
-    
-          
             </Route>
           </Route>
         </Routes>

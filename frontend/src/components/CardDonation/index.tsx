@@ -14,7 +14,7 @@ export default function CardDonation({ donation }: Props) {
         }
         return description
     }
-    
+
     return (
         <Link to={`/community/donation/${donation.id}`}>
             <div className="card-donation">
@@ -22,7 +22,9 @@ export default function CardDonation({ donation }: Props) {
                     <h3>{donation.userName}</h3>
                     <p>{formatedDescription(donation.description)}</p>
                 </div>
-                <p>{donation.city}, {donation.state}</p>
+                <div className="card-donation-address">
+                    <p>{donation.city}, {donation.state}</p>
+                </div>
             </div>
         </Link>
     );

@@ -7,7 +7,7 @@ export default function HeaderHomePage() {
 
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
     return (
-        <header>
+        <header className="header-home-page">
             <nav className="container">
                 <div className="header-introduction-page-title">
                     <h1>FoodBridge</h1>

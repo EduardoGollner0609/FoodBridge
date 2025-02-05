@@ -1,0 +1,10 @@
+.fb-btn-next-page {
+  border: 1px solid var(--fb-color-primary);
+  padding: 10px;
+  border-radius: 4px;
+  color: var(--fb-color-primary);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
