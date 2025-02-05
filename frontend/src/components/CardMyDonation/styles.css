@@ -4,17 +4,12 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
-  height: 90px;
-  width: 85%;
+  width: 90%;
   margin: 10px auto 0 auto;
 }
 
 .card-my-donation-data h3 {
   color: var(--fb-color-primary);
-}
-
-.card-my-donation p {
-  color: var(--fb-color-secondary);
 }
 
 .card-my-donation-icons {
@@ -37,4 +32,28 @@
 .card-my-donation-loading img {
   height: 40px;
   width: 40px;
+}
+
+@media (max-width: 600px) {
+  .card-my-donation p {
+    max-width: 220px;
+    word-wrap: break-word;
+  }
+}
+
+@media (max-width: 490px) {
+  .card-my-donation {
+    padding: 5px 10px;
+  }
+  .card-my-donation p {
+    max-width: 180px;
+    word-wrap: break-word;
+  }
+}
+
+@media (max-width: 380px) {
+  .card-my-donation p {
+    max-width: 120px;
+    word-wrap: break-word;
+  }
 }

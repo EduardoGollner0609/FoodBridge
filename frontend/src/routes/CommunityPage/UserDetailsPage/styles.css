@@ -23,7 +23,6 @@
   padding: 20px;
   border: 2px solid var(--fb-color-primary);
   border-radius: 20px;
-  width: 80%;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -48,6 +47,7 @@
 .card-user-details-colaboration {
   display: flex;
   justify-content: space-around;
+  gap: 8px;
 }
 
 .card-user-details-donations,
@@ -71,7 +71,7 @@
 }
 
 #section-donations {
-  padding: 0 20px;
+  padding: 0 20px 20px 20px;
 }
 
 .my-donations-title h3,
@@ -103,4 +103,19 @@
 .user-details-loading img {
   height: 80px;
   width: 80px;
+}
+
+.donations-collecteds-list {
+  height: 100%;
+}
+
+.swiper {
+  max-height: 300px;
+}
+
+.swiper-slide {
+  padding-bottom: 60px;
+  max-height: 300px;
+  overflow-y: auto;
+  min-height: 300px !important;
 }

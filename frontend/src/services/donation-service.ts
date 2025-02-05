@@ -23,7 +23,7 @@ export function updateCollectDonation(id: number | undefined) {
   return requestBackend(config);
 }
 
-export function findAllPaged(page: number, size = 4) {
+export function findAllPaged(page: number, size = 5) {
   const config: AxiosRequestConfig = {
     method: "GET",
     url: "/donations",
