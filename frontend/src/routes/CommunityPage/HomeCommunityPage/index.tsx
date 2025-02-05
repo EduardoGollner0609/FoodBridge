@@ -63,7 +63,7 @@ export default function HomeCommunityPage() {
                                 </div>
                         }
                     </div>
-                    {!isLastPage && <ButtonNextPage onNextPage={handleNextPageClick} />}
+                    {donations.length > 0 && !isLastPage && <ButtonNextPage onNextPage={handleNextPageClick} />}
                 </div>
             </section>
         </main >

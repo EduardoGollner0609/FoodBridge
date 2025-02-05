@@ -9,7 +9,7 @@ import com.eduardo.foodbridge.entities.Donation;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-	@Query(value = "SELECT obj FROM Donation obj JOIN FETCH obj.user WHERE obj.state = :state", countQuery = "SELECT COUNT(obj) FROM Donation obj JOIN obj.user WHERE obj.state = :state")
+	@Query(value = "SELECT obj FROM Donation obj JOIN FETCH obj.user WHERE obj.state = :state", countQuery = "SELECT COUNT(obj) FROM Donation obj WHERE obj.state = :state")
 	Page<Donation> findAllByState(String state, Pageable pageable);
 
 }

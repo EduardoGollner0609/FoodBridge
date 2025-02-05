@@ -45,7 +45,8 @@
   font-size: 18px;
   border-radius: 10px;
   border: 2px solid var(--fb-color-primary);
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .card-login label {
@@ -72,7 +73,8 @@
 }
 
 .card-login-invite-register-space {
-  width: 403px;
+  width: 100%;
+  max-width: 403px;
 }
 
 .card-login-invite-register-space a {
@@ -82,4 +84,14 @@
   border-radius: 20px;
   color: var(--fb-color-quartiary);
   display: block;
+}
+
+@media (max-width: 576px) {
+  .card-login {
+    padding: 20px;
+  }
+
+  .card-login-invite-register-space {
+    max-width: 331px;
+  }
 }
