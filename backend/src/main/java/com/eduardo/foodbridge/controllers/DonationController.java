@@ -53,7 +53,7 @@ public class DonationController {
 		    }
 		)
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping
+	@GetMapping(produces = "application/json")
 	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(Pageable pageable) {
 		Page<DonationMinDTO> donations = service.findAllPaged(pageable);
 		return ResponseEntity.ok(donations);
@@ -70,7 +70,7 @@ public class DonationController {
 		    }
 		)
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<DonationDTO> findById(@PathVariable Long id) {
 		DonationDTO donationDTO = service.findById(id);
 		return ResponseEntity.ok(donationDTO);
@@ -87,7 +87,7 @@ public class DonationController {
 		    }
 		)
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@PutMapping(value = "collect/{id}")
+	@PutMapping(value = "collect/{id}", produces = "application/json")
 	public ResponseEntity<DonationDTO> updateCollectDonation(@PathVariable Long id) {
 		DonationDTO donationDTO = service.updateCollectDonation(id);
 		return ResponseEntity.ok(donationDTO);
@@ -104,7 +104,7 @@ public class DonationController {
 		    }
 		)
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();

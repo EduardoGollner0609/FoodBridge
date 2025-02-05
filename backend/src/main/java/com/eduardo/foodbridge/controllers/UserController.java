@@ -55,7 +55,7 @@ public class UserController {
 			}
 		)
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping(value = "/me")
+	@GetMapping(value = "/me", produces = "application/json")
 	public ResponseEntity<UserDTO> getMe() {
 		UserDTO dto = service.getMe();
 		return ResponseEntity.ok(dto);
