@@ -3,15 +3,13 @@
 }
 
 .register-page-content {
-  height: 80vh;
-  min-height: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card-register {
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 10px 20px;
   border: 2px solid var(--fb-color-primary);
   color: var(--fb-color-quartiary);
@@ -21,7 +19,6 @@
   border-radius: 20px;
   width: 80%;
   max-width: 600px;
-  max-height: 680px;
   overflow: auto;
 }
 
@@ -35,7 +32,7 @@
 .card-register form {
   display: flex;
   flex-direction: column;
-gap: 5px;
+  gap: 5px;
 }
 
 .form-item-input {
@@ -70,4 +67,16 @@ gap: 5px;
   text-transform: uppercase;
   cursor: pointer;
   margin: 10px 0;
+}
+
+@media (max-width: 576px) {
+  .card-register {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .card-register {
+    width: 100%;
+  }
 }
