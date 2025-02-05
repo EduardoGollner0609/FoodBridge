@@ -86,12 +86,13 @@ public class DonationService {
 	}
 
 	private void collectDonation(Donation donation, User user) {
-		if (donation.getCollector() != null) {
-			throw new CollectException("Essa doação já tem alguém para entregar.");
-		}
 		if (user.getId() == donation.getUser().getId()) {
 			throw new CollectException("Você não pode coletar sua doação.");
 		}
+		if (donation.getCollector() != null) {
+			throw new CollectException("Essa doação já tem alguém para entregar.");
+		}
+
 		donation.setCollector(user);
 	}
 

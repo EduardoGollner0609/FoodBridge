@@ -23,9 +23,7 @@ export default function DonationDetailsPage() {
             setMessageCard("Agora essa doação é sua.");
         }).catch(error => {
             setMessageCard(error.response.data.message);
-
         });
-
     }
 
     function cardMessageClose() {
@@ -55,7 +53,7 @@ export default function DonationDetailsPage() {
                 </section>
             </main>
             {
-                messageCard && <CardMessage message={messageCard} messageCardFunction={cardMessageClose} />
+                messageCard && <CardMessage message={messageCard} phone={donation?.user.phone} messageCardFunction={cardMessageClose} />
             }
         </>
 
