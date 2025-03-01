@@ -13,6 +13,14 @@ public class DonationMinDTO {
 	public DonationMinDTO() {
 	}
 
+	public DonationMinDTO(Long id, String userName, String description, String city, String state) {
+		this.id = id;
+		this.userName = userName;
+		this.description = description;
+		this.city = city;
+		this.state = state;
+	}
+
 	public DonationMinDTO(Donation donation) {
 		id = donation.getId();
 		userName = donation.getUser().getName();

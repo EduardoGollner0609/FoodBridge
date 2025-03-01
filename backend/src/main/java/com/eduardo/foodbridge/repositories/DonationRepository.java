@@ -6,10 +6,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.eduardo.foodbridge.entities.Donation;
+import com.eduardo.foodbridge.projections.DonationProjection;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-	@Query(value = "SELECT obj FROM Donation obj JOIN FETCH obj.user WHERE obj.state = :state", countQuery = "SELECT COUNT(obj) FROM Donation obj WHERE obj.state = :state")
-	Page<Donation> findAllByState(String state, Pageable pageable);
+	@Query(nativeQuery = true, value = """
+			      SELECT dt.id, us.name AS username, dt.description, dt.city, dt.state
+			      FROM tb_donation dt
+			      INNER JOIN tb_user us ON us.id = dt.user_id
+			WHERE dt.state = :state""", countQuery = """
+			           SELECT COUNT(*)
+			           FROM tb_donation dt
+			           INNER JOIN tb_user us ON us.id = dt.user_id
+			           WHERE dt.state = :state
+			""")
+	Page<DonationProjection> findAllByState(String state, Pageable pageable);
 
 }

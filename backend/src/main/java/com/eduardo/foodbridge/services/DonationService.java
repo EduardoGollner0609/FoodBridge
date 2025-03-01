@@ -7,13 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
 import com.eduardo.foodbridge.dtos.CepDTO;
 import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.User;
+import com.eduardo.foodbridge.projections.DonationProjection;
 import com.eduardo.foodbridge.repositories.DonationRepository;
 import com.eduardo.foodbridge.services.exceptions.CollectException;
 import com.eduardo.foodbridge.services.exceptions.DatabaseException;
@@ -28,10 +28,10 @@ public class DonationService {
 	private DonationRepository repository;
 
 	@Autowired
-	private RestTemplate restTemplate;
+	private AuthService authService;
 
 	@Autowired
-	private AuthService authService;
+	private AddressService addressService;
 
 	@Transactional
 	public DonationDTO insert(DonationDTO donationDTO) {
@@ -43,8 +43,9 @@ public class DonationService {
 	@Transactional(readOnly = true)
 	public Page<DonationMinDTO> findAllPaged(Pageable pageable) {
 		CepDTO response = findAddressByCep();
-		Page<Donation> donations = repository.findAllByState(response.getEstado(), pageable);
-		return donations.map(donation -> new DonationMinDTO(donation));
+		Page<DonationProjection> donations = repository.findAllByState(response.getEstado(), pageable);
+		return donations.map(donation -> new DonationMinDTO(donation.getId(), donation.getUserName(),
+				donation.getDescription(), donation.getCity(), donation.getState()));
 	}
 
 	@Transactional(readOnly = true)
@@ -77,12 +78,10 @@ public class DonationService {
 		}
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	private CepDTO findAddressByCep() {
 		User user = authService.authenticated();
-		CepDTO response = restTemplate.getForObject("https://viacep.com.br/ws/" + user.getAddress() + "/json/",
-				CepDTO.class);
-		return response;
+		return addressService.findAddressByCep(user.getAddress());
 	}
 
 	private void collectDonation(Donation donation, User user) {

@@ -82,6 +82,7 @@ export default function RegisterPage() {
             },
         };
     }
+    
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
