@@ -17,7 +17,6 @@ public class AddressService {
 	@Transactional
 	@Cacheable(value = "addressCache", key = "#address")
 	public CepDTO findAddressByCep(String address) {
-		System.out.print("Chamando API de cep para: " + address);
 		String url = "https://viacep.com.br/ws/" + address + "/json/";
 		return restTemplate.getForObject(url, CepDTO.class);
 	}
