@@ -3,6 +3,7 @@ package com.eduardo.foodbridge.services;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.eduardo.foodbridge.dtos.EmailDTO;
@@ -21,9 +22,12 @@ public class EmailService {
 	@Autowired
 	private SendGrid sendGrid;
 
+	@Value("${spring.sendgrid.email}")
+	private String emailFrom;
+
 	public void sendEmail(EmailDTO dto) {
 
-		Email from = new Email("dudugollner@gmail.com", "FoodBridge");
+		Email from = new Email(emailFrom, "FoodBridge");
 
 		Email to = new Email(dto.getTo());
 
