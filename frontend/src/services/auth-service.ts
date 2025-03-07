@@ -9,6 +9,7 @@ import QueryString from "qs";
 import { requestBackend } from "../utils/request";
 import * as accessTokenRepository from "../localstorage/access-token-repository";
 import jwtDecode from "jwt-decode";
+import { EmailMinDTO } from "../models/recover-password";
 
 export function loginRequest(loginData: CredentialsDTO) {
   const headers = {
@@ -26,6 +27,16 @@ export function loginRequest(loginData: CredentialsDTO) {
     url: "/oauth2/token",
     data: requestBody,
     headers: headers,
+  };
+
+  return requestBackend(config);
+}
+
+export function recoverToken(requestBody: EmailMinDTO) {
+  const config: AxiosRequestConfig = {
+    method: "POST",
+    url: "/auth/recover-token",
+    data: requestBody,
   };
 
   return requestBackend(config);
