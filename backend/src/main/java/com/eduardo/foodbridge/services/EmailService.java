@@ -44,7 +44,7 @@ public class EmailService {
 			Response response = sendGrid.api(request);
 
 			if (response.getStatusCode() >= 400 && response.getStatusCode() <= 500) {
-				throw new EmailException(response.getBody());
+				throw new EmailException("Falha ao enviar email");
 			}
 		} catch (IOException e) {
 			throw new EmailException(e.getMessage());

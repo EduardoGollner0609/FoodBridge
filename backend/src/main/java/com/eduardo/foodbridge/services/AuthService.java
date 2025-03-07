@@ -1,6 +1,7 @@
 package com.eduardo.foodbridge.services;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eduardo.foodbridge.dtos.EmailDTO;
 import com.eduardo.foodbridge.dtos.EmailMinDTO;
+import com.eduardo.foodbridge.dtos.NewPasswordDTO;
 import com.eduardo.foodbridge.entities.PasswordRecover;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.PasswordRecoverRepository;
@@ -28,6 +31,9 @@ public class AuthService {
 
 	@Value("${email.password-recover.uri}")
 	private String recoverUri;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -73,6 +79,20 @@ public class AuthService {
 
 		emailService.sendEmail(emailDTO);
 
+	}
+
+	@Transactional
+	public void saveNewPassword(NewPasswordDTO body) {
+		List<PasswordRecover> result = passowRecoverRepository.searchValidToken(body.getToken(), Instant.now());
+
+		if (result.size() == 0) {
+			throw new ResourceNotFoundException("Token inválido");
+		}
+
+		User user = userRepository.findByEmail(result.get(0).getEmail());
+		user.setPassword(passwordEncoder.encode(body.getPassword()));
+		user = userRepository.save(user);
+		
 	}
 
 }
