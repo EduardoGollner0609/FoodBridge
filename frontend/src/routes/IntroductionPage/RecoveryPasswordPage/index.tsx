@@ -8,6 +8,8 @@ export default function RecoveryPasswordPage() {
 
     const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
 
+    const [newPasswordConfirm, setNewPasswordConfirm] = useState<string>('');
+
     const [formData, setFormData] = useState({
         password: {
             value: "",
@@ -16,9 +18,9 @@ export default function RecoveryPasswordPage() {
             type: "password",
             placeholder: "Senha",
             validation: function (value: string) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                return /^.{6,30}$/.test(value);
             },
-            message: "Email inválido"
+            message: "A senha deve ter entre 6 a 30 caracteres",
         }
     });
 
@@ -41,6 +43,10 @@ export default function RecoveryPasswordPage() {
             return;
         }
 
+        if (formData.password.value !== newPasswordConfirm) {
+            formData.password.message = 'As senhas são diferentes';
+            return;
+        }
 
     }
 
@@ -53,10 +59,15 @@ export default function RecoveryPasswordPage() {
                             <>
                                 <h2>Recuperação de Senha</h2>
                                 <form >
-                                    <label>Digite sua nova senha</label>
-                                    <FormInput {...formData.password}
-                                        onTurnDirty={handleTurnDirty}
-                                        onChange={handleInputChange} />
+                                    <div className="input-item-recovery-password">
+                                        <label>Digite sua nova senha</label>
+                                        <FormInput {...formData.password}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange} />
+                                    </div>
+                                    <div className="input-item-recovery-password">
+                                        <input type="password" onChange={event => setNewPasswordConfirm(event.target.value)} />
+                                    </div>
                                     <div className="form-error">{formData.password.message}</div>
                                     <button onClick={handleSubmit}>Enviar</button>
                                 </form>
