@@ -8,8 +8,11 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eduardo.foodbridge.dtos.EmailMinDTO;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.UserRepository;
+
+import jakarta.validation.Valid;
 
 @Service
 public class AuthService {
@@ -27,6 +30,10 @@ public class AuthService {
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("Invalid user");
 		}
+	}
+
+	public void createRecoverToken(EmailMinDTO body) {
+
 	}
 
 }
