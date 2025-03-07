@@ -1,5 +1,7 @@
 #section-talk-to-us-page {
   padding: 0 20px;
+  height: 80vh;
+  max-height: 550px;
 }
 
 .talk-to-us-content h2 {

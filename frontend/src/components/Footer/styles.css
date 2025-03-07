@@ -1,5 +1,6 @@
 footer {
   background-color: var(--fb-color-primary);
+  min-height: 250px;
   padding: 10px 20px;
   color: var(--fb-color-quartiary);
 }
