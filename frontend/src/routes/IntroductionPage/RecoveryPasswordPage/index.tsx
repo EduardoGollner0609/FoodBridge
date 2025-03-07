@@ -4,15 +4,17 @@ import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import { Link } from 'react-router-dom';
 
-export default function RecoveryPasswordEmailPage() {
+export default function RecoveryPasswordPage() {
+
+    const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
-        username: {
+        password: {
             value: "",
-            id: "username",
-            name: "username",
-            type: "text",
-            placeholder: "Email",
+            id: "password",
+            name: "password",
+            type: "password",
+            placeholder: "Senha",
             validation: function (value: string) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
             },
@@ -20,7 +22,6 @@ export default function RecoveryPasswordEmailPage() {
         }
     });
 
-    const [emailSet, setEmailSent] = useState<boolean>(false);
 
     function handleTurnDirty(name: string) {
         setFormData(forms.dirtyAndValidate(formData, name));
@@ -43,33 +44,30 @@ export default function RecoveryPasswordEmailPage() {
 
     }
 
-
     return (
         <main>
-            <section id="recory-password-email-section">
-                <div className="card-recovery-password-email">
+            <section id="recovery-password-section">
+                <div className="card-recovery-password">
                     {
-                        !emailSet ?
+                        !passwordChanged ?
                             <>
                                 <h2>Recuperação de Senha</h2>
                                 <form >
-                                    <label>Digite seu Email</label>
-                                    <FormInput {...formData.username}
+                                    <label>Digite sua nova senha</label>
+                                    <FormInput {...formData.password}
                                         onTurnDirty={handleTurnDirty}
                                         onChange={handleInputChange} />
-                                    <div className="form-error">{formData.username.message}</div>
+                                    <div className="form-error">{formData.password.message}</div>
                                     <button onClick={handleSubmit}>Enviar</button>
                                 </form>
                             </>
                             :
                             <>
                                 <h2>Verifique seu Email</h2>
-                                <p className="email-sent-confirm">Um email foi enviado para {formData.username.value}
-                                    com instruções para definir uma nova senha</p>
-                                <Link to="/">Início</Link>
+                                <p className="password-changed">Senha alterada com sucesso!</p>
+                                <Link to="/">Fazer Login</Link>
                             </>
                     }
-
                 </div>
             </section>
         </main>

@@ -1,4 +1,4 @@
-#recory-password-email-section {
+#recovery-password-section {
   height: 70vh;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@
   padding: 0 20px;
 }
 
-.card-recovery-password-email {
+.card-recovery-password {
   margin-top: 20px;
   padding: 40px;
   border: 2px solid var(--fb-color-primary);
@@ -19,18 +19,18 @@
   gap: 20px;
 }
 
-.card-recovery-password-email h2 {
+.card-recovery-password h2 {
   text-align: center;
   color: var(--fb-color-tertiary);
   text-transform: uppercase;
 }
 
-.card-recovery-password-email form {
+.card-recovery-password form {
   display: flex;
   flex-direction: column;
 }
 
-.card-recovery-password-email form input {
+.card-recovery-password form input {
   outline: none;
   padding: 5px 10px;
   font-size: 18px;
@@ -39,7 +39,7 @@
   width: 100%;
 }
 
-.card-recovery-password-email form button {
+.card-recovery-password form button {
   background-color: var(--fb-color-primary);
   border: none;
   padding: 5px;
@@ -53,11 +53,11 @@
   margin-top: 20px;
 }
 
-.email-sent-confirm {
+.password-changed {
   text-align: center;
 }
 
-.card-recovery-password-email a {
+.card-recovery-password a {
   text-align: center;
   background-color: var(--fb-color-primary);
   color: var(--fb-color-quartiary);

@@ -19,6 +19,7 @@ import { ContextToken } from './utils/context-token'
 import * as authService from './services/auth-service';
 import DonationDetailsPage from './routes/CommunityPage/DonationDetailsPage'
 import RecoveryPasswordEmailPage from './routes/IntroductionPage/RecoryPasswordEmailPage'
+import RecoveryPasswordPage from './routes/IntroductionPage/RecoveryPasswordPage'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/contact" element={<TalkToUsPage />} />
             <Route path="/email-sent-recovery-password" element={<RecoveryPasswordEmailPage />} />
+            <Route path="/recovery-password" element={<RecoveryPasswordPage />} />
           </Route>
           <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/community/home" />} />
