@@ -2,6 +2,12 @@
   padding: 0 20px 20px 20px;
 }
 
+.home-community-donations-list .zero-donations,
+.home-community-donations-list .donations-search-loading {
+  text-align: center;
+  margin-top: 10px;
+}
+
 .home-community-donations-list {
   margin-bottom: 10px;
 }
@@ -40,7 +46,8 @@
   margin-top: 30px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home-community-donations-list-loading img {

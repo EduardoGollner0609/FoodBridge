@@ -2,13 +2,14 @@ import { useState } from 'react';
 import './styles.css';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import * as authService from '../../../services/auth-service';
 
 export default function RecoveryPasswordPage() {
 
-    const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
+    const params = useParams();
 
-    const [newPasswordConfirm, setNewPasswordConfirm] = useState<string>('');
+    const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
         password: {
@@ -43,12 +44,21 @@ export default function RecoveryPasswordPage() {
             return;
         }
 
-        if (formData.password.value !== newPasswordConfirm) {
-            formData.password.message = 'As senhas são diferentes';
-            return;
+        const requestBody = {
+            token: params.token,
+            password: formData.password.value
+
         }
 
+        authService.saveNewPassword(requestBody).then(() => {
+            setPasswordChanged(true);
+        }).catch(error => {
+            const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
+            setFormData(newInputs);
+        });
+
     }
+
 
     return (
         <main>
@@ -58,18 +68,14 @@ export default function RecoveryPasswordPage() {
                         !passwordChanged ?
                             <>
                                 <h2>Recuperação de Senha</h2>
-                                <form >
-                                    <div className="input-item-recovery-password">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="input-item-recovery-password form-item-input">
                                         <label>Digite sua nova senha</label>
                                         <FormInput {...formData.password}
                                             onTurnDirty={handleTurnDirty}
                                             onChange={handleInputChange} />
+                                        <div className="form-error">{formData.password.message}</div>
                                     </div>
-                                    <div className="input-item-recovery-password">
-                                        <label>Confirme sua senha</label>
-                                        <input type="password" placeholder="Confirme sua senha" onChange={event => setNewPasswordConfirm(event.target.value)} />
-                                    </div>
-                                    <div className="form-error">{formData.password.message}</div>
                                     <button onClick={handleSubmit}>Enviar</button>
                                 </form>
                             </>

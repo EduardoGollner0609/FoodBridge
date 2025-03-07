@@ -1,3 +1,8 @@
 export type EmailMinDTO = {
-    email: string;
-}
+  email: string;
+};
+
+export type NewPasswordDTO = {
+  token: string | undefined;
+  password: string;
+};

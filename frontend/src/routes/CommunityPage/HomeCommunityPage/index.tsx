@@ -15,16 +15,23 @@ type QueryParams = {
 export default function HomeCommunityPage() {
 
     const [donations, setDonations] = useState<DonationMinDTO[]>([]);
+    const [loading, setIsLoading] = useState<boolean>(false);
+    const [donationsIsEmpty, setDonationsIsEmpty] = useState<boolean>(false);
     const [isLastPage, setIsLastPage] = useState(false);
     const [queryParams, setQueryParams] = useState<QueryParams>({
         page: 0,
     });
 
     useEffect(() => {
+        setIsLoading(true);
         donationService.findAllPaged(queryParams.page).then((response) => {
+            setIsLoading(false);
             const nextPage = response.data.content;
             setDonations(donations.concat(nextPage));
             setIsLastPage(response.data.last);
+            if (donations.length === 0) {
+                setDonationsIsEmpty(true);
+            }
         })
     }, [queryParams]);
 
@@ -50,17 +57,21 @@ export default function HomeCommunityPage() {
                         </div>
                     </div>
                     <div className="home-community-donations-list">
+                        {donations.length > 0 && (
+                            donations.map((donation) => (
+                                <CardDonation key={donation.id} donation={donation} />
+                            ))
+                        )
+                        }
+                        {loading && (
+                            <div className="home-community-donations-list-loading">
+                                <img src={loadingIcon} alt="Carregando..." />
+                                <p>Buscando doações</p>
+                            </div>
+                        )}
                         {
-                            donations.length > 0 ?
-                                donations.map((donation) =>
-                                (
-                                    <CardDonation key={donation.id} donation={donation} />
-                                )
-                                )
-                                :
-                                <div className="home-community-donations-list-loading">
-                                    <img src={loadingIcon} alt="" />
-                                </div>
+                            donations.length <= 0 && !loading && donationsIsEmpty &&
+                            <h3 className="zero-donations">Não temos doações disponiveis</h3>
                         }
                     </div>
                     {donations.length > 0 && !isLastPage && <ButtonNextPage onNextPage={handleNextPageClick} />}

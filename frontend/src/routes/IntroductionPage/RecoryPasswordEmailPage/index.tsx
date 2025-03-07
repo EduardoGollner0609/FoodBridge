@@ -7,11 +7,13 @@ import * as authService from '../../../services/auth-service';
 
 export default function RecoveryPasswordEmailPage() {
 
+    const [emailNotFound, setEmailNotFound] = useState<boolean>(false);
+
     const [formData, setFormData] = useState({
-        username: {
+        email: {
             value: "",
-            id: "username",
-            name: "username",
+            id: "email",
+            name: "email",
             type: "text",
             placeholder: "Email",
             validation: function (value: string) {
@@ -23,12 +25,13 @@ export default function RecoveryPasswordEmailPage() {
 
     const [emailSet, setEmailSent] = useState<boolean>(false);
 
-    function handleTurnDirty(name: string) {
-        setFormData(forms.dirtyAndValidate(formData, name));
-    }
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value))
+    }
+
+    function handleTurnDirty(name: string) {
+        setFormData(forms.dirtyAndValidate(formData, name));
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) {
@@ -38,6 +41,7 @@ export default function RecoveryPasswordEmailPage() {
 
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
+            console.log(formDataValidated)
             return;
         }
 
@@ -46,6 +50,10 @@ export default function RecoveryPasswordEmailPage() {
         authService.recoverToken(requestBody).then(() => {
             setEmailSent(true);
         }).catch(error => {
+            if (error.response.status === 404) {
+                setEmailNotFound(true);
+                return;
+            }
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors)
             setFormData(newInputs);
         })
@@ -61,22 +69,31 @@ export default function RecoveryPasswordEmailPage() {
                             <>
                                 <h2>Recuperação de Senha</h2>
                                 <form >
-                                    <label>Digite seu Email</label>
-                                    <FormInput {...formData.username}
-                                        onTurnDirty={handleTurnDirty}
-                                        onChange={handleInputChange} />
-                                    <div className="form-error">{formData.username.message}</div>
+                                    <div className="form-item-input">
+                                        <label>Digite seu Email</label>
+                                        <FormInput {...formData.email}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange} />
+                                        <div className="form-error">{formData.email.message}</div>
+                                    </div>
+                                    {
+                                        emailNotFound &&
+                                        <div className="form-global-error">
+                                            Email não encontrado
+                                        </div>
+                                    }
                                     <button onClick={handleSubmit}>Enviar</button>
                                 </form>
                             </>
                             :
                             <>
                                 <h2>Verifique seu Email</h2>
-                                <p className="email-sent-confirm">Um email foi enviado para {formData.username.value}
+                                <p className="email-sent-confirm">Um email foi enviado para {formData.email.value}
                                     com instruções para definir uma nova senha</p>
                                 <Link to="/">Início</Link>
                             </>
                     }
+
 
                 </div>
             </section>

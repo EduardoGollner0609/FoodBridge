@@ -9,7 +9,7 @@ import QueryString from "qs";
 import { requestBackend } from "../utils/request";
 import * as accessTokenRepository from "../localstorage/access-token-repository";
 import jwtDecode from "jwt-decode";
-import { EmailMinDTO } from "../models/recover-password";
+import { EmailMinDTO, NewPasswordDTO } from "../models/recover-password";
 
 export function loginRequest(loginData: CredentialsDTO) {
   const headers = {
@@ -36,6 +36,16 @@ export function recoverToken(requestBody: EmailMinDTO) {
   const config: AxiosRequestConfig = {
     method: "POST",
     url: "/auth/recover-token",
+    data: requestBody,
+  };
+
+  return requestBackend(config);
+}
+
+export function saveNewPassword(requestBody: NewPasswordDTO) {
+  const config: AxiosRequestConfig = {
+    method: "PUT",
+    url: "/auth/new-password",
     data: requestBody,
   };
 
