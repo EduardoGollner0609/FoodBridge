@@ -66,7 +66,8 @@ export default function RecoveryPasswordPage() {
                                             onChange={handleInputChange} />
                                     </div>
                                     <div className="input-item-recovery-password">
-                                        <input type="password" onChange={event => setNewPasswordConfirm(event.target.value)} />
+                                        <label>Confirme sua senha</label>
+                                        <input type="password" placeholder="Confirme sua senha" onChange={event => setNewPasswordConfirm(event.target.value)} />
                                     </div>
                                     <div className="form-error">{formData.password.message}</div>
                                     <button onClick={handleSubmit}>Enviar</button>
