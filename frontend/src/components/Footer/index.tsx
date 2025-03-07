@@ -2,6 +2,7 @@ import './styles.css';
 import whatsappIcon from '../../assets/whatsapp-icon.svg';
 import instagramIcon from '../../assets/instagram-icon.svg';
 import linkedinIcon from '../../assets/linkedin-icon.svg';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -46,19 +47,39 @@ export default function Footer() {
                     <h3>Seções</h3>
                     <ul>
                         <li>
-                            <a href="">
-                                Inicio
-                            </a>
+                            <NavLink to="/home" className={({ isActive }) =>
+                                isActive ? "footer-option-section-active" : ""
+                            }>
+                                <p>
+                                    Inicio
+                                </p>
+
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="">
-                                Sobre
-                            </a>
+                            <NavLink to="/about" className={({ isActive }) =>
+                                isActive ? "footer-option-section-active" : ""
+                            }>
+                                <p>
+                                    Sobre
+                                </p>
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="">
-                                Fale Conosco
-                            </a>
+                            <NavLink to="/contact" className={({ isActive }) =>
+                                isActive ? "footer-option-section-active" : ""
+                            }>
+                                <p>
+                                    Fale Conosco
+                                </p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <Link to="/login" >
+                                <p>
+                                    Entrar
+                                </p>
+                            </Link>
                         </li>
                     </ul>
                 </div>
