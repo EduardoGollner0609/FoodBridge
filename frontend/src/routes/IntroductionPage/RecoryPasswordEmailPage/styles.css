@@ -1,0 +1,52 @@
+#recory-password-email-section {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  max-height: 500px;
+}
+
+.card-recovery-password-email {
+  margin-top: 20px;
+  padding: 40px;
+  border: 2px solid var(--fb-color-primary);
+  border-radius: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-recovery-password-email h2 {
+  text-align: center;
+  color: var(--fb-color-tertiary);
+  text-transform: uppercase;
+}
+
+.card-recovery-password-email form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-recovery-password-email form input {
+  outline: none;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid var(--fb-color-primary);
+  width: 100%;
+}
+
+.card-recovery-password-email form button {
+  background-color: var(--fb-color-primary);
+  border: none;
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 20px;
+  color: var(--fb-color-quartiary);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 10px 0;
+  font-weight: 600;
+  margin-top: 20px;
+}

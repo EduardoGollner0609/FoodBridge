@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react'
 import { ContextToken } from './utils/context-token'
 import * as authService from './services/auth-service';
 import DonationDetailsPage from './routes/CommunityPage/DonationDetailsPage'
+import RecoveryPasswordEmailPage from './routes/IntroductionPage/RecoryPasswordEmailPage'
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/contact" element={<TalkToUsPage />} />
+            <Route path="/email-sent-recovery-password" element={<RecoveryPasswordEmailPage />} />
           </Route>
           <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/community/home" />} />

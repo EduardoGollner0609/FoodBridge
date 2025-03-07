@@ -100,7 +100,7 @@ export default function LoginPage() {
                             </div>)
                         }
                         <div className="card-login-reset-password">
-                            <Link to="/recovery/password">
+                            <Link to="/email-sent-recovery-password">
                                 Esqueceu a senha? Clique Aqui
                             </Link>
                         </div>
