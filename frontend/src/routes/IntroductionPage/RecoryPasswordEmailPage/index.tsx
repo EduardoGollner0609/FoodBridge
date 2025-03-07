@@ -3,6 +3,7 @@ import './styles.css';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import { Link } from 'react-router-dom';
+import * as authService from '../../../services/auth-service';
 
 export default function RecoveryPasswordEmailPage() {
 
@@ -40,9 +41,16 @@ export default function RecoveryPasswordEmailPage() {
             return;
         }
 
+        const requestBody = forms.toValues(formData);
+
+        authService.recoverToken(requestBody).then(() => {
+            setEmailSent(true);
+        }).catch(error => {
+            const newInputs = forms.setBackendErrors(formData, error.response.data.errors)
+            setFormData(newInputs);
+        })
 
     }
-
 
     return (
         <main>
