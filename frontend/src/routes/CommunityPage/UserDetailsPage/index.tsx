@@ -51,8 +51,6 @@ export default function UserDetailsPage() {
         }).catch(error => {
             setCardMessage(error.response.data.message);
         })
-
-
     }
 
     return (

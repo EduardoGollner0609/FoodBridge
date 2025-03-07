@@ -17,6 +17,7 @@
   border-radius: 10px;
   font-size: 18px;
   color: var(--fb-color-primary);
+  min-width: 400px;
 }
 
 .card-message p {
@@ -45,4 +46,10 @@
   border: 2px solid var(--fb-color-primary);
   padding: 5px 8px;
   border-radius: 20px;
+}
+
+@media(max-width: 576px) {
+  .card-message {
+    min-width: 100;
+  }
 }

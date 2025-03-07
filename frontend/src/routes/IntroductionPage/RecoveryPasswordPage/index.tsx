@@ -4,12 +4,14 @@ import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import { Link, useParams } from 'react-router-dom';
 import * as authService from '../../../services/auth-service';
+import CardMessage from '../../../components/CardMessage';
 
 export default function RecoveryPasswordPage() {
 
     const params = useParams();
 
     const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
+    const [cardMessage, setCardMessage] = useState<string>('');
 
     const [formData, setFormData] = useState({
         password: {
@@ -53,6 +55,11 @@ export default function RecoveryPasswordPage() {
         authService.saveNewPassword(requestBody).then(() => {
             setPasswordChanged(true);
         }).catch(error => {
+            if (error.response.status === 404) {
+                console.log(error)
+                setCardMessage(error.response.data.message);
+                return;
+            }
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         });
@@ -88,6 +95,9 @@ export default function RecoveryPasswordPage() {
                     }
                 </div>
             </section>
+            {
+                cardMessage && <CardMessage message={cardMessage} messageCardFunction={() => setCardMessage('')} />
+            }
         </main>
     );
 }
