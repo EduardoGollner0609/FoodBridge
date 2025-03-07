@@ -5,6 +5,7 @@
 .login-page-content {
   height: 80vh;
   min-height: 500px;
+  max-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +23,9 @@
 .card-login {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
   gap: 10px;
   padding: 40px;
   border: 2px solid var(--fb-color-primary);
@@ -39,14 +43,18 @@
   flex-direction: column;
 }
 
+.card-login,
+.card-login form,
+.form-item-input {
+  width: 100%;
+}
+
 .card-login input {
   outline: none;
   padding: 5px 10px;
   font-size: 18px;
   border-radius: 10px;
   border: 2px solid var(--fb-color-primary);
-  width: 100%;
-  max-width: 320px;
 }
 
 .card-login label {

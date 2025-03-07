@@ -32,7 +32,6 @@ footer h2 {
 }
 
 .footer-description {
-  padding: 20px 0 0 0;
   margin: auto;
   text-align: center;
 }
@@ -41,7 +40,6 @@ footer h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: px;
 }
 
 .footer-sections ul li {
@@ -63,4 +61,18 @@ footer h2 {
 .footer-contact-option-item a img {
   width: 35px;
   height: 35px;
+}
+
+@media (max-width: 817px) {
+  .footer-content {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .footer-sections {
+    display: none;
+  }
+  .footer-contacts {
+    margin: 0 auto;
+  }
 }

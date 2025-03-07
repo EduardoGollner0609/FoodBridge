@@ -15,6 +15,10 @@ export default function TalkToUsPage() {
                             <p>Cel: (027) 99265-7127</p>
                         </div>
                         <div className="card-talk-to-us-contact-item">
+                            <h3>Email</h3>
+                            <p>dudugollner@gmail.com</p>
+                        </div>
+                        <div className="card-talk-to-us-contact-item">
                             <h3>Redes Sociais</h3>
                             <div className="card-talk-to-us-cotact-icons">
                                 <a href="https://wa.me/27992657127?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20do%20FoodBridge.">
