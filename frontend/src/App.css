@@ -40,6 +40,10 @@ ul {
 input {
   outline: none;
 }
+button {
+  background-color: transparent;
+  cursor: pointer;
+}
 
 main {
   margin-bottom: 10px;

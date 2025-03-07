@@ -20,3 +20,13 @@ export function findMe() {
 
   return requestBackend(config);
 }
+
+export function deleteById(id: number | undefined) {
+  const config: AxiosRequestConfig = {
+    method: "DELETE",
+    url: `/users/${id}`,
+    withCredentials: true
+  }
+
+  return requestBackend(config);
+}

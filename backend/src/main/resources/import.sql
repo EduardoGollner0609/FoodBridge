@@ -6,6 +6,10 @@ INSERT INTO tb_user (name, birth_date, phone, email, password, address) VALUES (
 INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
 
+INSERT INTO tb_donation (description, city, state, user_id) VALUES ('Doando muitas bananas.', 'Vitoria', 'Espírito Santo', 1);
+INSERT INTO tb_donation (description, city, state, user_id) VALUES ('Doando muitas maçãs.', 'Vitoria', 'Espírito Santo', 2);
+INSERT INTO tb_donation (description, city, state, user_id) VALUES ('Doando muitas bananas.', 'Vitoria', 'Espírito Santo', 1);
+INSERT INTO tb_donation (description, city, state, user_id) VALUES ('Doando muitas maçãs.', 'Vitoria', 'Espírito Santo', 2);
 
 
 

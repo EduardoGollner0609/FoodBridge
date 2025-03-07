@@ -8,11 +8,13 @@ import { SwiperProps, SwiperSlide } from 'swiper/react';
 import CardDonation from '../../../components/CardDonation';
 import Slider from '../../../components/Slider/slider';
 import loadingIcon from '../../../assets/spinner-icon-animated.svg';
+import CardConfirmation from '../../../components/CardConfirmation';
 
 
 export default function UserDetailsPage() {
 
     const [user, SetUser] = useState<UserDTO>();
+    const [cardVisible, setCardVisible] = useState<boolean>(false);
 
     useEffect(() => {
         userService.findMe().then((response) => {
@@ -36,6 +38,13 @@ export default function UserDetailsPage() {
         }
     }
 
+    function removeUser() {
+
+        setCardVisible(true);
+
+   
+    }
+
     return (
         <main>
             {
@@ -49,9 +58,9 @@ export default function UserDetailsPage() {
                                         <Link to="/community">
                                             Voltar
                                         </Link>
-                                        <Link to="/">
-                                            Editar
-                                        </Link>
+                                        <button onClick={() => setCardVisible(true)}>
+                                            Remover Conta
+                                        </button>
                                     </div>
 
                                     <div className="card-user-details-header">
@@ -119,7 +128,9 @@ export default function UserDetailsPage() {
                         <img src={loadingIcon} alt="" />
                     </div>
             }
-
+            {
+                cardVisible && <CardConfirmation message={'Tem certeza que deseja remover o usuário?'} confirmationCardFunction={() => setCardVisible(false)} operationCardFunction={() => removeUser()} />
+            }
         </main >
     );
 }

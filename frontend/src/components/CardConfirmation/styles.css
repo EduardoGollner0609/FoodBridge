@@ -1,4 +1,4 @@
-.background-card-message {
+.background-card-confirmation {
   background-color: var(--fb-color-bg-semiblack);
   position: fixed;
   top: 0;
@@ -11,7 +11,7 @@
   padding: 0 20px;
 }
 
-.card-message {
+.card-confirmation {
   background-color: var(--fb-color-quartiary);
   padding: 20px;
   border-radius: 10px;
@@ -19,12 +19,12 @@
   color: var(--fb-color-primary);
 }
 
-.card-message p {
+.card-confirmation p {
   text-align: center;
   font-size: 20px;
 }
 
-.card-message button {
+.card-confirmation button {
   border: 2px solid var(--fb-color-primary);
   border-radius: 20px;
   padding: 5px;
@@ -35,14 +35,23 @@
   margin-bottom: 10px;
 }
 
-.card-message-link-chat {
-  margin-top: 10px;
+.card-confirmation-options {
   display: flex;
   justify-content: center;
+  gap: 20px;
 }
 
-.card-message-link-chat a {
-  border: 2px solid var(--fb-color-primary);
-  padding: 5px 8px;
-  border-radius: 20px;
+.card-confirmation-options button {
+  width: 120px;
+}
+
+@media(max-width: 576px) {
+  .card-confirmation {
+    padding: 15px;
+  }
+
+  .card-confirmation-options button {
+    width: 100px;
+  }
+  
 }

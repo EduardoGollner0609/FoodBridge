@@ -5,7 +5,9 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,15 +32,10 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@Operation(
-			description = "Create a new user", 
-			summary = "Create a new user", 
-			responses = {
+	@Operation(description = "Create a new user", summary = "Create a new user", responses = {
 			@ApiResponse(description = "Created", responseCode = "201"),
 			@ApiResponse(description = "Bad Request", responseCode = "400"),
-			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") 
-			}
-		)
+			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") })
 	@PostMapping(produces = "application/json")
 	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
 		UserDTO userDTO = service.insert(userInsertDTO);
@@ -47,20 +44,27 @@ public class UserController {
 		return ResponseEntity.created(uri).body(userDTO);
 	}
 
-	@Operation(
-			description = "Return me", 
-			summary = "Return me", 
-			responses = {
+	@Operation(description = "Return me", summary = "Return me", responses = {
 			@ApiResponse(description = "Ok", responseCode = "200"),
-			@ApiResponse(description = "Unauthorized", responseCode = "401")
-			}
-		)
+			@ApiResponse(description = "Unauthorized", responseCode = "401") })
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/me", produces = "application/json")
 	public ResponseEntity<UserDTO> getMe() {
 		UserDTO dto = service.getMe();
 		return ResponseEntity.ok(dto);
+	}
+
+	@Operation(description = "Delete me", summary = "Delete me", responses = {
+			@ApiResponse(description = "Ok", responseCode = "204"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"),
+			@ApiResponse(description = "Not Found", responseCode = "404") })
+	@SecurityRequirement(name = "bearerAuth")
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }

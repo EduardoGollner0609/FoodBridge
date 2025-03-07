@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eduardo.foodbridge.dtos.EmailDTO;
@@ -17,6 +18,7 @@ import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.projections.UserDetailsProjection;
 import com.eduardo.foodbridge.repositories.UserRepository;
+import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -79,6 +81,21 @@ public class UserService implements UserDetailsService {
 
 		return user;
 
+	}
+
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public void delete(Long id) {
+		if (!repository.existsById(id)) {
+			throw new ResourceNotFoundException("Usuário não existe");
+		}
+		
+		UserDTO userDTO = getMe();
+		
+		if(userDTO.getId() != id) {
+			throw new IllegalArgumentException("Você só pode deletar sua própria conta");
+		}
+		
+		repository.deleteById(id);
 	}
 
 }

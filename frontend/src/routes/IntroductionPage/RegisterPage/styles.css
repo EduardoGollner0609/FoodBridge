@@ -9,23 +9,20 @@
 }
 
 .card-register {
-  margin: 10px auto;
-  padding: 10px 20px;
+  margin: 0 auto 10px auto;
+  padding: 10px 20px 7px 20px;
   border: 2px solid var(--fb-color-primary);
   color: var(--fb-color-quartiary);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   border-radius: 20px;
   width: 80%;
-  max-width: 600px;
+  max-width: 800px;
   overflow: auto;
 }
 
 .register-page-content h2 {
   text-align: center;
   text-transform: uppercase;
-  font-size: 32px;
+  font-size: 30px;
   color: var(--fb-color-tertiary);
 }
 
