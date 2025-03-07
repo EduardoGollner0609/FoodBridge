@@ -1,8 +1,8 @@
-#recory-password-email-section {
+#recovery-password-email-section {
   height: 70vh;
   display: flex;
   align-items: center;
-  max-height: 500px;
+  max-height: 800px;
   padding: 0 20px;
 }
 

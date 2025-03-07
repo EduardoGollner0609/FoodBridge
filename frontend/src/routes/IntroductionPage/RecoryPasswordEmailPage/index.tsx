@@ -46,7 +46,7 @@ export default function RecoveryPasswordEmailPage() {
 
     return (
         <main>
-            <section id="recory-password-email-section">
+            <section id="recovery-password-email-section">
                 <div className="card-recovery-password-email">
                     {
                         !emailSet ?
