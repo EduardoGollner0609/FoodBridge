@@ -1,7 +1,5 @@
 package com.eduardo.foodbridge.services;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,12 +89,12 @@ public class UserService implements UserDetailsService {
 		if (!repository.existsById(id)) {
 			throw new ResourceNotFoundException("Usuário não existe");
 		}
-		
+
 		User userEmpty = new User();
 		userEmpty.setId(id);
 		userEmpty = repository.save(userEmpty);
 		repository.deleteById(userEmpty.getId());
-		
+
 	}
 
 }
