@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './styles.css';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
+import { Link } from 'react-router-dom';
 
 export default function RecoveryPasswordEmailPage() {
 
@@ -19,7 +20,7 @@ export default function RecoveryPasswordEmailPage() {
         }
     });
 
-    const [emailSet, setEmailSent] = useState<boolean>(false);
+    const [emailSet, setEmailSent] = useState<boolean>(true);
 
     function handleTurnDirty(name: string) {
         setFormData(forms.dirtyAndValidate(formData, name));
@@ -63,8 +64,9 @@ export default function RecoveryPasswordEmailPage() {
                             :
                             <>
                                 <h2>Verifique seu Email</h2>
-                                <p>Um email foi enviado para {formData.username.value}
+                                <p className="email-sent-confirm">Um email foi enviado para {formData.username.value}
                                     com instruções para definir uma nova senha</p>
+                                <Link to="/">Início</Link>
                             </>
                     }
 

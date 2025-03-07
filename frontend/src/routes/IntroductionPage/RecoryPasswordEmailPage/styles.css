@@ -50,3 +50,15 @@
   font-weight: 600;
   margin-top: 20px;
 }
+
+.email-sent-confirm {
+  text-align: center;
+}
+
+.card-recovery-password-email a {
+  text-align: center;
+  background-color: var(--fb-color-primary);
+  color: var(--fb-color-quartiary);
+  border-radius: 15px;
+  padding: 8px 10px;
+}
