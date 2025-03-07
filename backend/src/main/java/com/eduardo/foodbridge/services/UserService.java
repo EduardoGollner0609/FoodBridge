@@ -1,5 +1,7 @@
 package com.eduardo.foodbridge.services;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,17 +87,16 @@ public class UserService implements UserDetailsService {
 
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
+
 		if (!repository.existsById(id)) {
 			throw new ResourceNotFoundException("Usuário não existe");
 		}
 		
-		UserDTO userDTO = getMe();
+		User userEmpty = new User();
+		userEmpty.setId(id);
+		userEmpty = repository.save(userEmpty);
+		repository.deleteById(userEmpty.getId());
 		
-		if(userDTO.getId() != id) {
-			throw new IllegalArgumentException("Você só pode deletar sua própria conta");
-		}
-		
-		repository.deleteById(id);
 	}
 
 }

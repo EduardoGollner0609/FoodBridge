@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.css';
 import { useEffect, useState } from 'react';
 import { UserDTO } from '../../../models/User';
@@ -9,12 +9,16 @@ import CardDonation from '../../../components/CardDonation';
 import Slider from '../../../components/Slider/slider';
 import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 import CardConfirmation from '../../../components/CardConfirmation';
+import CardMessage from '../../../components/CardMessage';
 
 
 export default function UserDetailsPage() {
 
+    const navigate = useNavigate();
+
     const [user, SetUser] = useState<UserDTO>();
-    const [cardVisible, setCardVisible] = useState<boolean>(false);
+    const [cardConfirmVisible, setCardConfirmVisible] = useState<boolean>(false);
+    const [cardMessage, setCardMessage] = useState<string>('');
 
     useEffect(() => {
         userService.findMe().then((response) => {
@@ -40,9 +44,15 @@ export default function UserDetailsPage() {
 
     function removeUser() {
 
-        setCardVisible(true);
+        setCardConfirmVisible(false);
 
-   
+        userService.deleteById(user?.id).then(() => {
+            navigate("/");
+        }).catch(error => {
+            setCardMessage(error.response.data.message);
+        })
+
+
     }
 
     return (
@@ -58,7 +68,7 @@ export default function UserDetailsPage() {
                                         <Link to="/community">
                                             Voltar
                                         </Link>
-                                        <button onClick={() => setCardVisible(true)}>
+                                        <button onClick={() => setCardConfirmVisible(true)}>
                                             Remover Conta
                                         </button>
                                     </div>
@@ -129,7 +139,10 @@ export default function UserDetailsPage() {
                     </div>
             }
             {
-                cardVisible && <CardConfirmation message={'Tem certeza que deseja remover o usuário?'} confirmationCardFunction={() => setCardVisible(false)} operationCardFunction={() => removeUser()} />
+                cardConfirmVisible && <CardConfirmation message={'Tem certeza que deseja remover o usuário?'} confirmationCardFunction={() => setCardConfirmVisible(false)} operationCardFunction={() => removeUser()} />
+            }
+            {
+                cardMessage && <CardMessage message={cardMessage} messageCardFunction={() => setCardMessage('')} />
             }
         </main >
     );
