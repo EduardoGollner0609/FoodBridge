@@ -1,0 +1,65 @@
+footer {
+  background-color: var(--fb-color-primary);
+  padding: 10px 20px;
+  color: var(--fb-color-quartiary);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+footer h2 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.footer-contacts h3,
+.footer-sections h3 {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.footer-contact-option-item a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 170px;
+  margin-bottom: 5px;
+}
+
+.footer-description {
+  padding: 20px 0 0 0;
+  margin: auto;
+  text-align: center;
+}
+
+.footer-sections ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.footer-sections ul li {
+  text-align: center;
+  padding: 2px 0;
+  min-width: 150px;
+  transition: 0.4s;
+}
+
+.footer-sections ul li a {
+  display: block;
+}
+
+.footer-sections ul li:hover {
+  background-color: var(--fb-color-quartiary);
+  color: var(--fb-color-primary);
+}
+
+.footer-contact-option-item a img {
+  width: 35px;
+  height: 35px;
+}

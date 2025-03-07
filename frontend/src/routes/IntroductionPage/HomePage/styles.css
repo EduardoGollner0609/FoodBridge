@@ -15,6 +15,7 @@
   max-height: 431px;
   max-width: 431px;
   border-radius: 50%;
+  border: 4px solid var(--fb-color-primary);
 }
 
 .home-page-introduction-invite h2 {

@@ -37,6 +37,9 @@ ul {
   list-style: none;
 }
 
+main {
+  margin-bottom: 10px;
+}
 header nav {
   height: 100%;
   display: flex;

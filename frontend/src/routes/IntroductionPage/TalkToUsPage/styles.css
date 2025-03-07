@@ -40,6 +40,11 @@
   gap: 10px;
 }
 
+.card-talk-to-us-cotact-icons a img {
+  height: 35px;
+  width: 35px;
+}
+
 .card-talk-to-us-send-question {
   border: 2px solid var(--fb-color-primary);
   padding: 10px 15px;

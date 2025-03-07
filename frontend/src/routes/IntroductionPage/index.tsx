@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import HeaderHomePage from "../../components/HeaderHomePage";
+import Footer from "../../components/Footer";
 
 export default function IntroductionPage() {
 
@@ -7,6 +8,7 @@ export default function IntroductionPage() {
         <>
             <HeaderHomePage />
             <Outlet />
+            <Footer />
         </>
     );
 }
