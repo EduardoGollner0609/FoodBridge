@@ -2,29 +2,48 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 import CardDonation from '../../../components/CardDonation';
 import * as donationService from '../../../services/donation-service';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DonationMinDTO } from '../../../models/donation';
 import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 import ButtonNextPage from '../../../components/ButtonNextPage';
+import * as userService from '../../../services/user-service';
+import { UserDTO } from '../../../models/User';
 
 
 type QueryParams = {
     page: number;
+    size: number;
 };
 
 export default function HomeCommunityPage() {
 
+    const navigate = useNavigate();
+
+    const [userLogged, setUserLogged] = useState<UserDTO | null>(userService.getUserLogged());
     const [donations, setDonations] = useState<DonationMinDTO[]>([]);
     const [loading, setIsLoading] = useState<boolean>(false);
     const [donationsIsEmpty, setDonationsIsEmpty] = useState<boolean>(false);
     const [isLastPage, setIsLastPage] = useState(false);
     const [queryParams, setQueryParams] = useState<QueryParams>({
         page: 0,
+        size: 5
     });
 
     useEffect(() => {
+        if (userLogged === null) {
+            userService.findMe().then(response => {
+                const userLoggedData = response.data;
+                setUserLogged(userLoggedData);
+                userService.saveUserLogged(userLoggedData);
+            }).catch(() => {
+                navigate("/");
+            });
+        }
+    }, []);
+
+    useEffect(() => {
         setIsLoading(true);
-        donationService.findAllPaged(queryParams.page).then((response) => {
+        donationService.findAllPaged(queryParams.page, queryParams.size, userLogged?.address).then((response) => {
             setIsLoading(false);
             const nextPage = response.data.content;
             setDonations(donations.concat(nextPage));

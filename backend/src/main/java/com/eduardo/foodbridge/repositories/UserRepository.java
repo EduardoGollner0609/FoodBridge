@@ -10,6 +10,9 @@ import com.eduardo.foodbridge.projections.UserDetailsProjection;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	@Query(nativeQuery = true, value = """
+			SELECT * FROM tb_user WHERE email = :email
+			""")
 	User findByEmail(String email);
 
 	User findByName(String name);

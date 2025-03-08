@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
+import com.eduardo.foodbridge.dtos.UserSimpleDTO;
 import com.eduardo.foodbridge.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,8 +51,8 @@ public class UserController {
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/me", produces = "application/json")
-	public ResponseEntity<UserDTO> getMe() {
-		UserDTO dto = service.getMe();
+	public ResponseEntity<UserSimpleDTO> getMe() {
+		UserSimpleDTO dto = service.getMe();
 		return ResponseEntity.ok(dto);
 	}
 

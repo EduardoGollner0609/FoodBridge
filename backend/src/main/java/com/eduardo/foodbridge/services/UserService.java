@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eduardo.foodbridge.dtos.EmailDTO;
 import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
+import com.eduardo.foodbridge.dtos.UserSimpleDTO;
 import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.projections.UserDetailsProjection;
@@ -58,9 +59,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	@Transactional(readOnly = true)
-	public UserDTO getMe() {
+	public UserSimpleDTO getMe() {
 		User entity = authService.authenticated();
-		return new UserDTO(entity);
+		return new UserSimpleDTO(entity);
 	}
 
 	@Override

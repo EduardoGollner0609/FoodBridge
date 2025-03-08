@@ -8,3 +8,7 @@ export const CLIENT_SECRET =
 
 export const TOKEN_KEY =
   import.meta.env.VITE_TOKEN_KEY ?? "com.eduardo.foodbridge/Token";
+
+
+  export const USER_LOGGED_KEY =
+  import.meta.env.VITE_USER_LOGGED_KEY ?? "com.eduardo.foodbridge/UserLogged";

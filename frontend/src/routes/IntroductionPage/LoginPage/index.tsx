@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as authService from '../../../services/auth-service';
+import * as userService from '../../../services/user-service';
 
 export default function LoginPage() {
 
@@ -59,6 +60,11 @@ export default function LoginPage() {
         authService.loginRequest(requestBody).then(
             (response) => {
                 authService.saveAccessToken(response.data.access_token);
+
+                userService.findMe().then(response => {
+                    userService.saveUserLogged(response.data);
+                });
+
                 navigate("/community/home");
             }).catch(() => {
                 setSubmitResponseFail(true);

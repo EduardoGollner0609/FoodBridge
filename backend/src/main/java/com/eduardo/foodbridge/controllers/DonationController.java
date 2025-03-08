@@ -35,16 +35,10 @@ public class DonationController {
 	@Autowired
 	private DonationService service;
 
-	
-	@Operation(
-			description = "Create a new Donation", 
-			summary = "Create a new Donation", 
-			responses = {
+	@Operation(description = "Create a new Donation", summary = "Create a new Donation", responses = {
 			@ApiResponse(description = "Created", responseCode = "201"),
 			@ApiResponse(description = "Bad Request", responseCode = "400"),
-			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") 
-			}
-		)
+			@ApiResponse(description = "Unprocessable Entity", responseCode = "422") })
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping(produces = "application/json")
@@ -55,33 +49,35 @@ public class DonationController {
 		return ResponseEntity.created(uri).body(donationDTO);
 	}
 
-	@Operation(
-		    description = "Get All Donations Paged",
-		    summary = "Find All Donations Paged",
-		    responses = {
-		         @ApiResponse(description = "Ok", responseCode = "200"),
-		         @ApiResponse(description = "Bad Request", responseCode = "400"),
-		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
-		    }
-		)
+	@Operation(description = "Get All Donations Paged", summary = "Find All Donations Paged", responses = {
+			@ApiResponse(description = "Ok", responseCode = "200"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"), })
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping(produces = "application/json")
+	@GetMapping(value = "/list/{address}", produces = "application/json")
+	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(@PathVariable String address, Pageable pageable) {
+		Page<DonationMinDTO> donations = service.findAllPaged(pageable, address);
+		return ResponseEntity.ok(donations);
+	}
+
+	@Operation(description = "Get All Donations Paged", summary = "Find All Donations Paged", responses = {
+			@ApiResponse(description = "Ok", responseCode = "200"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"), })
+	@SecurityRequirement(name = "bearerAuth")
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@GetMapping(value = "/list", produces = "application/json")
 	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(Pageable pageable) {
 		Page<DonationMinDTO> donations = service.findAllPaged(pageable);
 		return ResponseEntity.ok(donations);
 	}
 
-	@Operation(
-		    description = "Get Donation By Id",
-		    summary = "Find Donation By Id",
-		    responses = {
-		         @ApiResponse(description = "Ok", responseCode = "200"),
-		         @ApiResponse(description = "Bad Request", responseCode = "400"),
-		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
-		         @ApiResponse(description = "Not Found", responseCode = "404"),
-		    }
-		)
+	@Operation(description = "Get Donation By Id", summary = "Find Donation By Id", responses = {
+			@ApiResponse(description = "Ok", responseCode = "200"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"),
+			@ApiResponse(description = "Not Found", responseCode = "404"), })
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/{id}", produces = "application/json")
@@ -90,16 +86,11 @@ public class DonationController {
 		return ResponseEntity.ok(donationDTO);
 	}
 
-	@Operation(
-		    description = "Update Donation Collect Status",
-		    summary = "Update Donation Collect Status",
-		    responses = {
-		         @ApiResponse(description = "Ok", responseCode = "200"),
-		         @ApiResponse(description = "Bad Request", responseCode = "400"),
-		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
-		         @ApiResponse(description = "Not Found", responseCode = "404"),
-		    }
-		)
+	@Operation(description = "Update Donation Collect Status", summary = "Update Donation Collect Status", responses = {
+			@ApiResponse(description = "Ok", responseCode = "200"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"),
+			@ApiResponse(description = "Not Found", responseCode = "404"), })
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "collect/{id}", produces = "application/json")
@@ -108,16 +99,11 @@ public class DonationController {
 		return ResponseEntity.ok(donationDTO);
 	}
 
-	@Operation(
-		    description = "Delete Donation",
-		    summary = "Delete Donation",
-		    responses = {
-		         @ApiResponse(description = "No Content", responseCode = "204"),
-		         @ApiResponse(description = "Bad Request", responseCode = "400"),
-		         @ApiResponse(description = "Unauthorized", responseCode = "401"),
-		         @ApiResponse(description = "Not Found", responseCode = "404"),
-		    }
-		)
+	@Operation(description = "Delete Donation", summary = "Delete Donation", responses = {
+			@ApiResponse(description = "No Content", responseCode = "204"),
+			@ApiResponse(description = "Bad Request", responseCode = "400"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"),
+			@ApiResponse(description = "Not Found", responseCode = "404"), })
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@DeleteMapping(value = "/{id}", produces = "application/json")

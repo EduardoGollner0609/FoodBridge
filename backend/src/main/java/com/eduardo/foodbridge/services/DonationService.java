@@ -41,11 +41,17 @@ public class DonationService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<DonationMinDTO> findAllPaged(Pageable pageable) {
-		CepDTO response = findAddressByCep();
+	public Page<DonationMinDTO> findAllPaged(Pageable pageable, String address) {
+		CepDTO response = addressService.findAddressByCep(address);
 		Page<DonationProjection> donations = repository.findAllByState(response.getEstado(), pageable);
 		return donations.map(donation -> new DonationMinDTO(donation.getId(), donation.getUserName(),
 				donation.getDescription(), donation.getCity(), donation.getState()));
+	}
+
+	@Transactional(readOnly = true)
+	public Page<DonationMinDTO> findAllPaged(Pageable pageable) {
+		Page<Donation> donations = repository.findAll(pageable);
+		return donations.map(donation -> new DonationMinDTO(donation));
 	}
 
 	@Transactional(readOnly = true)
@@ -78,12 +84,6 @@ public class DonationService {
 		}
 	}
 
-	@Transactional(readOnly = true)
-	private CepDTO findAddressByCep() {
-		User user = authService.authenticated();
-		return addressService.findAddressByCep(user.getAddress());
-	}
-
 	private void collectDonation(Donation donation, User user) {
 		if (user.getId() == donation.getUser().getId()) {
 			throw new CollectException("Você não pode coletar sua doação.");
@@ -101,7 +101,7 @@ public class DonationService {
 		User user = authService.authenticated();
 		donation.setUser(user);
 
-		CepDTO response = findAddressByCep();
+		CepDTO response = addressService.findAddressByCep(user.getAddress());
 		donation.setCity(response.getLocalidade());
 		donation.setState(response.getEstado());
 	}

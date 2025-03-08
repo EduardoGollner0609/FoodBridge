@@ -1,6 +1,7 @@
-import { UserInsertDTO } from "../models/User";
+import { UserDTO, UserInsertDTO } from "../models/User";
 import { requestBackend } from "../utils/request";
 import { AxiosRequestConfig } from "axios";
+import * as userLoggedRepository from "../localstorage/user-logged-repository";
 
 export function insert(userInsert: UserInsertDTO) {
   const config: AxiosRequestConfig = {
@@ -25,8 +26,16 @@ export function deleteById(id: number | undefined) {
   const config: AxiosRequestConfig = {
     method: "DELETE",
     url: `/users/${id}`,
-    withCredentials: true
-  }
+    withCredentials: true,
+  };
 
   return requestBackend(config);
+}
+
+export function saveUserLogged(user: UserDTO) {
+  userLoggedRepository.save(user);
+}
+
+export function getUserLogged() {
+  return userLoggedRepository.get();
 }
