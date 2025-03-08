@@ -39,3 +39,7 @@ export function saveUserLogged(user: UserDTO) {
 export function getUserLogged() {
   return userLoggedRepository.get();
 }
+
+export function logout() {
+  userLoggedRepository.remove();
+}

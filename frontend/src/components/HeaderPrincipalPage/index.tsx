@@ -1,11 +1,13 @@
 import './styles.css';
 import { Link } from 'react-router-dom';
 import * as authService from '../../services/auth-service';
+import * as userService from '../../services/user-service';
 
 export default function HeaderPrincipalPage() {
 
     function logOut() {
         authService.logout();
+        userService.logout();
     }
 
     return (

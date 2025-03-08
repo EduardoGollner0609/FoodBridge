@@ -50,6 +50,12 @@ public class UserService implements UserDetailsService {
 		return userDTO;
 	}
 
+	@Transactional(readOnly = true)
+	public UserDTO findById(Long id) {
+		User user = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+		return new UserDTO(user);
+	}
+
 	private void copyDtoToEntity(User user, UserDTO userDTO) {
 		user.setName(userDTO.getName());
 		user.setPhone(userDTO.getPhone());

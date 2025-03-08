@@ -21,6 +21,7 @@ import com.eduardo.foodbridge.entities.PasswordRecover;
 import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.PasswordRecoverRepository;
 import com.eduardo.foodbridge.repositories.UserRepository;
+import com.eduardo.foodbridge.services.exceptions.ForbiddenException;
 import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -53,6 +54,14 @@ public class AuthService {
 			return userRepository.findByEmail(username);
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("Invalid user");
+		}
+	}
+
+	@Transactional
+	public void validateUser(Long id) {
+		User user = authenticated();
+		if (!user.getId().equals(id)) {
+			throw new ForbiddenException("Acesso negado");
 		}
 	}
 

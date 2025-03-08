@@ -41,7 +41,7 @@ public class DonationService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<DonationMinDTO> findAllPaged(Pageable pageable, String address) {
+	public Page<DonationMinDTO> findAllPagedByState(Pageable pageable, String address) {
 		CepDTO response = addressService.findAddressByCep(address);
 		Page<DonationProjection> donations = repository.findAllByState(response.getEstado(), pageable);
 		return donations.map(donation -> new DonationMinDTO(donation.getId(), donation.getUserName(),

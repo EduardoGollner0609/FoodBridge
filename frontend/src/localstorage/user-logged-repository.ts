@@ -9,3 +9,7 @@ export function get(): UserDTO | null {
   const userLogged = localStorage.getItem(USER_LOGGED_KEY);
   return userLogged ? JSON.parse(userLogged) : null;
 }
+
+export function remove() {
+  localStorage.removeItem(USER_LOGGED_KEY);
+}

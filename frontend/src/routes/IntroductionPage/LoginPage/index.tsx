@@ -5,12 +5,15 @@ import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as authService from '../../../services/auth-service';
 import * as userService from '../../../services/user-service';
+import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 
 export default function LoginPage() {
 
     const navigate = useNavigate();
 
     const [submitResponseFail, setSubmitResponseFail] = useState(false);
+
+    const [loading, setIsLoading] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
         username: {
@@ -56,6 +59,7 @@ export default function LoginPage() {
             return;
         }
 
+        setIsLoading(true);
         const requestBody = forms.toValues(formData);
         authService.loginRequest(requestBody).then(
             (response) => {
@@ -67,7 +71,9 @@ export default function LoginPage() {
 
                 navigate("/community/home");
             }).catch(() => {
+                setIsLoading(false);
                 setSubmitResponseFail(true);
+
             });
     }
 
@@ -83,35 +89,43 @@ export default function LoginPage() {
                 <div className="login-page-content container">
                     <div className="card-login">
                         <h2>Login</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-item-input">
-                                <label>Email</label>
-                                <FormInput {...formData.username}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange} />
-                                <div className="form-error">{formData.username.message}</div>
-                            </div>
-                            <div className="form-item-input">
-                                <label>Senha</label>
-                                <FormInput {...formData.password}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange} />
-                                <div className="form-error">{formData.password.message}</div>
-                            </div>
-                            <button onClick={handleSubmit}>Login</button>
-                        </form>
-                        {submitResponseFail && (
-                            <div className="form-global-error">
-                                Usuário ou senha inválidos
-                            </div>)
+                        {
+                            !loading ?
+                                <>
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="form-item-input">
+                                            <label>Email</label>
+                                            <FormInput {...formData.username}
+                                                onTurnDirty={handleTurnDirty}
+                                                onChange={handleInputChange} />
+                                            <div className="form-error">{formData.username.message}</div>
+                                        </div>
+                                        <div className="form-item-input">
+                                            <label>Senha</label>
+                                            <FormInput {...formData.password}
+                                                onTurnDirty={handleTurnDirty}
+                                                onChange={handleInputChange} />
+                                            <div className="form-error">{formData.password.message}</div>
+                                        </div>
+                                        <button onClick={handleSubmit}>Login</button>
+                                    </form>
+                                    {submitResponseFail && (
+                                        <div className="form-global-error">
+                                            Usuário ou senha inválidos
+                                        </div>)
+                                    }
+                                    <div className="card-login-reset-password">
+                                        <Link to="/email-sent-recovery-password">
+                                            Esqueceu a senha? Clique Aqui
+                                        </Link>
+                                    </div>
+                                </>
+                                :
+                                <div className="card-login-loading">
+                                    <img src={loadingIcon} alt="Carregando..." />
+                                </div>
                         }
-                        <div className="card-login-reset-password">
-                            <Link to="/email-sent-recovery-password">
-                                Esqueceu a senha? Clique Aqui
-                            </Link>
-                        </div>
                     </div>
-
                     <div className="card-login-invite-register-space">
                         <Link to="/register">
                             Clique aqui para se cadastrar

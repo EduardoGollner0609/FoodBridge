@@ -29,6 +29,8 @@ export default function HomeCommunityPage() {
         size: 5
     });
 
+
+
     useEffect(() => {
         if (userLogged === null) {
             userService.findMe().then(response => {
@@ -42,6 +44,7 @@ export default function HomeCommunityPage() {
     }, []);
 
     useEffect(() => {
+
         setIsLoading(true);
         donationService.findAllPaged(queryParams.page, queryParams.size, userLogged?.address).then((response) => {
             setIsLoading(false);

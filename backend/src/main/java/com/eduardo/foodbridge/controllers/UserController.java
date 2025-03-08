@@ -45,6 +45,18 @@ public class UserController {
 		return ResponseEntity.created(uri).body(userDTO);
 	}
 
+	@Operation(description = "Find By Id", summary = "Find By Id", responses = {
+			@ApiResponse(description = "Ok", responseCode = "200"),
+			@ApiResponse(description = "Unauthorized", responseCode = "401"),
+			@ApiResponse(description = "Not Found", responseCode = "404") })
+	@SecurityRequirement(name = "bearerAuth")
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
+		UserDTO userDTO = service.findById(id);
+		return ResponseEntity.ok(userDTO);
+	}
+
 	@Operation(description = "Return me", summary = "Return me", responses = {
 			@ApiResponse(description = "Ok", responseCode = "200"),
 			@ApiResponse(description = "Unauthorized", responseCode = "401") })

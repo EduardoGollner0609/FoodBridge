@@ -94,6 +94,11 @@
   display: block;
 }
 
+.card-login-loading img {
+  width: 80px;
+  height: 80px;
+}
+
 @media (max-width: 576px) {
   .card-login {
     padding: 20px;

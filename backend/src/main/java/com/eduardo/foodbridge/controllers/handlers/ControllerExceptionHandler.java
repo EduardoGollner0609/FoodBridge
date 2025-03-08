@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.eduardo.foodbridge.services.exceptions.CollectException;
 import com.eduardo.foodbridge.services.exceptions.DatabaseException;
 import com.eduardo.foodbridge.services.exceptions.EmailException;
+import com.eduardo.foodbridge.services.exceptions.ForbiddenException;
 import com.eduardo.foodbridge.services.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -90,6 +91,18 @@ public class ControllerExceptionHandler {
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
 		err.setError("Erro ao coletar");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
+
+	@ExceptionHandler(ForbiddenException.class)
+	public ResponseEntity<StandardError> forbidden(ForbiddenException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.FORBIDDEN;
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Acesso negado");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);

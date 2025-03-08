@@ -49,15 +49,15 @@ public class DonationController {
 		return ResponseEntity.created(uri).body(donationDTO);
 	}
 
-	@Operation(description = "Get All Donations Paged", summary = "Find All Donations Paged", responses = {
+	@Operation(description = "Get All Donations Paged By State", summary = "Find All Donations Paged By State", responses = {
 			@ApiResponse(description = "Ok", responseCode = "200"),
 			@ApiResponse(description = "Bad Request", responseCode = "400"),
 			@ApiResponse(description = "Unauthorized", responseCode = "401"), })
 	@SecurityRequirement(name = "bearerAuth")
-	@PreAuthorize("hasRole('ROLE_USER')")
+
 	@GetMapping(value = "/list/{address}", produces = "application/json")
-	public ResponseEntity<Page<DonationMinDTO>> findAllPaged(@PathVariable String address, Pageable pageable) {
-		Page<DonationMinDTO> donations = service.findAllPaged(pageable, address);
+	public ResponseEntity<Page<DonationMinDTO>> findAllPagedByState(@PathVariable String address, Pageable pageable) {
+		Page<DonationMinDTO> donations = service.findAllPagedByState(pageable, address);
 		return ResponseEntity.ok(donations);
 	}
 
