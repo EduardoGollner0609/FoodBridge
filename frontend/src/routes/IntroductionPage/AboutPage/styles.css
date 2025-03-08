@@ -31,3 +31,10 @@
   text-align: center;
   color: var(--fb-color-primary);
 }
+
+@media (max-width: 968px) {
+  .about-us-content {
+    max-height: 550px;
+    overflow-y: auto;
+  }
+}

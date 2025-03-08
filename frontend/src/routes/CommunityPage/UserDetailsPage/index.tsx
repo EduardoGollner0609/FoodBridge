@@ -10,6 +10,7 @@ import Slider from '../../../components/Slider/slider';
 import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 import CardConfirmation from '../../../components/CardConfirmation';
 import CardMessage from '../../../components/CardMessage';
+import * as authService from '../../../services/auth-service';
 
 
 export default function UserDetailsPage() {
@@ -23,7 +24,7 @@ export default function UserDetailsPage() {
     useEffect(() => {
 
         const userLoggedId = userService.getUserLogged()?.id;
-        
+
         userService.findById(userLoggedId).then((response) => {
             SetUser(response.data);
         })
@@ -50,6 +51,8 @@ export default function UserDetailsPage() {
         setCardConfirmVisible(false);
 
         userService.deleteById(user?.id).then(() => {
+            authService.logout();
+            userService.logout();
             navigate("/");
         }).catch(error => {
             setCardMessage(error.response.data.message);
@@ -65,15 +68,11 @@ export default function UserDetailsPage() {
                             <div className="user-details-content container">
                                 <h2>Seu <span>Perfil</span></h2>
                                 <div className="card-user-details">
-                                    <div className="card-user-details-links">
+                                    <div className="card-user-details-link">
                                         <Link to="/community">
                                             Voltar
                                         </Link>
-                                        <button onClick={() => setCardConfirmVisible(true)}>
-                                            Remover Conta
-                                        </button>
                                     </div>
-
                                     <div className="card-user-details-header">
                                         <h3>{user?.name}</h3>
                                         <p>Data de nascimento: {formatDate(user?.birthDate)}</p>
@@ -83,11 +82,15 @@ export default function UserDetailsPage() {
                                     <div className="card-user-details-colaboration">
                                         <div className="card-user-details-donations">
                                             <h4>Doações: </h4>  <p>{user?.donations.length}</p>
-
                                         </div>
                                         <div className="card-user-details-delivery">
                                             <h4>Entregas: </h4> <p>{user?.donationsCollected.length}</p>
                                         </div>
+                                    </div>
+                                    <div className="card-user-details-delete-account">
+                                        <button onClick={() => setCardConfirmVisible(true)}>
+                                            Remover Conta
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +115,6 @@ export default function UserDetailsPage() {
                                             }
                                         </div>
                                     </SwiperSlide>
-
                                     <SwiperSlide>
                                         <div className="donations-collecteds-list">
                                             <div className="donations-collecteds-title">

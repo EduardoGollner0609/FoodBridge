@@ -75,11 +75,13 @@ export default function Footer() {
                             </NavLink>
                         </li>
                         <li>
-                            <Link to="/login" >
+                            <NavLink to="/login" className={({ isActive }) =>
+                                isActive ? "footer-option-section-active" : ""
+                            } >
                                 <p>
                                     Entrar
                                 </p>
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

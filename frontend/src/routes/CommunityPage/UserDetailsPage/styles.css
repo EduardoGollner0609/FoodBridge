@@ -14,7 +14,7 @@
   }
 }
 
-.card-user-details-links {
+.card-user-details-link {
   display: flex;
   justify-content: space-between;
 }
@@ -132,9 +132,21 @@
   max-height: 300px;
 }
 
+.card-user-details-delete-account {
+  display: flex;
+  justify-content: end;
+}
+
 .swiper-slide {
   padding-bottom: 60px;
   max-height: 300px;
   overflow-y: auto;
   min-height: 300px !important;
+}
+
+@media (max-width: 576px) {
+  .card-user-details-colaboration {
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -6,11 +6,15 @@ import { useState } from 'react';
 export default function HeaderHomePage() {
 
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+
     return (
         <header className="header-home-page">
             <nav className="container">
                 <div className="header-introduction-page-title">
-                    <h1>FoodBridge</h1>
+                    <Link to="/">
+                        <h1>FoodBridge</h1>
+                    </Link>
+
                 </div>
                 <div className="header-introduction-page-navegation-options">
                     <ul>
@@ -50,7 +54,7 @@ export default function HeaderHomePage() {
                                 <li>
                                     <NavLink to="/home" className={({ isActive }) =>
                                         isActive ? "option-navegation-mobile-menu-active" : ""
-                                    }>
+                                    } onClick={() => setMobileMenuVisible(false)}>
                                         <p>
                                             Inicio
                                         </p>
@@ -60,7 +64,7 @@ export default function HeaderHomePage() {
                                 <li>
                                     <NavLink to="/about" className={({ isActive }) =>
                                         isActive ? "option-navegation-mobile-menu-active" : ""
-                                    }>
+                                    } onClick={() => setMobileMenuVisible(false)}>
                                         <p>
                                             Sobre
                                         </p>
@@ -69,26 +73,26 @@ export default function HeaderHomePage() {
                                 <li>
                                     <NavLink to="/contact" className={({ isActive }) =>
                                         isActive ? "option-navegation-mobile-menu-active" : ""
-                                    }>
+                                    } onClick={() => setMobileMenuVisible(false)}>
                                         <p>
                                             Fale Conosco
                                         </p>
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/login" >
+                                    <NavLink to="/login" className={({ isActive }) =>
+                                        isActive ? "option-navegation-mobile-menu-active" : ""
+                                    } onClick={() => setMobileMenuVisible(false)} >
                                         <p>
                                             Entrar
                                         </p>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
                         <div className="overlay-menu" onClick={() => setMobileMenuVisible(false)}>
-
                         </div>
                     </>
-
                 }
             </nav>
         </header >
