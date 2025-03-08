@@ -5,6 +5,7 @@ import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as userService from '../../../services/user-service';
 import { useNavigate } from 'react-router-dom';
+import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 
 
 export default function RegisterPage() {
@@ -12,6 +13,8 @@ export default function RegisterPage() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState(formEmpty);
+
+    const [loading, setLoading] = useState<boolean>(false);
 
     function formEmpty() {
         return {
@@ -82,7 +85,7 @@ export default function RegisterPage() {
             },
         };
     }
-    
+
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
@@ -103,11 +106,14 @@ export default function RegisterPage() {
             return;
         }
 
+        setLoading(true);
+
         const requestBody = forms.toValues(formData);
 
         userService.insert(requestBody).then(() => {
             navigate("/home");
         }).catch(error => {
+
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         });
@@ -122,67 +128,75 @@ export default function RegisterPage() {
                 <div className="register-page-content container">
                     <div className="card-register">
                         <h2>Cadastro</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-item-input">
-                                <label>Nome</label>
-                                <FormInput
-                                    {...formData.name}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="form-error">{formData.name.message}</div>
-                            </div>
+                        {
+                            !loading ?
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-item-input">
+                                        <label>Nome</label>
+                                        <FormInput
+                                            {...formData.name}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange}
+                                        />
+                                        <div className="form-error">{formData.name.message}</div>
+                                    </div>
 
-                            <div className="form-item-input">
-                                <label>Data de Nascimento</label>
-                                <FormInput   {...formData.birthDate}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="form-error">{formData.birthDate.message}</div>
-                            </div>
+                                    <div className="form-item-input">
+                                        <label>Data de Nascimento</label>
+                                        <FormInput   {...formData.birthDate}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange}
+                                        />
+                                        <div className="form-error">{formData.birthDate.message}</div>
+                                    </div>
 
-                            <div className="form-item-input">
-                                <label>Número</label>
-                                <FormInput {...formData.phone}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="form-error">{formData.phone.message}</div>
-                            </div>
+                                    <div className="form-item-input">
+                                        <label>Número</label>
+                                        <FormInput {...formData.phone}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange}
+                                        />
+                                        <div className="form-error">{formData.phone.message}</div>
+                                    </div>
 
-                            <div className="form-item-input">
-                                <label>CEP</label>
-                                <FormInput
-                                    {...formData.address}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="form-error">{formData.address.message}</div>
-                            </div>
+                                    <div className="form-item-input">
+                                        <label>CEP</label>
+                                        <FormInput
+                                            {...formData.address}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange}
+                                        />
+                                        <div className="form-error">{formData.address.message}</div>
+                                    </div>
 
-                            <div className="form-item-input">
-                                <label>Email</label>
-                                <FormInput
-                                    {...formData.email}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange}
-                                />
-                                <div className="form-error">{formData.email.message}</div>
-                            </div>
+                                    <div className="form-item-input">
+                                        <label>Email</label>
+                                        <FormInput
+                                            {...formData.email}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange}
+                                        />
+                                        <div className="form-error">{formData.email.message}</div>
+                                    </div>
 
-                            <div className="form-item-input">
-                                <label>Senha</label>
-                                <FormInput {...formData.password}
-                                    onTurnDirty={handleTurnDirty}
-                                    onChange={handleInputChange}
-                                />
-                                <p>* Minimo de 6 caracteres.</p>
-                                <div className="form-error">{formData.password.message}</div>
-                            </div>
+                                    <div className="form-item-input">
+                                        <label>Senha</label>
+                                        <FormInput {...formData.password}
+                                            onTurnDirty={handleTurnDirty}
+                                            onChange={handleInputChange}
+                                        />
+                                        <p>* Minimo de 6 caracteres.</p>
+                                        <div className="form-error">{formData.password.message}</div>
+                                    </div>
 
-                            <button onClick={handleSubmit}>Cadastrar</button>
-                        </form>
+                                    <button onClick={handleSubmit}>Cadastrar</button>
+                                </form>
+                                :
+                                <div className="card-register-loading">
+                                    <img src={loadingIcon} alt="Carregando" />
+                                    <p>Realizando cadastro...</p>
+                                </div>
+                        }
                     </div>
                 </div>
             </section>

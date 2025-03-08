@@ -1,15 +1,17 @@
 #section-register-page {
-  padding: 0 20px;
+  height: 70vh;
+  height: 100%;
 }
 
 .register-page-content {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .card-register {
-  margin: 0 auto 10px auto;
+  margin: auto;
   padding: 10px 20px 7px 20px;
   border: 2px solid var(--fb-color-primary);
   color: var(--fb-color-quartiary);
@@ -17,6 +19,9 @@
   width: 80%;
   max-width: 800px;
   overflow: auto;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .register-page-content h2 {
@@ -64,6 +69,23 @@
   text-transform: uppercase;
   cursor: pointer;
   margin: 10px 0;
+}
+
+.card-register-loading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-register-loading p {
+  color: var(--fb-color-tertiary);
+}
+
+.card-register-loading img {
+  width: 80px;
+  height: 80px;
 }
 
 @media (max-width: 576px) {

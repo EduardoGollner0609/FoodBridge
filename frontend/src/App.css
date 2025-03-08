@@ -21,6 +21,24 @@
   font-family: "Poppins", serif;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+main {
+  padding: 0 20px;
+  margin-bottom: 10px;
+  flex: 1;
+}
+
 .container {
   width: 100%;
   max-width: 1120px;
@@ -43,10 +61,6 @@ input {
 button {
   background-color: transparent;
   cursor: pointer;
-}
-
-main {
-  margin-bottom: 10px;
 }
 
 header nav {

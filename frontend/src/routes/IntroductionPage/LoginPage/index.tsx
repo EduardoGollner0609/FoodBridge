@@ -123,6 +123,7 @@ export default function LoginPage() {
                                 :
                                 <div className="card-login-loading">
                                     <img src={loadingIcon} alt="Carregando..." />
+                                    <p>Realizando Login...</p>
                                 </div>
                         }
                     </div>
