@@ -14,6 +14,8 @@
   border: 2px solid var(--fb-color-primary);
   padding: 20px;
   border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .card-donation-register form label,
@@ -41,8 +43,7 @@ input {
   border-radius: 10px;
   border: 2px solid var(--fb-color-primary);
   outline: none;
-  width: 450px;
-  height: 280px;
+  min-height: 300px;
   font-size: 18px;
   color: var(--fb-color-secondary);
 }
@@ -62,6 +63,7 @@ input {
   background-color: var(--fb-color-primary);
   color: var(--fb-color-quartiary);
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .card-donation-register-item-confirm-human {

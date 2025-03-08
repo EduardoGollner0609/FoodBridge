@@ -85,7 +85,6 @@ export default function DonationRegisterPage() {
         <main>
             <section id="section-donation-register">
                 <div className="donation-register-content container">
-
                     {
                         loadingFormSubmit ?
                             <div className="register-donation-loading">
