@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import com.eduardo.foodbridge.controllers.handlers.FieldMessage;
 import com.eduardo.foodbridge.dtos.CepDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
-import com.eduardo.foodbridge.entities.User;
 import com.eduardo.foodbridge.repositories.UserRepository;
 
 import jakarta.validation.ConstraintValidator;
@@ -49,15 +48,11 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 			list.add(new FieldMessage("address", "CEP inválido"));
 		}
 
-		User user = repository.findByEmail(dto.getEmail());
-
-		if (user != null) {
+		if (repository.existsByEmail(dto.getEmail())) {
 			list.add(new FieldMessage("email", "Email já existe"));
 		}
 
-		user = repository.findByName(dto.getName());
-
-		if (user != null) {
+		if (repository.existsByNameIgnoreCase(dto.getName())) {
 			list.add(new FieldMessage("name", "Nome já existe"));
 		}
 

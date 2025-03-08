@@ -113,7 +113,7 @@ export default function RegisterPage() {
         userService.insert(requestBody).then(() => {
             navigate("/home");
         }).catch(error => {
-
+            setLoading(false);
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         });

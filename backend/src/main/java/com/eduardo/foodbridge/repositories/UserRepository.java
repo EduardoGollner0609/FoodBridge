@@ -15,7 +15,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			""")
 	User findByEmail(String email);
 
-	User findByName(String name);
+	boolean existsByEmail(String email);
+
+	boolean existsByNameIgnoreCase(String name);
 
 	@Query(nativeQuery = true, value = """
 				SELECT tb_user.email AS username, tb_user.password, tb_role.id AS roleId, tb_role.authority
@@ -25,5 +27,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 				WHERE tb_user.email = :email
 			""")
 	List<UserDetailsProjection> searchUserAndRolesByEmail(String email);
-	
+
 }

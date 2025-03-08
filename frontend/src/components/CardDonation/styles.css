@@ -5,8 +5,8 @@
   justify-content: space-between;
   gap: 10px;
   padding: 10px 15px;
+  width: 100%;
   cursor: pointer;
-  margin: 10px auto 0 auto;
 }
 
 .card-donation p {

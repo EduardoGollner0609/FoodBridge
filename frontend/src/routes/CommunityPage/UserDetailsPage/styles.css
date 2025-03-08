@@ -87,6 +87,23 @@
   }
 }
 
+.donations-list,
+.donations-collecteds-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donations-collecteds-list a {
+  width: 100%;
+  max-width: 900px;
+}
+
+.donations-list h3,
+.donations-collecteds-list h3 {
+  margin-bottom: 5px;
+}
+
 .swiper h4 {
   margin-top: 10px;
   text-align: center;
