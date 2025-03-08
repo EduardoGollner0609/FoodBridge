@@ -111,7 +111,7 @@ export default function RegisterPage() {
         const requestBody = forms.toValues(formData);
 
         userService.insert(requestBody).then(() => {
-            navigate("/home");
+            navigate("/login");
         }).catch(error => {
             setLoading(false);
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);

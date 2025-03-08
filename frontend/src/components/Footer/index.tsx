@@ -2,7 +2,7 @@ import './styles.css';
 import whatsappIcon from '../../assets/whatsapp-icon.svg';
 import instagramIcon from '../../assets/instagram-icon.svg';
 import linkedinIcon from '../../assets/linkedin-icon.svg';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
     return (

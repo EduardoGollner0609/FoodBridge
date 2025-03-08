@@ -1,7 +1,3 @@
-#section-login-page {
-  padding: 0 20px;
-}
-
 .login-page-content {
   height: 80vh;
   min-height: 500px;
@@ -117,5 +113,8 @@
 
   .card-login-invite-register-space {
     max-width: 331px;
+  }
+  .login-invalid-credentials p {
+    font-size: 12px;
   }
 }

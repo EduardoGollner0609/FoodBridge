@@ -1,5 +1,5 @@
 #section-home-page {
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .home-page-introduction {
@@ -48,7 +48,6 @@
 
 #section-home-page-how-help {
   margin: 20px 0;
-  padding: 0 20px;
 }
 
 .home-page-how-help-content h2 {

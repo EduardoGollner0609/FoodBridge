@@ -42,12 +42,11 @@
   .card-how-help-item {
     padding: 20px 20px 30px 20px;
     gap: 10px;
+    height: auto;
+    width: auto;
   }
 }
 
 @media (max-width: 350px) {
-  .card-how-help-item {
-    height: 420px;
-    width: 350px;
-  }
+
 }

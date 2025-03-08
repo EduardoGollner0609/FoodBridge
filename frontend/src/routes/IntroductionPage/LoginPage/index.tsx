@@ -22,6 +22,7 @@ export default function LoginPage() {
             name: "username",
             type: "text",
             placeholder: "Email",
+            autoComplete: "username",
             validation: function (value: string) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
             },
@@ -33,6 +34,7 @@ export default function LoginPage() {
             name: "password",
             type: "password",
             placeholder: "Senha",
+            autoComplete: "current-password",
             validation: function (value: string) {
                 return /^.{6,30}$/.test(value);
             },
@@ -60,21 +62,23 @@ export default function LoginPage() {
         }
 
         setIsLoading(true);
+
         const requestBody = forms.toValues(formData);
+
         authService.loginRequest(requestBody).then(
             (response) => {
                 authService.saveAccessToken(response.data.access_token);
 
                 userService.findMe().then(response => {
                     userService.saveUserLogged(response.data);
+                    navigate("/community/home");
                 });
-
-                navigate("/community/home");
+                setIsLoading(false);
             }).catch(() => {
                 setIsLoading(false);
                 setSubmitResponseFail(true);
-
             });
+
     }
 
     useEffect(() => {
@@ -110,8 +114,8 @@ export default function LoginPage() {
                                         <button onClick={handleSubmit}>Login</button>
                                     </form>
                                     {submitResponseFail && (
-                                        <div className="form-global-error">
-                                            Usuário ou senha inválidos
+                                        <div className="form-global-error login-invalid-credentials">
+                                            <p>  Usuário ou senha inválidos</p>
                                         </div>)
                                     }
                                     <div className="card-login-reset-password">

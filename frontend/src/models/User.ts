@@ -11,10 +11,19 @@ export type UserDTO = {
   donationsCollected: DonationMinDTO[];
 };
 
+export type UserSimpleDTO = {
+  id: number;
+  name: string;
+  email: string;
+  birthDate: string;
+  phone: string;
+  address: string;
+};
+
 export type UserMinDTO = {
   id: number;
   name: string;
-  phone: string
+  phone: string;
 };
 
 export type UserInsertDTO = {

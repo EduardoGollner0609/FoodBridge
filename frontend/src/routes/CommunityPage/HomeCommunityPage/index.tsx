@@ -7,7 +7,7 @@ import { DonationMinDTO } from '../../../models/donation';
 import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 import ButtonNextPage from '../../../components/ButtonNextPage';
 import * as userService from '../../../services/user-service';
-import { UserDTO } from '../../../models/User';
+import { UserSimpleDTO } from '../../../models/User';
 
 
 type QueryParams = {
@@ -19,7 +19,7 @@ export default function HomeCommunityPage() {
 
     const navigate = useNavigate();
 
-    const [userLogged, setUserLogged] = useState<UserDTO | null>(userService.getUserLogged());
+    const [userLogged, setUserLogged] = useState<UserSimpleDTO | null>(userService.getUserLogged());
     const [donations, setDonations] = useState<DonationMinDTO[]>([]);
     const [loading, setIsLoading] = useState<boolean>(false);
     const [donationsIsEmpty, setDonationsIsEmpty] = useState<boolean>(false);
@@ -29,10 +29,8 @@ export default function HomeCommunityPage() {
         size: 5
     });
 
-
-
     useEffect(() => {
-        if (userLogged === null) {
+        if (userLogged?.address === undefined || userLogged === null) {
             userService.findMe().then(response => {
                 const userLoggedData = response.data;
                 setUserLogged(userLoggedData);
@@ -44,7 +42,6 @@ export default function HomeCommunityPage() {
     }, []);
 
     useEffect(() => {
-
         setIsLoading(true);
         donationService.findAllPaged(queryParams.page, queryParams.size, userLogged?.address).then((response) => {
             setIsLoading(false);

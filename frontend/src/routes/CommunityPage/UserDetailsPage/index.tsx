@@ -68,10 +68,13 @@ export default function UserDetailsPage() {
                             <div className="user-details-content container">
                                 <h2>Seu <span>Perfil</span></h2>
                                 <div className="card-user-details">
-                                    <div className="card-user-details-link">
+                                    <div className="card-user-details-links">
                                         <Link to="/community">
                                             Voltar
                                         </Link>
+                                        <button onClick={() => setCardConfirmVisible(true)}>
+                                            Remover Conta
+                                        </button>
                                     </div>
                                     <div className="card-user-details-header">
                                         <h3>{user?.name}</h3>
@@ -86,11 +89,6 @@ export default function UserDetailsPage() {
                                         <div className="card-user-details-delivery">
                                             <h4>Entregas: </h4> <p>{user?.donationsCollected.length}</p>
                                         </div>
-                                    </div>
-                                    <div className="card-user-details-delete-account">
-                                        <button onClick={() => setCardConfirmVisible(true)}>
-                                            Remover Conta
-                                        </button>
                                     </div>
                                 </div>
                             </div>
