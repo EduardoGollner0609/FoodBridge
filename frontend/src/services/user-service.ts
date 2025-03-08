@@ -32,6 +32,16 @@ export function deleteById(id: number | undefined) {
   return requestBackend(config);
 }
 
+export function findById(id: number | undefined) {
+  const config: AxiosRequestConfig = {
+    method: "GET",
+    url: `/users/${id}`,
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
+}
+
 export function saveUserLogged(user: UserDTO) {
   userLoggedRepository.save(user);
 }

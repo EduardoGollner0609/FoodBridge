@@ -21,7 +21,10 @@ export default function UserDetailsPage() {
     const [cardMessage, setCardMessage] = useState<string>('');
 
     useEffect(() => {
-        userService.findMe().then((response) => {
+
+        const userLoggedId = userService.getUserLogged()?.id;
+        
+        userService.findById(userLoggedId).then((response) => {
             SetUser(response.data);
         })
     }, []);

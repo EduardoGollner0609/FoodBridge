@@ -25,7 +25,7 @@ export default function DonationRegisterPage() {
                 type: "text",
                 placeholder: "Nos conte um pouco mais sobre a doação",
                 validation: function (value: string) {
-                    return /^.{9,200}$/.test(value);
+                    return /^(?!\s*$).+/.test(value);
                 },
                 message: "A descrição deve ter de 9 a 200 caracteres",
             },
