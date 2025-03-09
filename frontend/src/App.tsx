@@ -49,6 +49,7 @@ function App() {
             <Route path="/contact" element={<TalkToUsPage />} />
             <Route path="/email-sent-recovery-password" element={<RecoveryPasswordEmailPage />} />
             <Route path="/recover-password/:token" element={<RecoveryPasswordPage />} />
+            <Route path="*" element={<HomePage />} />
           </Route>
           <Route path="/community" element={<PrivateRoute roles={["ROLE_USER"]}><CommunityPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/community/home" />} />

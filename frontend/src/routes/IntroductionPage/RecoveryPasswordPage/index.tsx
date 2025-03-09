@@ -5,6 +5,7 @@ import * as forms from '../../../utils/forms';
 import { Link, useParams } from 'react-router-dom';
 import * as authService from '../../../services/auth-service';
 import CardMessage from '../../../components/CardMessage';
+import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 
 export default function RecoveryPasswordPage() {
 
@@ -12,6 +13,7 @@ export default function RecoveryPasswordPage() {
 
     const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
     const [cardMessage, setCardMessage] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
         password: {
@@ -46,22 +48,28 @@ export default function RecoveryPasswordPage() {
             return;
         }
 
+        setIsLoading(true);
+
         const requestBody = {
             token: params.token,
             password: formData.password.value
 
         }
 
+
         authService.saveNewPassword(requestBody).then(() => {
             setPasswordChanged(true);
+            setIsLoading(false);
         }).catch(error => {
             if (error.response.status === 404) {
                 console.log(error)
                 setCardMessage(error.response.data.message);
+                setIsLoading(false);
                 return;
             }
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
+            setIsLoading(false);
         });
 
     }
@@ -72,27 +80,37 @@ export default function RecoveryPasswordPage() {
             <section id="recovery-password-section">
                 <div className="card-recovery-password">
                     {
-                        !passwordChanged ?
-                            <>
-                                <h2>Recuperação de Senha</h2>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="input-item-recovery-password form-item-input">
-                                        <label>Digite sua nova senha</label>
-                                        <FormInput {...formData.password}
-                                            onTurnDirty={handleTurnDirty}
-                                            onChange={handleInputChange} />
-                                        <div className="form-error">{formData.password.message}</div>
-                                    </div>
-                                    <button onClick={handleSubmit}>Enviar</button>
-                                </form>
-                            </>
-                            :
-                            <>
-                                <h2>Verifique seu Email</h2>
-                                <p className="password-changed">Senha alterada com sucesso!</p>
-                                <Link to="/">Fazer Login</Link>
-                            </>
+                        (!passwordChanged && !isLoading) &&
+                        <>
+                            <h2>Recuperação de Senha</h2>
+                            <form onSubmit={handleSubmit}>
+                                <div className="input-item-recovery-password form-item-input">
+                                    <label>Digite sua nova senha</label>
+                                    <FormInput {...formData.password}
+                                        onTurnDirty={handleTurnDirty}
+                                        onChange={handleInputChange} />
+                                    <div className="form-error">{formData.password.message}</div>
+                                </div>
+                                <button onClick={handleSubmit}>Enviar</button>
+                            </form>
+                        </>
                     }
+                    {
+                        isLoading &&
+                        <div className="recover-password-loading">
+                            <img src={loadingIcon} alt="Carregando" />
+                            <p>Alterando senha...</p>
+                        </div>
+                    }
+                    {
+                        (passwordChanged && !isLoading) &&
+                        <>
+                            <h2>Verifique seu Email</h2>
+                            <p className="password-changed">Senha alterada com sucesso!</p>
+                            <Link to="/">Fazer Login</Link>
+                        </>
+                    }
+
                 </div>
             </section>
             {

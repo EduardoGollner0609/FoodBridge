@@ -64,3 +64,22 @@
   border-radius: 15px;
   padding: 8px 10px;
 }
+
+.recovery-password-loading p,
+.recover-password-loading p {
+  color: var(--fb-color-tertiary);
+}
+
+.recover-password-loading,
+.recover-password-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.recover-password-loading img,
+.recovery-password-loading img {
+  height: 80px;
+  width: 80px;
+}

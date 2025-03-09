@@ -4,10 +4,13 @@ import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import { Link } from 'react-router-dom';
 import * as authService from '../../../services/auth-service';
+import loadingIcon from '../../../assets/spinner-icon-animated.svg';
 
 export default function RecoveryPasswordEmailPage() {
 
     const [emailNotFound, setEmailNotFound] = useState<boolean>(false);
+
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
         email: {
@@ -23,7 +26,7 @@ export default function RecoveryPasswordEmailPage() {
         }
     });
 
-    const [emailSet, setEmailSent] = useState<boolean>(false);
+    const [emailSent, setEmailSent] = useState<boolean>(false);
 
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -45,17 +48,22 @@ export default function RecoveryPasswordEmailPage() {
             return;
         }
 
+        setIsLoading(true);
+
         const requestBody = forms.toValues(formData);
 
         authService.recoverToken(requestBody).then(() => {
             setEmailSent(true);
+            setIsLoading(false);
         }).catch(error => {
             if (error.response.status === 404) {
                 setEmailNotFound(true);
+                setIsLoading(false);
                 return;
             }
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors)
             setFormData(newInputs);
+            setIsLoading(false);
         })
 
     }
@@ -65,36 +73,44 @@ export default function RecoveryPasswordEmailPage() {
             <section id="recovery-password-email-section">
                 <div className="card-recovery-password-email">
                     {
-                        !emailSet ?
-                            <>
-                                <h2>Recuperação de Senha</h2>
-                                <form >
-                                    <div className="form-item-input">
-                                        <label>Digite seu Email</label>
-                                        <FormInput {...formData.email}
-                                            onTurnDirty={handleTurnDirty}
-                                            onChange={handleInputChange} />
-                                        <div className="form-error">{formData.email.message}</div>
+                        (!emailSent && !isLoading) &&
+                        <>
+                            <h2>Recuperação de Senha</h2>
+                            <form >
+                                <div className="form-item-input">
+                                    <label>Digite seu Email</label>
+                                    <FormInput {...formData.email}
+                                        onTurnDirty={handleTurnDirty}
+                                        onChange={handleInputChange} />
+                                    <div className="form-error">{formData.email.message}</div>
+                                </div>
+                                {
+                                    emailNotFound &&
+                                    <div className="form-global-error">
+                                        Email não encontrado
                                     </div>
-                                    {
-                                        emailNotFound &&
-                                        <div className="form-global-error">
-                                            Email não encontrado
-                                        </div>
-                                    }
-                                    <button onClick={handleSubmit}>Enviar</button>
-                                </form>
-                            </>
-                            :
-                            <>
-                                <h2>Verifique seu Email</h2>
-                                <p className="email-sent-confirm">Um email foi enviado para {formData.email.value}
-                                    com instruções para definir uma nova senha</p>
-                                <Link to="/">Início</Link>
-                            </>
+                                }
+                                <button onClick={handleSubmit}>Enviar</button>
+                            </form>
+                        </>
                     }
+                    {
+                        isLoading &&
+                        <div className="recovery-password-loading">
+                            <img src={loadingIcon} alt="Carregando" />
+                            <p>Enviando email de recuperação</p>
+                        </div>
 
-
+                    }
+                    {
+                        (emailSent && !isLoading) &&
+                    <>
+                        <h2>Verifique seu Email</h2>
+                        <p className="email-sent-confirm">Um email foi enviado para {formData.email.value}
+                            com instruções para definir uma nova senha</p>
+                        <Link to="/">Início</Link>
+                    </>
+                    }
                 </div>
             </section>
         </main>
