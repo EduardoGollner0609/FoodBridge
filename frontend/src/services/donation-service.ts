@@ -26,9 +26,9 @@ export function updateCollectDonation(id: number | undefined) {
 export function findAllPaged(
   page: number,
   size = 5,
-  address: string | undefined
+  state: string | undefined
 ) {
-  const url = address ? `/donations/list/${address}` : `/donations/list`;
+  const url = state ? `/donations/list/${state}` : `/donations/list`;
   const config: AxiosRequestConfig = {
     method: "GET",
     url: url,

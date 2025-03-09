@@ -73,10 +73,10 @@ export default function LoginPage() {
                     userService.saveUserLogged(response.data);
                     navigate("/community/home");
                 });
-                setIsLoading(false);
+
             }).catch(() => {
-                setIsLoading(false);
                 setSubmitResponseFail(true);
+                setIsLoading(false);
             });
 
     }

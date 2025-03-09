@@ -106,8 +106,13 @@
   height: 80vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.user-details-loading p {
+  color: var(--fb-color-tertiary);
 }
 
 .user-details-loading img {
@@ -136,7 +141,7 @@
     align-items: center;
   }
 
- .card-user-details-links button {
+  .card-user-details-links button {
     font-size: 14px;
   }
 }

@@ -55,9 +55,9 @@ public class DonationController {
 			@ApiResponse(description = "Unauthorized", responseCode = "401"), })
 	@SecurityRequirement(name = "bearerAuth")
 
-	@GetMapping(value = "/list/{address}", produces = "application/json")
-	public ResponseEntity<Page<DonationMinDTO>> findAllPagedByState(@PathVariable String address, Pageable pageable) {
-		Page<DonationMinDTO> donations = service.findAllPagedByState(pageable, address);
+	@GetMapping(value = "/list/{state}", produces = "application/json")
+	public ResponseEntity<Page<DonationMinDTO>> findAllPagedByState(@PathVariable String state, Pageable pageable) {
+		Page<DonationMinDTO> donations = service.findAllPagedByState(pageable, state);
 		return ResponseEntity.ok(donations);
 	}
 

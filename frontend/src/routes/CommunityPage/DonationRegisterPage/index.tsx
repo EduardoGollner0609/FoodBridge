@@ -27,7 +27,7 @@ export default function DonationRegisterPage() {
                 validation: function (value: string) {
                     return /^(?!\s*$).+/.test(value);
                 },
-                message: "A descrição deve ter de 9 a 200 caracteres",
+                message: "Campo requerido",
             },
             confirmHuman: {
                 value: "",
@@ -90,7 +90,7 @@ export default function DonationRegisterPage() {
                             <div className="register-donation-loading">
                                 <div className="register-donation-loading-message">
                                     <img src={loadingIcon} alt="" />
-                                    <p>Criando doação</p>
+                                    <p>Criando doação...</p>
                                 </div>
 
                             </div>
@@ -119,7 +119,6 @@ export default function DonationRegisterPage() {
                                 </form>
                             </div>
                     }
-
                 </div>
             </section>
         </main >

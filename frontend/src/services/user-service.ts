@@ -1,4 +1,4 @@
-import { UserDTO, UserInsertDTO } from "../models/User";
+import { UserInsertDTO, UserSimpleDTO } from "../models/User";
 import { requestBackend } from "../utils/request";
 import { AxiosRequestConfig } from "axios";
 import * as userLoggedRepository from "../localstorage/user-logged-repository";
@@ -42,7 +42,7 @@ export function findById(id: number | undefined) {
   return requestBackend(config);
 }
 
-export function saveUserLogged(user: UserDTO) {
+export function saveUserLogged(user: UserSimpleDTO) {
   userLoggedRepository.save(user);
 }
 

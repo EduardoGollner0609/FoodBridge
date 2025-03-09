@@ -14,10 +14,8 @@ export type UserDTO = {
 export type UserSimpleDTO = {
   id: number;
   name: string;
-  email: string;
-  birthDate: string;
-  phone: string;
   address: string;
+  state: string;
 };
 
 export type UserMinDTO = {

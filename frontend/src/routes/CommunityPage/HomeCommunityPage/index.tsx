@@ -30,7 +30,7 @@ export default function HomeCommunityPage() {
     });
 
     useEffect(() => {
-        if (userLogged?.address === undefined || userLogged === null) {
+        if (userLogged?.state === undefined || userLogged === null) {
             userService.findMe().then(response => {
                 const userLoggedData = response.data;
                 setUserLogged(userLoggedData);
@@ -43,7 +43,7 @@ export default function HomeCommunityPage() {
 
     useEffect(() => {
         setIsLoading(true);
-        donationService.findAllPaged(queryParams.page, queryParams.size, userLogged?.address).then((response) => {
+        donationService.findAllPaged(queryParams.page, queryParams.size, userLogged?.state).then((response) => {
             setIsLoading(false);
             const nextPage = response.data.content;
             setDonations(donations.concat(nextPage));

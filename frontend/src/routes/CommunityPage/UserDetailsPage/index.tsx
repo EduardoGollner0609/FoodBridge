@@ -137,6 +137,7 @@ export default function UserDetailsPage() {
                     :
                     <div className="user-details-loading">
                         <img src={loadingIcon} alt="" />
+                        <p>Carregando perfil...</p>
                     </div>
             }
             {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eduardo.foodbridge.dtos.CepDTO;
 import com.eduardo.foodbridge.dtos.EmailDTO;
 import com.eduardo.foodbridge.dtos.UserDTO;
 import com.eduardo.foodbridge.dtos.UserInsertDTO;
@@ -36,6 +37,9 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private EmailService emailService;
 
+	@Autowired
+	private AddressService addressService;
+
 	@Transactional
 	public UserDTO insert(UserInsertDTO userInsertDTO) {
 		User user = new User();
@@ -53,6 +57,7 @@ public class UserService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id) {
 		User user = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+		authService.validateUser(id);
 		return new UserDTO(user);
 	}
 
@@ -67,7 +72,8 @@ public class UserService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public UserSimpleDTO getMe() {
 		User entity = authService.authenticated();
-		return new UserSimpleDTO(entity);
+		CepDTO response = addressService.findAddressByCep(entity.getAddress());
+		return new UserSimpleDTO(entity, response);
 	}
 
 	@Override
