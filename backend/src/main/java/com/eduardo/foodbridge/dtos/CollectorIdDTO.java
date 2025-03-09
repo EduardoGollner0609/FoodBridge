@@ -1,13 +1,13 @@
 package com.eduardo.foodbridge.dtos;
 
-public class CollectorId {
+public class CollectorIdDTO {
 
 	private Long id;
 
-	public CollectorId() {
+	public CollectorIdDTO() {
 	}
 
-	public CollectorId(Long id) {
+	public CollectorIdDTO(Long id) {
 		this.id = id;
 	}
 

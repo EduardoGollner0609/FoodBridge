@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.eduardo.foodbridge.dtos.CollectorId;
+import com.eduardo.foodbridge.dtos.CollectorIdDTO;
 import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.services.DonationService;
@@ -95,8 +95,8 @@ public class DonationController {
 	@SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "collect/{id}", produces = "application/json")
-	public ResponseEntity<DonationDTO> updateCollectDonation(@PathVariable Long id, @RequestBody CollectorId collectorId) {
-		DonationDTO donationDTO = service.updateCollectDonation(id, collectorId);
+	public ResponseEntity<DonationDTO> updateCollectDonation(@PathVariable Long id, @RequestBody CollectorIdDTO collectorIdDTO) {
+		DonationDTO donationDTO = service.updateCollectDonation(id, collectorIdDTO);
 		return ResponseEntity.ok(donationDTO);
 	}
 

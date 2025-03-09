@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eduardo.foodbridge.dtos.CepDTO;
-import com.eduardo.foodbridge.dtos.CollectorId;
+import com.eduardo.foodbridge.dtos.CollectorIdDTO;
 import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.entities.Donation;
@@ -62,10 +62,15 @@ public class DonationService {
 	}
 
 	@Transactional
-	public DonationDTO updateCollectDonation(Long id, CollectorId collectorId) {
+	public DonationDTO updateCollectDonation(Long id, CollectorIdDTO collectorIdDTO) {
 		try {
 			Donation donation = repository.getReferenceById(id);
-			collectDonation(donation, collectorId);
+
+			if (collectorIdDTO == null) {
+				collectorIdDTO = new CollectorIdDTO(authService.authenticated().getId());
+			}
+
+			collectDonation(donation, collectorIdDTO);
 			return new DonationDTO(repository.save(donation));
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Doação não encontrada");
@@ -84,11 +89,11 @@ public class DonationService {
 		}
 	}
 
-	private void collectDonation(Donation donation, CollectorId collectorId) {
-		if (collectorId.getId() == donation.getUser().getId()) {
+	private void collectDonation(Donation donation, CollectorIdDTO collectorIdDTO) {
+		if (collectorIdDTO.getId() == donation.getUser().getId()) {
 			throw new CollectException("Você não pode coletar sua doação.");
 		}
-		if (donation.getCollector() != null && donation.getCollector().getId() == collectorId.getId()) {
+		if (donation.getCollector() != null && donation.getCollector().getId() == collectorIdDTO.getId()) {
 			throw new CollectException("Essa doação já é sua.");
 		}
 		if (donation.getCollector() != null) {
@@ -96,7 +101,7 @@ public class DonationService {
 		}
 
 		User collector = new User();
-		collector.setId(collectorId.getId());
+		collector.setId(collectorIdDTO.getId());
 		donation.setCollector(collector);
 	}
 
