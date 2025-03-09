@@ -35,7 +35,7 @@ export default function RegisterPage() {
                 id: "phone",
                 name: "phone",
                 type: "text",
-                placeholder: "Número",
+                placeholder: "Celular",
                 validation: function (value: string) {
                     return /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/.test(value);
                 },
@@ -154,7 +154,7 @@ export default function RegisterPage() {
                                     </div>
 
                                     <div className="form-item-input">
-                                        <label>Número</label>
+                                        <label>Celular</label>
                                         <FormInput {...formData.phone}
                                             onTurnDirty={handleTurnDirty}
                                             onChange={handleInputChange}

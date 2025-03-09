@@ -77,3 +77,9 @@ footer h2 {
     align-items: center;
   }
 }
+
+@media(max-width: 400px) {
+  footer {
+    height: 1200px;
+  }
+}

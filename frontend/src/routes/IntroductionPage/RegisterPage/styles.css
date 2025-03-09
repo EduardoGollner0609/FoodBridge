@@ -1,7 +1,7 @@
 #section-register-page {
   height: 70vh;
   height: 100%;
-  padding: 5px;
+  padding: 10px 0;
 }
 
 .register-page-content {
@@ -17,7 +17,7 @@
   border: 2px solid var(--fb-color-primary);
   color: var(--fb-color-quartiary);
   border-radius: 20px;
-  width: 80%;
+  width: 100%;
   max-width: 800px;
   overflow: auto;
   min-height: 300px;
@@ -89,12 +89,11 @@
   height: 80px;
 }
 
-@media (max-width: 576px) {
-  .card-register {
-    width: 90%;
+@media(max-width: 718px) {
+  #section-register-page {
+    padding: 20px 0;
   }
 }
-
 @media (max-width: 400px) {
   .card-register {
     width: 100%;
