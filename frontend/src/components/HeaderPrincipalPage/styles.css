@@ -32,6 +32,6 @@
 @media (max-width: 494px) {
   .header-principal-page nav {
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 }
