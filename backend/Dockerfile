@@ -1,5 +1,5 @@
 # Fase de build
-FROM maven:3.8.6-openjdk-17-slim AS build
+FROM maven:3.8.6-jdk-17-slim AS build
 
 # Definir o diretório de trabalho
 WORKDIR /app
@@ -21,3 +21,4 @@ COPY --from=build /app/target/foodbridge-0.0.1.jar app.jar
 
 # Definir o ponto de entrada
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
+
