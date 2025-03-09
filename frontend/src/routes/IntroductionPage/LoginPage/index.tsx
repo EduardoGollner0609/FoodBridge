@@ -75,8 +75,8 @@ export default function LoginPage() {
                 });
 
             }).catch(() => {
-                setSubmitResponseFail(true);
-                setIsLoading(false);
+               setIsLoading(false); setSubmitResponseFail(true);
+                
             });
 
     }
