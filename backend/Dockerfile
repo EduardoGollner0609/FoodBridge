@@ -1,24 +1,16 @@
-# Fase de build
-FROM maven:3.8.6-jdk-17-slim AS build
+FROM ubuntu:latest AS build
 
-# Definir o diretório de trabalho
-WORKDIR /app
-
-# Copiar o conteúdo do projeto
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
-# Rodar o build Maven, pulando os testes para acelerar o processo
+RUN apt-get install maven -y
 RUN mvn clean install -DskipTests
 
-# Fase de runtime
 FROM openjdk:17-jdk-slim
 
-# Expor a porta 8080
 EXPOSE 8080
 
-# Copiar o JAR gerado da fase de build
-COPY --from=build /app/target/foodbridge-0.0.1.jar app.jar
+COPY --from=build /target/foodbridge-1.0.0.jar app.jar
 
-# Definir o ponto de entrada
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
-
