@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { DonationDTO } from "../models/donation";
 import { requestBackend } from "../utils/request";
+import { CollectorId } from "../models/User";
 
 export function insertDonation(donation: DonationDTO) {
   const config: AxiosRequestConfig = {
@@ -13,10 +14,13 @@ export function insertDonation(donation: DonationDTO) {
   return requestBackend(config);
 }
 
-export function updateCollectDonation(id: number | undefined) {
+export function updateCollectDonation(
+id: number | undefined, collectorId: CollectorId,
+) {
   const config: AxiosRequestConfig = {
     method: "PUT",
     url: `/donations/collect/${id}`,
+    data: collectorId,
     withCredentials: true,
   };
 

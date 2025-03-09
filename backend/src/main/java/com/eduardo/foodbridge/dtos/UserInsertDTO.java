@@ -2,7 +2,6 @@ package com.eduardo.foodbridge.dtos;
 
 import com.eduardo.foodbridge.services.validations.UserInsertValid;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -10,21 +9,10 @@ import jakarta.validation.constraints.Size;
 public class UserInsertDTO extends UserDTO {
 
 	@NotBlank(message = "Campo requerido")
-	@Email(message = "Email inválido")
-	private String email;
-	@NotBlank(message = "Campo requerido")
 	@Size(min = 6, max = 30, message = "Senha deve entre 6 a 30 caracteres")
 	private String password;
 
 	public UserInsertDTO() {
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getPassword() {

@@ -7,6 +7,7 @@ import com.eduardo.foodbridge.entities.Donation;
 import com.eduardo.foodbridge.entities.Role;
 import com.eduardo.foodbridge.entities.User;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -16,6 +17,9 @@ public class UserDTO {
 	@NotBlank(message = "Campo requerido")
 	@Size(min = 5, max = 80, message = "Nome deve ter entre 5 a 80 caracteres")
 	private String name;
+	@NotBlank(message = "Campo requerido")
+	@Email(message = "Email inválido")
+	private String email;
 	@Size(min = 8, message = "Campo requerido")
 	@NotBlank(message = "Campo requerido")
 	private String address;
@@ -33,6 +37,7 @@ public class UserDTO {
 		id = user.getId();
 		name = user.getName();
 		address = user.getAddress();
+		email = user.getEmail();
 		phone = user.getPhone();
 		birthDate = user.getBirthDate();
 		for (Donation donation : user.getDonations()) {
@@ -60,6 +65,14 @@ public class UserDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {

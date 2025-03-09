@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eduardo.foodbridge.dtos.CepDTO;
+import com.eduardo.foodbridge.dtos.CollectorId;
 import com.eduardo.foodbridge.dtos.DonationDTO;
 import com.eduardo.foodbridge.dtos.DonationMinDTO;
 import com.eduardo.foodbridge.entities.Donation;
@@ -61,10 +62,10 @@ public class DonationService {
 	}
 
 	@Transactional
-	public DonationDTO updateCollectDonation(Long id) {
+	public DonationDTO updateCollectDonation(Long id, CollectorId collectorId) {
 		try {
 			Donation donation = repository.getReferenceById(id);
-			collectDonation(donation, authService.authenticated());
+			collectDonation(donation, collectorId);
 			return new DonationDTO(repository.save(donation));
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Doação não encontrada");
@@ -83,15 +84,20 @@ public class DonationService {
 		}
 	}
 
-	private void collectDonation(Donation donation, User user) {
-		if (user.getId() == donation.getUser().getId()) {
+	private void collectDonation(Donation donation, CollectorId collectorId) {
+		if (collectorId.getId() == donation.getUser().getId()) {
 			throw new CollectException("Você não pode coletar sua doação.");
+		}
+		if (donation.getCollector() != null && donation.getCollector().getId() == collectorId.getId()) {
+			throw new CollectException("Essa doação já é sua.");
 		}
 		if (donation.getCollector() != null) {
 			throw new CollectException("Essa doação já tem alguém para entregar.");
 		}
 
-		donation.setCollector(user);
+		User collector = new User();
+		collector.setId(collectorId.getId());
+		donation.setCollector(collector);
 	}
 
 	private void copyDtoToEntity(Donation donation, DonationDTO donationDTO) {

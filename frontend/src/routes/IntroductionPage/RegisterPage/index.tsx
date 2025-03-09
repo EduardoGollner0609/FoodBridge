@@ -24,6 +24,7 @@ export default function RegisterPage() {
                 name: "name",
                 type: "text",
                 placeholder: "Nome",
+                autoComplete: "name",
                 validation: function (value: string) {
                     return /^.{5,80}$/.test(value);
                 },
@@ -67,6 +68,7 @@ export default function RegisterPage() {
                 name: "email",
                 type: "text",
                 placeholder: "Email",
+                autoComplete: "email",
                 validation: function (value: string) {
                     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
                 },
@@ -78,6 +80,7 @@ export default function RegisterPage() {
                 name: "password",
                 type: "password",
                 placeholder: "Senha",
+                autoComplete: "current-password",
                 validation: function (value: string) {
                     return /^.{6,30}$/.test(value);
                 },

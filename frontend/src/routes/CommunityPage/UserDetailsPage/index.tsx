@@ -79,6 +79,7 @@ export default function UserDetailsPage() {
                                     <div className="card-user-details-header">
                                         <h3>{user?.name}</h3>
                                         <p>Data de nascimento: {formatDate(user?.birthDate)}</p>
+                                        <p>Email: {user.email}</p>
                                         <p>Número: {user?.phone}</p>
                                         <p>Cep: {user?.address}</p>
                                     </div>

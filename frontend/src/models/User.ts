@@ -33,3 +33,7 @@ export type UserInsertDTO = {
   email: string;
   password: string;
 };
+
+export type CollectorId = {
+  id: number | undefined;
+};
