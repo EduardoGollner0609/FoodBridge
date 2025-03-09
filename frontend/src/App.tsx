@@ -57,6 +57,7 @@ function App() {
             <Route path="/community/donation/:donationId" element={<DonationDetailsPage />} />
             <Route path="/community/donation-register" element={<DonationRegisterPage />} />
             <Route path="/community/user-details" element={<UserDetailsPage />} >
+              <Route path="*" element={<HomeCommunityPage />} />
             </Route>
           </Route>
         </Routes>
