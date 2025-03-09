@@ -65,3 +65,19 @@
   border-radius: 15px;
   padding: 8px 10px;
 }
+
+.recover-password-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.recover-password-loading img {
+  height: 80px;
+  width: 80px;
+}
+
+.recover-password-loading p {
+  color: var(--fb-color-tertiary);
+}

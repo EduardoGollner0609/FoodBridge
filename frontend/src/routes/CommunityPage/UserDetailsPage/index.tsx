@@ -48,15 +48,15 @@ export default function UserDetailsPage() {
 
     function removeUser() {
 
+        navigate("/");
+
         setCardConfirmVisible(false);
 
         userService.deleteById(user?.id).then(() => {
+
             authService.logout();
             userService.logout();
-            navigate("/");
-        }).catch(error => {
-            setCardMessage(error.response.data.message);
-        })
+        });
     }
 
     return (

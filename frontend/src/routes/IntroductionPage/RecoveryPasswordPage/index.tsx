@@ -107,7 +107,7 @@ export default function RecoveryPasswordPage() {
                         <>
                             <h2>Verifique seu Email</h2>
                             <p className="password-changed">Senha alterada com sucesso!</p>
-                            <Link to="/">Fazer Login</Link>
+                            <Link to="/login">Fazer Login</Link>
                         </>
                     }
 
