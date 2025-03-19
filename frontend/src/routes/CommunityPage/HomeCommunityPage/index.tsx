@@ -89,11 +89,11 @@ export default function HomeCommunityPage() {
                             </div>
                         )}
                         {
-                            donations.length <= 0 && !loading && donationsIsEmpty &&
+                            (donations.length <= 0 && !loading && donationsIsEmpty) &&
                             <h3 className="zero-donations">Não temos doações disponiveis</h3>
                         }
                     </div>
-                    {donations.length > 0 && !isLastPage && <ButtonNextPage onNextPage={handleNextPageClick} />}
+                    {(donations.length > 0 && !isLastPage && !loading) && <ButtonNextPage onNextPage={handleNextPageClick} />}
                 </div>
             </section>
         </main >
