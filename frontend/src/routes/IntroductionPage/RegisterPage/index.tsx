@@ -117,11 +117,12 @@ export default function RegisterPage() {
             navigate("/login");
         }).catch(error => {
             setLoading(false);
+            console.log(error)
             const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
             setFormData(newInputs);
         });
 
-        setFormData(formEmpty);
+
     }
 
 

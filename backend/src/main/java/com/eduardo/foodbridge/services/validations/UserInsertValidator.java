@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.eduardo.foodbridge.controllers.handlers.FieldMessage;
@@ -44,7 +43,7 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 			if (response.getErro() != null) {
 				list.add(new FieldMessage("address", "Erro ao buscar esse CEP"));
 			}
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			list.add(new FieldMessage("address", "CEP inválido"));
 		}
 
